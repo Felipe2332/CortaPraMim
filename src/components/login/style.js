@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     alignItems: 'center',
     justifyContent: 'center',
-    width:'100%'
+    width:'100%',
+    
   },
   viewLogin:{
     width:"100%",
@@ -40,12 +41,6 @@ const styles = StyleSheet.create({
     color:'white',
     fontWeight:'bold'
   }
-
-
-
-
-
-
 
 });
 
