@@ -2,14 +2,18 @@
 import { Pressable, Text, TextInput, View, Keyboard, TouchableOpacity } from 'react-native';
 import styles from './style';
 
-import { useFonts } from 'expo-font';
+
+import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 
 
 
 export default function Login() {
   const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../../../assets/fonts/Poppins-Regular.ttf'),
+    Poppins_300Light
   });
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -21,7 +25,7 @@ export default function Login() {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.textButton}>ENTRAR</Text>
       </TouchableOpacity>
-      <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 30 }}>Poppins font</Text>
+      <Text style={{ fontFamily: 'Poppins_300Light', fontSize: 30, color: "white" }}>Poppins font</Text>
     </View>
     </Pressable>
   );

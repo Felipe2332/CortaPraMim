@@ -1,20 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/components/login';
-import { useFonts } from 'expo-font';
-import * as Font from 'expo-font';
 
+import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 
-const fetchFonts = async () => {
-  await Font.loadAsync({
-    'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
-    // Adicione outras fontes conforme necessário
-  });
-};
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
+    Poppins_300Light
   });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <Login/>
