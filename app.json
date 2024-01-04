@@ -1,5 +1,15 @@
 {
   "expo": {
+    "plugin": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+          "./assets/fonts/Poppins-Regular.ttf"
+          ]
+        }
+      ]
+    ],
     "name": "cortaPraMim",
     "slug": "cortaPraMim",
     "version": "1.0.0",
