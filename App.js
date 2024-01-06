@@ -1,30 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/components/login';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './src/routes/index';
 
-import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins'; // npx expo install @expo-google-fonts/poppins expo-font
 
-
-export default function App() {
-  const [fontsLoaded] = useFonts({
-    Poppins_300Light
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
+export default () => {
   return (
-    <View style={styles.container}>
-      <Login/>
-    </View>
+    <NavigationContainer >
+      <Routes/>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
