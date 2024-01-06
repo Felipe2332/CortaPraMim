@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-
+import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 const styles = StyleSheet.create({
 
   container: {
@@ -9,10 +9,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width:'100%',
     
+    
   },
   viewLogin:{
     width:"100%",
-    alignItems:'center'
+    alignItems:'center',
+    marginBottom: 80
   },
   input:{
     width:"90%", //o input ocupa 90% da tela na horizontal
@@ -25,8 +27,8 @@ const styles = StyleSheet.create({
   },
   textLogin:{
     marginRight:220,
-    fontWeight:'bold',
-    color:'white'
+    color:'white',
+    fontFamily:'Poppins_300Light'
   },
   button:{
     marginTop: 50,
@@ -39,7 +41,8 @@ const styles = StyleSheet.create({
   },
   textButton:{
     color:'white',
-    fontWeight:'bold'
+    fontFamily:'Poppins_300Light',
+    fontSize: 20
   }
 
 });

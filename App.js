@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/components/login';
 
-import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
+import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins'; // npx expo install @expo-google-fonts/poppins expo-font
 
 
 export default function App() {
