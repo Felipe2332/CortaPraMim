@@ -9,7 +9,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width:'100%',
     
-    
+  },
+  imagemFundo:{
+    flex:1,
+    resizeMode: 'cover',
+    alignContent:"center",
+    justifyContent: 'center',
+    width:"100%"
   },
   viewLogin:{
     width:"100%",

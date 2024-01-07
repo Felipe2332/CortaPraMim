@@ -1,14 +1,11 @@
-
-import { Pressable, Text, TextInput, View, Keyboard, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text'; 
-//npm install react-native-masked-text --save
 import styles from './style';
 import { api, enviarDadosParaApi} from '../services/api'
-
-import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins'; // npx expo install @expo-google-fonts/poppins expo-font
-import { useState } from 'react';
-
+import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
+import { func } from 'prop-types';
 
 
 export default function Login() {
@@ -19,14 +16,54 @@ export default function Login() {
   const [fontsLoaded] = useFonts({
     Poppins_300Light
   });
+  const [fadeAnim] = useState(new Animated.Value(0));  // Valor inicial da opacidade
+
+  const [eVisivel, setEVisivel] = useState(true);
+
+  useEffect(() => {
+    if (eVisivel) {
+      // Vai mudar o valor da opacidade para 1 em 2 segundo
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }).start();
+    } else {
+      // Vai mudar o valor da opacidade para 0 em 1 segundo
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 3000,
+        useNativeDriver: true
+      }).start(() => navigation.navigate('Agendamento'));
+    }
+  }, [eVisivel]);
+
   if (!fontsLoaded) {
     return null;
   }
 
   const handleEviarDadosApi = () => { enviarDadosParaApi(username, cell)}
 
+  const verificaCampo =() =>{
+    if(cell.trim() === "" || username.trim() === "")
+    {
+      Alert.alert("Parcero, escreve as coisa aí");
+    }
+    else
+    {
+      handleEviarDadosApi(username,cell);
+      setEVisivel(false);
+    }
+  }
+
   return (
+    <>
+    <StatusBar backgroundColor={"black"}/>
+    
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
+    
+    <ImageBackground source={require('../../../assets/barberWallpaper.jpg')} style={styles.imagemFundo}>
+    <Animated.View style={{opacity: fadeAnim}}>
     <View style={styles.viewLogin}>
       <Text style={styles.textLogin}>Nome</Text>
       <TextInput style={styles.input}placeholder='Ex: Luis'
@@ -54,27 +91,21 @@ export default function Login() {
       <TouchableOpacity 
       style={styles.button}
       onPress={() =>{
-        handleEviarDadosApi(username, cell);
-        navigation.navigate('Agendamento', {username,cell}) }
+        verificaCampo()
+        setEVisivel(false);
+         }
       }
       >
-        <Text style={styles.textButton} 
-        
-        
-        
-        >ENTRAR</Text>
+        <Text style={styles.textButton}>ENTRAR</Text>
       </TouchableOpacity>
-      <Text 
-        style={{ fontFamily: 'Poppins_300Light', 
-        fontSize: 30, 
-        color: "white" }}>Luis dev
-        </Text>
-
-     
-    
+      
     </View>
+    {/* Fim do form */}
+
+    </Animated.View>
+    </ImageBackground>
     
     </Pressable>
-    
+    </>
   );
 };

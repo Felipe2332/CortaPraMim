@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity,StatusBar } from 'react-native';
 import styles from './style';
 
 
@@ -11,6 +11,8 @@ const Agendamento = ({route}) => {
   const {username, cell} = route.params;
 
   return (
+    <>
+    <StatusBar backgroundColor={"black"}/>
     <View style={styles.container}>
       <View style={styles.cabecaView}>
       <Text style={styles.textmsg}>Bem Vindo</Text>
@@ -24,6 +26,7 @@ const Agendamento = ({route}) => {
           </TouchableOpacity>
       </View>
     </View>
+    </>
   );
 
   }
