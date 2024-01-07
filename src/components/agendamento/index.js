@@ -1,22 +1,32 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 
 
 
-export default function Agendamento() {
+
+const Agendamento = ({route}) => {
+  const {username, cell} = route.params;
 
   return (
     <View style={styles.container}>
-      <Text >ola mundo</Text>
+      <Text >{username}</Text>
+      <Text >{cell}</Text>
     </View>
   );
-}
 
-const styles = StyleSheet.create({
+  }
+  export default Agendamento;
+
+
+  const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textmsg:{
+    backgroundColor:'red'
+  }
 });
