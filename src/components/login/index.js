@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text'; 
 //npm install react-native-masked-text --save
 import styles from './style';
-import api from '../services/api';
+import { api, enviarDadosParaApi} from '../services/api'
 
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins'; // npx expo install @expo-google-fonts/poppins expo-font
 import { useState } from 'react';
@@ -23,22 +23,7 @@ export default function Login() {
     return null;
   }
 
-  const enviarDadosParaAPI = async () => {
-    try {
-      const response = await api.post('/ClienteSemCadastro/create', {
-        csc_Cpf: "96836565054",
-        csc_Nome: username,
-        csc_Phone: cell,
-        csc_Email: "uael@email.com",
-      });
-
-      console.log('Resposta da API:', response.data);
-      // Lide com a resposta da API conforme necessário
-    } catch (error) {
-      console.error('Erro ao enviar dados para a API:', error);
-      // Lide com o erro conforme necessário
-    }
-  };
+  const handleEviarDadosApi = () => { enviarDadosParaApi(username, cell)}
 
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -57,8 +42,10 @@ export default function Login() {
         withDDD: true,
         dddMask: '(99) '
         }}
-       
-        onChangeText={text => setCell(text)}
+        
+        onChangeText={text => {
+          const numericValue = text.replace(/[^0-9]/g, '');
+          setCell(numericValue)}}
         style={styles.input}
         value={cell}
         placeholder='Ex: (99) 99999-9999'>
@@ -67,7 +54,7 @@ export default function Login() {
       <TouchableOpacity 
       style={styles.button}
       onPress={() =>{
-        enviarDadosParaAPI();
+        handleEviarDadosApi(username, cell);
         navigation.navigate('Agendamento', {username,cell}) }
       }
       >

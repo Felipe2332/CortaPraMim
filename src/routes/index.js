@@ -16,6 +16,7 @@ export default function Routes(){
     > 
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Agendamento" component={Agendamento}/>
+        
     </Stack.Navigator>
 
 
