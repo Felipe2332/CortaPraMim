@@ -7,11 +7,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#181818',
     alignItems: 'center',
     
+    
   },
   textmsg:{
     fontSize: 18,
     color: 'red',
-    fontWeight:'bold'
+    fontWeight:'bold',
+    margin: 1
   },
   cabecaView:{
     backgroundColor: 'black',
@@ -40,7 +42,16 @@ const styles = StyleSheet.create({
     color:'white',
     fontFamily:'Poppins_300Light',
     fontSize: 20
-  }
+  },
+  modal:{
+    width: '100%',
+    height: 40,
+    marginTop: 30,
+    gap:10
+    
+    
+
+  },
 });
 
 export default styles;

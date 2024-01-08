@@ -53,7 +53,6 @@ export default function Login() {
     {
       handleEviarDadosApi();
       setEVisivel(false);
-      console.log(username);
     }
   }
 
