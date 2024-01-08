@@ -3,7 +3,7 @@ import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput,
 import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text'; 
 import styles from './style';
-import { api, enviarDadosParaApi} from '../services/api'
+import { enviarDadosParaApi} from '../services/api'
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 
@@ -11,8 +11,8 @@ import { func } from 'prop-types';
 export default function Login() {
   
   const navigation = useNavigation();
-  const [username, setUserName] = useState('');
-  const [cell, setCell] = useState('');
+  const [username, setUserName] = useState("");
+  const [cell, setCell] = useState("");
   const [fontsLoaded] = useFonts({
     Poppins_300Light
   });
@@ -34,7 +34,7 @@ export default function Login() {
         toValue: 0,
         duration: 3000,
         useNativeDriver: true
-      }).start(() => navigation.navigate('Agendamento'));
+      }).start(() => navigation.navigate('Agendamento', {username, cell}));
     }
   }, [eVisivel]);
 
@@ -42,17 +42,18 @@ export default function Login() {
     return null;
   }
 
-  const handleEviarDadosApi = () => { enviarDadosParaApi(username, cell)}
+  const handleEviarDadosApi = () => {enviarDadosParaApi(username, cell)}
 
-  const verificaCampo =() =>{
+  const verificaCampo = () =>{
     if(cell.trim() === "" || username.trim() === "")
     {
       Alert.alert("Parcero, escreve as coisa aí");
     }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
     else
     {
-      handleEviarDadosApi(username,cell);
+      handleEviarDadosApi();
       setEVisivel(false);
+      console.log(username);
     }
   }
 
@@ -90,11 +91,7 @@ export default function Login() {
 
       <TouchableOpacity 
       style={styles.button}
-      onPress={() =>{
-        verificaCampo()
-        setEVisivel(false);
-         }
-      }
+      onPress={() =>verificaCampo()}
       >
         <Text style={styles.textButton}>ENTRAR</Text>
       </TouchableOpacity>

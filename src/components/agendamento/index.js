@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity,StatusBar } from 'react-native';
+import { Text, View, TouchableOpacity,StatusBar } from 'react-native';
+
 import styles from './style';
 
 
@@ -17,7 +18,7 @@ const Agendamento = ({route}) => {
       <View style={styles.cabecaView}>
       <Text style={styles.textmsg}>Bem Vindo</Text>
       <Text style={styles.textmsg}>{username}</Text>
-      <Text >{cell}</Text>
+      <Text style={styles.textmsg}>{cell}</Text>
       </View>
 
       <View style={styles.viewLogin}>
