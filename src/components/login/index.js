@@ -32,7 +32,7 @@ export default function Login() {
       // Vai mudar o valor da opacidade para 0 em 1 segundo
       Animated.timing(fadeAnim, {
         toValue: 0,
-        duration: 3000,
+        duration: 1000,
         useNativeDriver: true
       }).start(() => navigation.navigate('Agendamento', {username, cell}));
     }
@@ -47,7 +47,7 @@ export default function Login() {
   const verificaCampo = () =>{
     if(cell.trim() === "" || username.trim() === "")
     {
-      Alert.alert("Parcero, escreve as coisa aí");
+      Alert.alert("Por favor, preencha os campos corretamente");
     }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
     else
     {
@@ -62,9 +62,11 @@ export default function Login() {
     
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
     
-    <ImageBackground source={require('../../../assets/barberWallpaper.jpg')} style={styles.imagemFundo}>
+    <ImageBackground source={require('../../../assets/cadeiras.jpg')} imageStyle={{opacity:0.5}}style={styles.imagemFundo}>
+      
     <Animated.View style={{opacity: fadeAnim}}>
     <View style={styles.viewLogin}>
+      
       <Text style={styles.textLogin}>Nome</Text>
       <TextInput style={styles.input}placeholder='Ex: Luis'
       onChangeText={text => setUserName(text)}

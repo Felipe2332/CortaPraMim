@@ -15,12 +15,14 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     alignContent:"center",
     justifyContent: 'center',
-    width:"100%"
+    width:"100%",
+    
   },
   viewLogin:{
     width:"100%",
     alignItems:'center',
-    marginBottom: 80
+    marginBottom: 80,
+    
   },
   input:{
     width:"90%", //o input ocupa 90% da tela na horizontal
@@ -29,9 +31,11 @@ const styles = StyleSheet.create({
     height: 40, // deixa ele mais alto
     margin: 15,
     paddingLeft:10, // afasta oque ta dentro dele da parede esquerda
-    marginTop: 5
+    marginTop: 5,
+    fontSize:20,
   },
   textLogin:{
+    fontSize:22,
     marginRight:220,
     color:'white',
     fontFamily:'Poppins_300Light'

@@ -7,10 +7,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#181818',
     alignItems: 'center',
     
-    
   },
   textmsg:{
-    fontSize: 18,
+    fontSize: 22,
     color: 'red',
     fontWeight:'bold',
     margin: 1
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   modal:{
-    width: '100%',
+    width: '85%',
     height: 40,
     marginTop: 30,
     gap:10
