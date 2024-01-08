@@ -48,7 +48,7 @@ export default function Login() {
     if(cell.trim() === "" || username.trim() === "")
     {
       Alert.alert("Parcero, escreve as coisa aí");
-    }
+    }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
     else
     {
       handleEviarDadosApi(username,cell);
