@@ -1,6 +1,6 @@
 
 import React, { useMemo, useState } from 'react';
-import { Text, View, TouchableOpacity,StatusBar, Modal } from 'react-native';
+import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback, FlatList } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale'
@@ -90,13 +90,15 @@ function CustomCalendar (props) {
     <Calendar
       style={styles.calendario}
       theme={{
+        
         'stylesheet.calendar.main': {
           dayContainer: {
             flex: 1,
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            
           }},
-      
+       calendarBackground:'#e2e2e2',
        todayTextColor:'black',
        arrowColor:'#3d251e',
        textDayFontFamily:'Poppins_300Light',
@@ -108,6 +110,7 @@ function CustomCalendar (props) {
        textDayHeaderFontSize:13,
       }}
       initialDate={dataInicialString}
+      minDate={dataInicial}
       maxDate={dataMaximaString}
       markedDates={marked}
       onDayPress={(day) => {
@@ -115,8 +118,8 @@ function CustomCalendar (props) {
         setMarked({
           [day.dateString]: {
             selected: true,
-            selectedColor: '#91672c',
-            selectedTextColor: 'white',
+            selectedColor: '#673319',
+            selectedTextColor: '#cd883b',
           }
         });
         //Aqui printa a data formatada abaixo do calendário
@@ -134,12 +137,31 @@ function CustomCalendar (props) {
 // Fim do calendário
 
 
+
 const Agendamento = ({route}) => {
 
   const {username, cell} = route.params;
-  
- 
- 
+  const [visibleModal,setVisibleModal] = useState(false);
+  const fecharModal = () => {
+    setVisibleModal(false)
+  }
+  const abrirModal = () => {
+    setVisibleModal(true)
+  }
+ //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState(['8:00','9:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00']);
+
+  // CRIA CADA HORARIO COMO UM BOTAO
+  const renderHorario = ({item}) => (
+    <TouchableOpacity 
+    style={styles.item}
+    onPress={fecharModal}
+    >
+      <Text style={styles.itemText}>{item}</Text>
+    </TouchableOpacity>
+  );
+
+
   return (
   <>
     <StatusBar backgroundColor={"black"}/>
@@ -154,10 +176,35 @@ const Agendamento = ({route}) => {
       </View>
 
       <View style={styles.viewLogin}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+        style={styles.button}
+        onPress={abrirModal}>
           <Text style={styles.textButton}>Agendar</Text>
         </TouchableOpacity>
       </View>
+       
+       
+        <Modal
+        visible={visibleModal}
+        transparent={true}
+        animationType='slide'
+        >
+          <TouchableWithoutFeedback
+          onPress={fecharModal}>
+            <View style={styles.overlay}/>
+            </TouchableWithoutFeedback>
+          <View style={styles.viewModal}>
+            <FlatList
+            showsVerticalScrollIndicator={false}
+            data={horariosDisponiveis}
+            renderItem={renderHorario}
+            keyExtractor={(item) => item}
+            />
+          </View>
+
+        </Modal>
+        
+
     </View>
   </>
   );

@@ -57,7 +57,29 @@ const styles = StyleSheet.create({
   },
   calendario:{
     borderRadius:7.5,
+  },
+  viewModal:{
     
+    backgroundColor: '#8c8377',
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor de fundo semitransparente
+  },
+  item: {
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+
+  },
+  itemText: {
+    fontSize: 16,
     
   },
 });
