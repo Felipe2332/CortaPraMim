@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
   },
   modal:{
     width: '85%',
-    height: 40,
+    height: 50,
     marginTop: 30,
-    gap:10
-    
-    
-
+    gap:10,
   },
+  calendar:{
+    backgroundColor: '#d2691e'
+  }
 });
 
 export default styles;

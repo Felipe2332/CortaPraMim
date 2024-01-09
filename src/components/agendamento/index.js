@@ -1,11 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Text, View, TouchableOpacity,StatusBar, Modal } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
-import { format } from 'date-fns';
-
+import { format, formatDistance, getDay } from 'date-fns';
 import styles from './style';
-import Day from 'react-native-calendars/src/calendar/day';
+
 
 LocaleConfig.locales['br'] = {
   monthNames: [
@@ -37,6 +36,30 @@ LocaleConfig.defaultLocale = 'br';
 
 // Calma
 
+function CustomCalendar (props) {
+  const initiDate = new Date();
+  const [selected, setSelected] = useState(initiDate);
+  const marked = useMemo(() => ({
+    [selected]: {
+      selected: true,
+      selectedColor: '#a52a2a',
+      selectedTextColor: 'yellow',
+    }
+  }), [selected])
+  return (
+    <Calendar
+      style={styles.calendar}
+      initialDate={initiDate}
+      markedDates={marked}
+      onDayPress={(day) => {
+        setSelected(day.dateString);
+        props.onDaySelect && props.onDaySelect(day);
+      }}
+      {...props}
+    />
+  );
+}
+
 
 
 const Agendamento = ({route}) => {
@@ -51,9 +74,10 @@ const Agendamento = ({route}) => {
   
     // Formate a data para 'dd/MM/yyyy' usando date-fns
     const formattedDate = format(dateObject, 'dd/MM/yyyy');
-  
+    
     // Agora você pode usar formattedDate como quiser
     setTextAgendado(formattedDate);
+console.log(formattedDate);
   }
   
  
@@ -74,24 +98,9 @@ const Agendamento = ({route}) => {
 
       {/*Calendario  */}
         <View  style={styles.modal}>
-          <Calendar
-          // Estilera do calendário
-          style={{
-            borderWidth:4,
-            borderRadius:15,
-            borderColor:'brown',
-          }}
-          // A bagaça do tema não tá mudando inferno
-          theme={{
-            backgroundColor:'#3d251e'
-          }}
-
-          
-          //Quando o usuario seleciona uma data
-          onDayPress={dataFormatada}
-          
-          >
-          </Calendar>   
+           {/*  */}
+         
+          <CustomCalendar/>
 
           <Text style={styles.textmsg}>{textAgendado}</Text>
         </View>

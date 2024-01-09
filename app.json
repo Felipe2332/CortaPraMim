@@ -19,7 +19,7 @@
     "splash": {
       "image": "./assets/icons/logo-barber.jpg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3d251e"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -30,7 +30,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#3d251e"
       }
     },
     "web": {
