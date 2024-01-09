@@ -19,7 +19,7 @@
     "splash": {
       "image": "./assets/icons/logo-barber.jpg",
       "resizeMode": "contain",
-      "backgroundColor": "#3d251e"
+      "backgroundColor": "#fff"
     },
     "assetBundlePatterns": [
       "**/*"

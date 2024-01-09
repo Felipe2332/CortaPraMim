@@ -14,6 +14,13 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     margin: 1
   },
+  textoDeData:{
+    fontSize: 22,
+    color: 'red',
+    fontWeight:'bold',
+    marginTop:35,
+    textAlign:'center'
+  },
   cabecaView:{
     backgroundColor: 'black',
     padding: 20,
@@ -48,9 +55,11 @@ const styles = StyleSheet.create({
     marginTop: 30,
     gap:10,
   },
-  calendar:{
-    backgroundColor: '#d2691e'
-  }
+  calendario:{
+    borderRadius:7.5,
+    
+    
+  },
 });
 
 export default styles;
