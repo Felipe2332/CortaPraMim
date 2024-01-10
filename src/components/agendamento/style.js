@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
+    paddingTop: 12
 
   },
   overlay: {
@@ -82,6 +83,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     
   },
+  horarioSelecionadoView:{
+    backgroundColor: 'red'
+  },
+  horarioSelecionadoText:{
+    backgroundColor:'green'
+  },
+  itemSelecionado:{
+    backgroundColor:'rgba(0, 0, 0, 0.5)'
+  }
 });
 
 export default styles;

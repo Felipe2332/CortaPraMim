@@ -98,7 +98,8 @@ function CustomCalendar (props) {
             justifyContent: 'center',
             
           }},
-       calendarBackground:'#e2e2e2',
+
+       calendarBackground:'#e2e2e2', // mudar a cor de fundo do calendario
        todayTextColor:'black',
        arrowColor:'#3d251e',
        textDayFontFamily:'Poppins_300Light',
@@ -110,7 +111,7 @@ function CustomCalendar (props) {
        textDayHeaderFontSize:13,
       }}
       initialDate={dataInicialString}
-      minDate={dataInicial}
+      minDate={`${dataInicial}`}
       maxDate={dataMaximaString}
       markedDates={marked}
       onDayPress={(day) => {
@@ -142,12 +143,19 @@ const Agendamento = ({route}) => {
 
   const {username, cell} = route.params;
   const [visibleModal,setVisibleModal] = useState(false);
+  const [horarioSelecionado, setHorarioSelecionado] = useState(null);
   const fecharModal = () => {
     setVisibleModal(false)
   }
+  
   const abrirModal = () => {
     setVisibleModal(true)
   }
+
+  const selecionarHorario = (horario) => {
+    setHorarioSelecionado(horario);
+  }
+
  //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
   const [horariosDisponiveis, setHorariosDisponiveis] = useState(['8:00','9:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00']);
 
@@ -155,12 +163,23 @@ const Agendamento = ({route}) => {
   const renderHorario = ({item}) => (
     <TouchableOpacity 
     style={styles.item}
-    onPress={fecharModal}
+    value={item}
+    onPress={console.log(item)}
     >
       <Text style={styles.itemText}>{item}</Text>
     </TouchableOpacity>
   );
 
+  const confirmarAgendamento = () => {
+    if(horarioSelecionado){
+      setHorariosDisponiveis((prevHorarios) => prevHorarios.filter((h) => h !== horarioSelecionado));
+      console.log(`Agendamento confirmado para ${horarioSelecionado}`);
+      fecharModal();
+    }else {
+      console.log('Selecione um horário antes de confirmar o agendamento');
+
+    }
+  [horarioSelecionado]}
 
   return (
   <>
@@ -194,16 +213,41 @@ const Agendamento = ({route}) => {
             <View style={styles.overlay}/>
             </TouchableWithoutFeedback>
           <View style={styles.viewModal}>
+          <Text style={styles.textButton}>SELECIONE UM HORARIO</Text>
             <FlatList
             showsVerticalScrollIndicator={false}
             data={horariosDisponiveis}
-            renderItem={renderHorario}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[styles.item, horarioSelecionado === item && styles.itemSelecionado]}
+                onPress={() => {
+                  selecionarHorario(item) 
+                  
+                }}
+                disabled={horarioSelecionado === item}
+                
+                
+              >
+                <Text style={styles.itemText}>{item}</Text>
+              </TouchableOpacity>
+              )}
             keyExtractor={(item) => item}
             />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={confirmarAgendamento}
+              disabled={!horarioSelecionado}
+              >
+  <Text style={styles.textButton}>Confirmar Agendamento</Text>
+</TouchableOpacity>
           </View>
 
         </Modal>
-        
+        {horarioSelecionado && (
+          <View style={styles.horarioSelecionadoView}>
+            <Text style={styles.horarioSelecionadoText}>Horário Selecionado: {horarioSelecionado}</Text>
+          </View>
+        )}
 
     </View>
   </>
