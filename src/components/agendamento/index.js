@@ -206,14 +206,16 @@ const Agendamento = ({route}) => {
         <Modal
         visible={visibleModal}
         transparent={true}
-        animationType='slide'
-        >
+        animationType='slide'>
+
           <TouchableWithoutFeedback
           onPress={fecharModal}>
             <View style={styles.overlay}/>
             </TouchableWithoutFeedback>
-          <View style={styles.viewModal}>
-          <Text style={styles.textButton}>SELECIONE UM HORARIO</Text>
+
+        <View style={styles.viewModal}>
+
+          <Text style={styles.textButton}>SELECIONE UM HORÁRIO</Text>
             <FlatList
             showsVerticalScrollIndicator={false}
             data={horariosDisponiveis}
@@ -224,32 +226,31 @@ const Agendamento = ({route}) => {
                   selecionarHorario(item) 
                   
                 }}
-                disabled={horarioSelecionado === item}
-                
-                
-              >
+                disabled={horarioSelecionado === item}>
+
                 <Text style={styles.itemText}>{item}</Text>
+
               </TouchableOpacity>
               )}
-            keyExtractor={(item) => item}
-            />
+            keyExtractor={(item) => item}/>
+
             <TouchableOpacity
               style={styles.button}
               onPress={confirmarAgendamento}
-              disabled={!horarioSelecionado}
-              >
-  <Text style={styles.textButton}>Confirmar Agendamento</Text>
-</TouchableOpacity>
-          </View>
+              disabled={!horarioSelecionado}>
+              <Text style={styles.textButton}>Confirmar Agendamento</Text>
+              </TouchableOpacity>
 
+        </View>
         </Modal>
         {horarioSelecionado && (
           <View style={styles.horarioSelecionadoView}>
             <Text style={styles.horarioSelecionadoText}>Horário Selecionado: {horarioSelecionado}</Text>
           </View>
         )}
+        </View>
 
-    </View>
+  {/* Fim */}
   </>
   );
 

@@ -42,7 +42,7 @@ export default function Login() {
     return null;
   }
 
-  const handleEviarDadosApi = () => {enviarDadosParaApi(username, cell)}
+  
 
   const verificaCampo = () =>{
     if(cell.trim() === "" || username.trim() === "")
@@ -51,7 +51,25 @@ export default function Login() {
     }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
     else
     {
-      handleEviarDadosApi();
+      fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      csc_Cpf: '', // Enviando o CPF como vazio. Pelamor vitão me ajuda
+      csc_Nome: username,
+      csc_Phone: cell,
+      csc_Email: '', //
+    }),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Sucesso:', data);
+  })
+  .catch((error) => {
+    console.error('Erro:', error);
+  });
       setEVisivel(false);
     }
   }

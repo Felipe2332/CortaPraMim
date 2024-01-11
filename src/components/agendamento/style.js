@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     width:'90%',
     borderRadius: 50,
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    marginBottom:15,
   },
   viewLogin:{
     width:"100%",
