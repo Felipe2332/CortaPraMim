@@ -21,17 +21,6 @@ export default function Login() {
   const [eVisivel, setEVisivel] = useState(true);
 
   useEffect(() => {
-    fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/getclientes', {
-      method: 'GET',
-    })
-    .then((response) => {
-      console.log(JSON.stringify(response)); // Tá funcionando e não tá. 70% pronto
-    })
-    .catch((error) => {
-      console.error('Erro:', error);
-    });
-
-
     if (eVisivel) {
       // Vai mudar o valor da opacidade para 1 em 2 segundo
       Animated.timing(fadeAnim, {
@@ -62,27 +51,6 @@ export default function Login() {
     }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
     else
     {
-      // Envia essa bagaça pro Banco
-      
-    fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/create', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      csc_Cpf: "FDFDSFDSFS", // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
-      csc_Nome: username,
-      csc_Phone: cell,
-      csc_Email: "FDSFDSFDSFSD", 
-    }),
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Sucesso:', data);
-  })
-  .catch((error) => {
-    console.error('Erro:', error);
-  });
       setEVisivel(false);
     }
   }

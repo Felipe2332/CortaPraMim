@@ -137,6 +137,59 @@ function CustomCalendar (props) {
 }
 // Fim do calendário
 
+// Para interagir com API
+// Tá funcionando e não tá. 70% pronto
+const criarAgendamento = (username, cell, date, time) => {
+  
+  const data = {
+    ClienteSemCadastro: {
+      csc_Cpf: '00000000000', // CPF padrão
+      csc_Nome: username,
+      csc_Phone: cell,
+      csc_Email: '', // Email vazio
+    },
+    Agendamento: {
+      age_Date: date,
+      age_Time: time,
+      cli_Cpf: null, // Alterado de cli_Id para cli_Cpf
+      csc_Cpf: '00000000000', // CPF padrão // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
+      usu_Id: 2, // Este valor pode precisar ser alterado
+      age_Feito: false,
+      age_Cancelado: false,
+    },
+  };
+  
+  
+
+  fetch('https://cortapramim.azurewebsites.net/api/Agendamentos/createsemcadastro', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => {
+    console.log(response);
+    return response.json();
+  })
+  .then((data) => {
+    console.log('Sucesso:', data);
+
+    // Verificar se tá no Banco
+    return fetch('https://cortapramim.azurewebsites.net/api/Agendamentos/getagendamentos', {
+      method: 'GET',
+    });
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Agendamentos:', data);
+  })
+  .catch((error) => {
+    console.error('Erro:', error);
+  });
+};
+
+
 
 
 const Agendamento = ({route}) => {
@@ -144,6 +197,7 @@ const Agendamento = ({route}) => {
   const {username, cell} = route.params;
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   const fecharModal = () => {
     setVisibleModal(false)
   }
@@ -154,6 +208,7 @@ const Agendamento = ({route}) => {
 
   const selecionarHorario = (horario) => {
     setHorarioSelecionado(horario);
+    setConfirmModalVisible(true); // Abre o modal de confirmação quando um horário é selecionado
   }
 
  //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
@@ -198,11 +253,11 @@ const Agendamento = ({route}) => {
         <TouchableOpacity 
         style={styles.button}
         onPress={abrirModal}>
-          <Text style={styles.textButton}>Agendar</Text>
+          <Text style={styles.textButton}>ESCOLHER HORÁRIO</Text>
         </TouchableOpacity>
       </View>
        
-       
+       {/* Aqui abre a tela de seleção de hora */}
         <Modal
         visible={visibleModal}
         transparent={true}
@@ -243,11 +298,45 @@ const Agendamento = ({route}) => {
 
         </View>
         </Modal>
-        {horarioSelecionado && (
-          <View style={styles.horarioSelecionadoView}>
-            <Text style={styles.horarioSelecionadoText}>Horário Selecionado: {horarioSelecionado}</Text>
+        {/* Fim do modal de seleção de hora  */}
+        
+        
+        {/* Novo Modal */}
+        <Modal
+          visible={confirmModalVisible}
+          transparent={true}
+          animationType='slide'>
+
+          <TouchableWithoutFeedback
+            onPress={() => setConfirmModalVisible(false)}>
+            <View style={styles.overlay}/>
+          </TouchableWithoutFeedback>
+
+          <View style={styles.viewModal}>
+            <Text>Nome: {username}</Text>
+            <Text>Celular: {cell}</Text>
+            <Text>Horário: {horarioSelecionado}</Text>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                // Aqui você pode adicionar o código para confirmar o agendamento
+                setConfirmModalVisible(false);
+                // Mandar para API 
+                criarAgendamento();
+              }}>
+              <Text style={styles.textButton}>Confirmar Agendamento</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setConfirmModalVisible(false)}>
+              <Text style={styles.textButton}>Editar Informações</Text>
+            </TouchableOpacity>
           </View>
-        )}
+        </Modal>
+        {/* Fim do modal de confirmação */}
+
         </View>
 
   {/* Fim */}
