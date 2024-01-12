@@ -21,19 +21,16 @@ export default function Login() {
   const [eVisivel, setEVisivel] = useState(true);
 
   useEffect(() => {
-    fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastros/getclientes', {
+    fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/getclientes', {
       method: 'GET',
     })
     .then((response) => {
-      console.log(response); // Imprime a resposta
-      return response.json();
-    })
-    .then((data) => {
-      console.log('Clientes:', data);
+      console.log(JSON.stringify(response)); // Tá funcionando e não tá. 70% pronto
     })
     .catch((error) => {
       console.error('Erro:', error);
     });
+
 
     if (eVisivel) {
       // Vai mudar o valor da opacidade para 1 em 2 segundo
@@ -65,18 +62,18 @@ export default function Login() {
     }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
     else
     {
-      // Envia essa porra pro Banco
+      // Envia essa bagaça pro Banco
       
-      fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/create', {
+    fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      csc_Cpf: '75647564750', // Enviando o CPF como vazio. Pelamor vitão me ajuda
+      csc_Cpf: "FDFDSFDSFS", // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
       csc_Nome: username,
       csc_Phone: cell,
-      csc_Email: 'emailteste@gmail.com', //
+      csc_Email: "FDSFDSFDSFSD", 
     }),
   })
   .then((response) => response.json())
@@ -104,7 +101,7 @@ export default function Login() {
     <View style={styles.viewLogin}>
       
       <Text style={styles.textLogin}>Nome</Text>
-      <TextInput style={styles.input}placeholder='Ex: Luis'
+      <TextInput style={styles.input}placeholder='Lucas Denadai'
       onChangeText={text => setUserName(text)}
       value={username}
       ></TextInput>
