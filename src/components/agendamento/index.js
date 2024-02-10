@@ -7,7 +7,7 @@ import { ptBR } from 'date-fns/locale'
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 
-
+//Configuração do calendário
 LocaleConfig.locales['br'] = {
   monthNames: [
     'Janeiro',
@@ -35,6 +35,8 @@ LocaleConfig.locales['br'] = {
 };
 
 LocaleConfig.defaultLocale = 'br';
+//Fim da config calend
+
 
 // Calendário
 function CustomCalendar (props) {
@@ -66,6 +68,7 @@ function CustomCalendar (props) {
   
 
   // Data inicial
+  //Isso é para deixar a data marcada sendo como a data inicial
   const dataInicial = new Date();
   const dataInicialString = dataInicial.toISOString().split('T')[0];
   const [selected, setSelected] = useState(dataInicialString);
@@ -109,6 +112,7 @@ function CustomCalendar (props) {
        textMonthFontSize:20,
        textDayFontSize:20,
        textDayHeaderFontSize:13,
+       textDisabledColor:"#c9c8c8",
       }}
       initialDate={dataInicialString}
       minDate={`${dataInicial}`}

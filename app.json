@@ -5,7 +5,7 @@
         "expo-font",
         {
           "fonts": [
-          "./assets/fonts/Poppins-Regular.ttf"
+            "./assets/fonts/Poppins-Regular.ttf"
           ]
         }
       ]
@@ -31,7 +31,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#3d251e"
-      }
+      },
+      "package": "com.felipe2332.cortaPraMim"
     },
     "web": {
       "favicon": "./assets/favicon.png"
