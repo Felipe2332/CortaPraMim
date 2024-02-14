@@ -136,6 +136,7 @@ function CustomCalendar (props) {
     />
     <Text style={styles.textoDeData}>{textAgendado}</Text>
 
+
     </View>
   );
 }
