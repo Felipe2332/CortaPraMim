@@ -45,10 +45,11 @@ export default function Login() {
   
 
   const verificaCampo = () =>{
-    if(cell.trim() === "" || username.trim() === "")
+    const regex = /\d/; // expressão regular para verificar se há números
+    if(cell.trim() === "" || username.trim() === "" || regex.test(username))
     {
       Alert.alert("Por favor, preencha os campos corretamente");
-    }//Tá dando problema aqui. Quando aparece o aviso, a animação ainda ocorre
+    }
     else
     {
       setEVisivel(false);
@@ -71,6 +72,7 @@ export default function Login() {
       <Text style={styles.textLogin}>Nome</Text>
       <TextInput style={styles.input}placeholder='Lucas Denadai'
       onChangeText={text => setUserName(text)}
+      maxLength={30}  
       value={username}
       ></TextInput>
       <Text style={styles.textLogin}>Telefone</Text>

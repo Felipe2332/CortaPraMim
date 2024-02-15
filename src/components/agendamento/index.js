@@ -1,6 +1,6 @@
 
-import React, { useMemo, useState } from 'react';
-import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback, FlatList } from 'react-native';
+import React, { useMemo, useState,useEffect } from 'react';
+import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback, FlatList, BackHandler } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale'
@@ -38,11 +38,12 @@ LocaleConfig.defaultLocale = 'br';
 //Fim da config calend
 
 
+
+
 // Calendário
 function CustomCalendar (props) {
 
   //Propriedades do calendário
-
   // Formatar para Brasil
   const dataFormatada = (day) => {
 
@@ -89,6 +90,7 @@ function CustomCalendar (props) {
 
 
   return (
+    
     <View>
     <Calendar
       style={styles.calendario}
@@ -141,6 +143,7 @@ function CustomCalendar (props) {
   );
 }
 // Fim do calendário
+
 
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
@@ -195,14 +198,28 @@ const criarAgendamento = (username, cell, date, time) => {
 };
 
 
-
-
 const Agendamento = ({route}) => {
 
   const {username, cell} = route.params;
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+
+  useEffect(() => {
+    const handleBackButton = () => {
+      // Você pode adicionar qualquer lógica que desejar aqui. 
+      // Se você retornar true, o comportamento padrão do botão voltar será desativado.
+      return true;
+    }
+
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+
+    // Limpeza na desmontagem
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    };
+  }, []);
+
   const fecharModal = () => {
     setVisibleModal(false)
   }
@@ -347,9 +364,8 @@ const Agendamento = ({route}) => {
   {/* Fim */}
   </>
   );
-
   }
-  export default Agendamento;
+export default Agendamento;
 
 
   
