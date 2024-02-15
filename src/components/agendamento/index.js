@@ -214,6 +214,7 @@ const Agendamento = ({route}) => {
 
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 
+    
     // Limpeza na desmontagem
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
