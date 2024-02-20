@@ -154,13 +154,13 @@ const criarAgendamento = (username, cell, date, time) => {
       csc_Cpf: '00000000000', // CPF padrão
       csc_Nome: username,
       csc_Phone: cell,
-      csc_Email: '', // Email vazio
+      csc_Email: 'emailDoido@gmail.com', // Email vazio
     },
     Agendamento: {
       age_Date: date,
       age_Time: time,
       cli_Cpf: null, // Alterado de cli_Id para cli_Cpf
-      csc_Cpf: '00000000000', // CPF padrão // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
+      csc_Cpf: '74512598451', // CPF padrão // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
       usu_Id: 2, // Este valor pode precisar ser alterado
       age_Feito: false,
       age_Cancelado: false,
@@ -168,7 +168,7 @@ const criarAgendamento = (username, cell, date, time) => {
   };
   
   
-
+//PROBLEMA TÁ AQUI
   fetch('https://cortapramim.azurewebsites.net/api/Agendamentos/createsemcadastro', {
     method: 'POST',
     headers: {
@@ -176,12 +176,10 @@ const criarAgendamento = (username, cell, date, time) => {
     },
     body: JSON.stringify(data),
   })
-  .then((response) => {
-    console.log(response);
-    return response.json();
-  })
-  .then((data) => {
-    console.log('Sucesso:', data);
+  .then((response) => response.text())  // Altere isso
+  .then((text) => {
+    console.log('Resposta:', text);
+  
 
     // Verificar se tá no Banco
     return fetch('https://cortapramim.azurewebsites.net/api/Agendamentos/getagendamentos', {
@@ -214,10 +212,11 @@ const Agendamento = ({route}) => {
 
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 
-    // Limpeza na desmontagem
+    // Voltar a ativar o botão back
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     };
+
   }, []);
 
   const fecharModal = () => {

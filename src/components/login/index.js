@@ -13,6 +13,8 @@ export default function Login() {
   const navigation = useNavigation();
   const [username, setUserName] = useState("");
   const [cell, setCell] = useState("");
+  const [cpf,setCPF] = useState("");
+  const [email,setEmail] = useState("");
   const [fontsLoaded] = useFonts({
     Poppins_300Light
   });
@@ -34,13 +36,52 @@ export default function Login() {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() => navigation.navigate('Agendamento', {username, cell}));
-    }
-  }, [eVisivel]);
+      }).start(() => {
+        criarConta(username, cell, cpf, email)  // Crie a conta do usuário
+          .then(() => {
+            navigation.navigate('Agendamento', {username, cell, cpf, email});  // Navegue para a próxima tela
+          }).catch((error) => {
+            console.error('Erro:', error);
+          });
+        });
+      }
+    }, [eVisivel]);
 
   if (!fontsLoaded) {
     return null;
   }
+
+    const criarConta = (username, cell, cpf, email) => {
+      const data = {
+        ClienteSemCadastro: {
+          csc_Cpf: cpf,
+          csc_Nome: username,
+          csc_Phone: cell,
+          csc_Email: email,
+        },
+      };
+    
+      return fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then((response) => {
+        console.log('Resposta completa:', response);
+        if (!response.ok) {
+          throw new Error('Não vai dá não');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Conta criada:', data);
+      })
+      .catch((error) => {
+        console.error('Erro:', error);
+      });
+    };
 
   
 
@@ -75,8 +116,23 @@ export default function Login() {
       maxLength={30}  
       value={username}
       ></TextInput>
-      <Text style={styles.textLogin}>Telefone</Text>
 
+    <Text style={styles.textLogin}>CPF</Text>
+      <TextInputMask type='cpf' style={styles.input}placeholder='123456789-11'
+      onChangeText={text => setCPF(text)}  // Altere para setCpf
+      maxLength={11}  // CPF com pontos e traço tem 14 caracteres
+      value={cpf}
+      ></TextInputMask>
+
+    <Text style={styles.textLogin}>Email</Text>
+    <TextInput 
+      style={styles.input}
+      placeholder='exemplo@email.com'
+      onChangeText={text => setEmail(text)}
+      value={email}
+    />
+
+      <Text style={styles.textLogin}>Telefone</Text>
       <TextInputMask 
         type='cel-phone' 
         options={{
