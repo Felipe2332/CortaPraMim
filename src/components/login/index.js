@@ -67,6 +67,8 @@ export default function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        redirect: 'follow',
+        
       })
       .then((response) => {
         console.log('Resposta completa:', response);
@@ -119,8 +121,8 @@ export default function Login() {
 
     <Text style={styles.textLogin}>CPF</Text>
       <TextInputMask type='cpf' style={styles.input}placeholder='123456789-11'
-      onChangeText={text => setCPF(text)}  // Altere para setCpf
-      maxLength={11}  // CPF com pontos e traço tem 14 caracteres
+      onChangeText={text => setCPF(text)}  
+      maxLength={14}  // CPF com pontos e traço tem 14 caracteres
       value={cpf}
       ></TextInputMask>
 
@@ -146,7 +148,7 @@ export default function Login() {
           setCell(numericValue)}}
         style={styles.input}
         value={cell}
-        placeholder='Ex: (99) 99999-9999'>
+        placeholder='(99) 99999-9999'>
         </TextInputMask>
 
       <TouchableOpacity 
