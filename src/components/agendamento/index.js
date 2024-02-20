@@ -138,7 +138,6 @@ function CustomCalendar (props) {
     />
     <Text style={styles.textoDeData}>{textAgendado}</Text>
 
-
     </View>
   );
 }
@@ -147,24 +146,24 @@ function CustomCalendar (props) {
 
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
-const criarAgendamento = (username, cell, date, time) => {
+const criarAgendamento = (username, cell, cpf, email, date, time) => {
   
   const data = {
     ClienteSemCadastro: {
-      csc_Cpf: '00000000000', // CPF padrão
+      csc_Cpf: cpf, 
       csc_Nome: username,
       csc_Phone: cell,
-      csc_Email: 'emailDoido@gmail.com', // Email vazio
+      csc_Email: email,
     },
     Agendamento: {
       age_Date: date,
       age_Time: time,
       cli_Cpf: null, // Alterado de cli_Id para cli_Cpf
-      csc_Cpf: '74512598451', // CPF padrão // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
-      usu_Id: 2, // Este valor pode precisar ser alterado
+      csc_Cpf: cpf, // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
+      usu_Id: 1, 
       age_Feito: false,
       age_Cancelado: false,
-    },
+    }
   };
   
   

@@ -36,59 +36,21 @@ export default function Login() {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() => {
-        criarConta(username, cell, cpf, email)  // Crie a conta do usuário
-          .then(() => {
-            navigation.navigate('Agendamento', {username, cell, cpf, email});  // Navegue para a próxima tela
-          }).catch((error) => {
-            console.error('Erro:', error);
-          });
-        });
-      }
-    }, [eVisivel]);
+      }).start(() =>  {navigation.navigate('Agendamento', {username, cell, cpf, email});  // Navegue para a próxima tela
+      });
+        }
+  }, [eVisivel]);
 
   if (!fontsLoaded) {
     return null;
   }
 
-    const criarConta = (username, cell, cpf, email) => {
-      const data = {
-        ClienteSemCadastro: {
-          csc_Cpf: cpf,
-          csc_Nome: username,
-          csc_Phone: cell,
-          csc_Email: email,
-        },
-      };
     
-      return fetch('https://cortapramim.azurewebsites.net/api/ClienteSemCadastro/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        redirect: 'follow',
-        
-      })
-      .then((response) => {
-        console.log('Resposta completa:', response);
-        if (!response.ok) {
-          throw new Error('Não vai dá não');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Conta criada:', data);
-      })
-      .catch((error) => {
-        console.error('Erro:', error);
-      });
-    };
 
   
 
   const verificaCampo = () =>{
-    const regex = /\d/; // expressão regular para verificar se há números
+    const regex = /\d/; // expressão para verificar se há números
     if(cell.trim() === "" || username.trim() === "" || regex.test(username))
     {
       Alert.alert("Por favor, preencha os campos corretamente");
@@ -120,11 +82,11 @@ export default function Login() {
       ></TextInput>
 
     <Text style={styles.textLogin}>CPF</Text>
-      <TextInputMask type='cpf' style={styles.input}placeholder='123456789-11'
+      <TextInput style={styles.input}placeholder='123456789-11'
       onChangeText={text => setCPF(text)}  
-      maxLength={14}  // CPF com pontos e traço tem 14 caracteres
+      maxLength={11}  
       value={cpf}
-      ></TextInputMask>
+      ></TextInput>
 
     <Text style={styles.textLogin}>Email</Text>
     <TextInput 
@@ -142,7 +104,6 @@ export default function Login() {
         withDDD: true,
         dddMask: '(99) '
         }}
-        
         onChangeText={text => {
           const numericValue = text.replace(/[^0-9]/g, '');
           setCell(numericValue)}}
