@@ -82,11 +82,17 @@ export default function Login() {
       ></TextInput>
 
     <Text style={styles.textLogin}>CPF</Text>
-      <TextInput style={styles.input}placeholder='123456789-11'
-      onChangeText={text => setCPF(text)}  
-      maxLength={11}  
-      value={cpf}
-      ></TextInput>
+      <TextInput 
+        style={styles.input}
+        placeholder='123456789-11'
+        onChangeText={text => {
+          setCPF(text);
+          console.log(cpf);}} // Imprime o valor do CPF
+
+          maxLength={12}  
+          value={cpf}
+      />
+
 
     <Text style={styles.textLogin}>Email</Text>
     <TextInput 

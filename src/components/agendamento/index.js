@@ -284,9 +284,9 @@ const Agendamento = ({route}) => {
         animationType='slide'>
 
           <TouchableWithoutFeedback
-          onPress={fecharModal}>
+            onPress={fecharModal}>
             <View style={styles.overlay}/>
-            </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
 
         <View style={styles.viewModal}>
 
@@ -343,6 +343,7 @@ const Agendamento = ({route}) => {
                 // Aqui você pode adicionar o código para confirmar o agendamento
                 setConfirmModalVisible(false);
                 // Mandar para API 
+                console.log(cpf);
                 criarAgendamento();
               }}>
               <Text style={styles.textButton}>Confirmar Agendamento</Text>
