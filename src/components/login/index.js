@@ -93,7 +93,6 @@ export default function Login() {
           value={cpf}
       />
 
-
     <Text style={styles.textLogin}>Email</Text>
     <TextInput 
       style={styles.input}
