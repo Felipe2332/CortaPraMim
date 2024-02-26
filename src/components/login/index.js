@@ -46,7 +46,6 @@ export default function Login() {
   }
 
 
-
   const verificaCampo = () =>{
     const regex = /\d/; // expressão para verificar se há números
     if(cell.trim() === "" || username.trim() === "" || regex.test(username))
