@@ -84,9 +84,8 @@ export default function Login() {
         placeholder='123456789-11'
         onChangeText={text => {
           setCPF(text);
-          console.log(cpf);}} // Imprime o valor do CPF
-
-          maxLength={12}  
+          console.log(cpf);}} 
+          maxLength={11}  
           value={cpf}
       />
 
