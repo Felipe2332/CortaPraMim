@@ -7,7 +7,6 @@ import { enviarDadosParaApi} from '../services/api'
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 
-
 export default function Login() {
   
   const navigation = useNavigation();
