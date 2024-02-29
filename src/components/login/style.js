@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     fontFamily:'Poppins_300Light',
     fontSize: 20
   }
-
 });
 
 export default styles
