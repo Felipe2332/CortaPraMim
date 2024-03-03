@@ -77,24 +77,6 @@ export default function Login() {
       value={username}
       ></TextInput>
 
-    <Text style={styles.textLogin}>CPF</Text>
-      <TextInput 
-        style={styles.input}
-        placeholder='123456789-11'
-        onChangeText={text => {
-          setCPF(text);
-          console.log(cpf);}} 
-          maxLength={11}  
-          value={cpf}
-      />
-
-    <Text style={styles.textLogin}>Email</Text>
-    <TextInput 
-      style={styles.input}
-      placeholder='exemplo@email.com'
-      onChangeText={text => setEmail(text)}
-      value={email}
-    />
 
       <Text style={styles.textLogin}>Telefone</Text>
       <TextInputMask 
