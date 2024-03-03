@@ -148,6 +148,7 @@ function CustomCalendar (props) {
 // Tá funcionando e não tá. 70% pronto
 const criarAgendamento = (username, cell, cpf, email, date, time) => {
   
+  //Tem que trocar isso, não mandaremos cpf
   const data = {
     ClienteSemCadastro: {
       csc_Cpf: cpf, 
@@ -343,7 +344,6 @@ const Agendamento = ({route}) => {
                 // Aqui você pode adicionar o código para confirmar o agendamento
                 setConfirmModalVisible(false);
                 // Mandar para API 
-                console.log(cpf);
                 criarAgendamento();
               }}>
               <Text style={styles.textButton}>Confirmar Agendamento</Text>
