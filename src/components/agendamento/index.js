@@ -43,11 +43,8 @@ LocaleConfig.defaultLocale = 'br';
 // Calendário
 function CustomCalendar (props) {
 
-  const [dataSelecionada,setDataSelecionada] = useState(null);
+ const [dataSelecionada,setDataSelecionada] = useState(null);
 
-  const lidarComMudancaDeData = (day) => {
-    setDataSelecionada(day.dateString);
-  };
 
   //Propriedades do calendário
   // Formatar para Brasil
@@ -135,8 +132,9 @@ function CustomCalendar (props) {
           }
         });
         //Aqui printa a data formatada abaixo do calendário
+        setDataSelecionada(day);//puis agr
         dataFormatada(day);
-        lidarComMudancaDeData(day);
+        
         props.onDaySelect && props.onDaySelect(day);
       }}
       enableSwipeMonths={true}
@@ -151,7 +149,7 @@ function CustomCalendar (props) {
 
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
-const criarAgendamento = (username, cell,dataSelecionada, horarioSelecionado) => {
+const criarAgendamento = (dataSelecionada, horarioSelecionado) => {
 
   
   const data = {
@@ -167,7 +165,7 @@ const criarAgendamento = (username, cell,dataSelecionada, horarioSelecionado) =>
   console.log(data);
 
 
-  fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
+ fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -198,7 +196,7 @@ const Agendamento = ({route}) => {
 
 
   
-
+  
   const {username, cell} = route.params;
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
@@ -269,7 +267,7 @@ const Agendamento = ({route}) => {
     </View>
 
       <View  style={styles.modal}>
-        <CustomCalendar onDaySelect={(day) => console.log(`Data selecionada: ${day.dateString}`)} />
+        <CustomCalendar onDaySelect={(item) => console.log(`Data selecionada: ${item.dateString}`)} />
       </View>
 
       <View style={styles.viewLogin}>
@@ -346,7 +344,7 @@ const Agendamento = ({route}) => {
                 // Aqui você pode adicionar o código para confirmar o agendamento
                 setConfirmModalVisible(false);
                 // Mandar para API
-                criarAgendamento();
+                criarAgendamento();//editei aqui
               }}>
               <Text style={styles.textButton}>Confirmar Agendamento</Text>
             </TouchableOpacity>
