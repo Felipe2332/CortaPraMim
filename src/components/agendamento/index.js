@@ -43,12 +43,9 @@ LocaleConfig.defaultLocale = 'br';
 // Calendário
 function CustomCalendar (props) {
 
- const [dataSelecionada,setDataSelecionada] = useState(null);
-
-
   //Propriedades do calendário
   // Formatar para Brasil
-  const dataFormatada = (day) => {
+  function dataFormatada(day) {
 
     const dataSelecionada = day.dateString;
   
@@ -65,6 +62,7 @@ function CustomCalendar (props) {
     
     // Texto que vai mostrar abaixo do calendário
     setTextAgendado(`Você selecionou o dia ${dataFormatada}, ${diaDaSemana}`);
+    return(dataFormatada);
   }
 
   const [textAgendado, setTextAgendado] = useState('Selecione uma data')
@@ -132,9 +130,7 @@ function CustomCalendar (props) {
           }
         });
         //Aqui printa a data formatada abaixo do calendário
-        setDataSelecionada(day);//puis agr
         dataFormatada(day);
-        
         props.onDaySelect && props.onDaySelect(day);
       }}
       enableSwipeMonths={true}
@@ -149,7 +145,7 @@ function CustomCalendar (props) {
 
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
-const criarAgendamento = (dataSelecionada, horarioSelecionado) => {
+const criarAgendamento = (dataSelecionada,horarioSelecionado) => {
 
   
   const data = {
@@ -165,7 +161,7 @@ const criarAgendamento = (dataSelecionada, horarioSelecionado) => {
   console.log(data);
 
 
- fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
+  fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -195,8 +191,13 @@ const criarAgendamento = (dataSelecionada, horarioSelecionado) => {
 const Agendamento = ({route}) => {
 
 
+  const [dataSelecionada, setDataSelecionada] = useState(null);
   
-  
+
+  const handleDateChange = (data) => {
+    setDataSelecionada(data);
+  };
+
   const {username, cell} = route.params;
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
@@ -267,7 +268,7 @@ const Agendamento = ({route}) => {
     </View>
 
       <View  style={styles.modal}>
-        <CustomCalendar onDaySelect={(item) => console.log(`Data selecionada: ${item.dateString}`)} />
+        <CustomCalendar onDaySelect={handleDateChange}/>
       </View>
 
       <View style={styles.viewLogin}>
@@ -343,8 +344,13 @@ const Agendamento = ({route}) => {
               onPress={() => {
                 // Aqui você pode adicionar o código para confirmar o agendamento
                 setConfirmModalVisible(false);
+
+
                 // Mandar para API
-                criarAgendamento();//editei aqui
+                criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00");
+
+
+
               }}>
               <Text style={styles.textButton}>Confirmar Agendamento</Text>
             </TouchableOpacity>
