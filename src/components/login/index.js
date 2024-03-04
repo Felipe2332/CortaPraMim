@@ -12,8 +12,6 @@ export default function Login() {
   const navigation = useNavigation();
   const [username, setUserName] = useState("");
   const [cell, setCell] = useState("");
-  const [cpf,setCPF] = useState("");
-  const [email,setEmail] = useState("");
   const [fontsLoaded] = useFonts({
     Poppins_300Light
   });
@@ -35,7 +33,7 @@ export default function Login() {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() =>  {navigation.navigate('Agendamento', {username, cell, cpf, email});  // Navegue para a próxima tela
+      }).start(() =>  {navigation.navigate('Agendamento', {username, cell});  // Navegue para a próxima tela
       });
         }
   }, [eVisivel]);

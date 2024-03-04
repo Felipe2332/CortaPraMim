@@ -146,7 +146,7 @@ function CustomCalendar (props) {
 
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
-const criarAgendamento = (username, cell, cpf, email, date, time) => {
+const criarAgendamento = (username, cell, date, time) => {
   
   //Tem que trocar isso, não mandaremos cpf
   const data = {
@@ -169,7 +169,7 @@ const criarAgendamento = (username, cell, cpf, email, date, time) => {
   
   
 //PROBLEMA TÁ AQUI
-  fetch('https://cortapramim.azurewebsites.net/api/Agendamentos/createsemcadastro', {
+  fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -233,7 +233,7 @@ const Agendamento = ({route}) => {
   }
 
  //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
-  const [horariosDisponiveis, setHorariosDisponiveis] = useState(['8:00','9:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00']);
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']);
 
   // CRIA CADA HORARIO COMO UM BOTAO
   const renderHorario = ({item}) => (
