@@ -43,6 +43,12 @@ LocaleConfig.defaultLocale = 'br';
 // Calendário
 function CustomCalendar (props) {
 
+  const [dataSelecionada,setDataSelecionada] = useState(null);
+
+  const lidarComMudancaDeData = (day) => {
+    setDataSelecionada(day.dateString);
+  };
+
   //Propriedades do calendário
   // Formatar para Brasil
   const dataFormatada = (day) => {
@@ -88,7 +94,6 @@ function CustomCalendar (props) {
 
   //Fim das propriedades do calendário
 
-
   return (
     
     <View>
@@ -131,6 +136,7 @@ function CustomCalendar (props) {
         });
         //Aqui printa a data formatada abaixo do calendário
         dataFormatada(day);
+        lidarComMudancaDeData(day);
         props.onDaySelect && props.onDaySelect(day);
       }}
       enableSwipeMonths={true}
@@ -143,32 +149,24 @@ function CustomCalendar (props) {
 }
 // Fim do calendário
 
-
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
-const criarAgendamento = (username, cell, date, time) => {
+const criarAgendamento = (username, cell,dataSelecionada, horarioSelecionado) => {
+
   
-  //Tem que trocar isso, não mandaremos cpf
   const data = {
-    ClienteSemCadastro: {
-      csc_Cpf: cpf, 
-      csc_Nome: username,
-      csc_Phone: cell,
-      csc_Email: email,
-    },
-    Agendamento: {
-      age_Date: date,
-      age_Time: time,
-      cli_Cpf: null, // Alterado de cli_Id para cli_Cpf
-      csc_Cpf: cpf, // SÓ É POSSÍVEL INSERIR CLIENTES NO BANCO SE TIVER CPF.
-      usu_Id: 1, 
-      age_Feito: false,
-      age_Cancelado: false,
-    }
+    
+    cli_Id: 1,
+    usu_Id: 1,
+    age_Data: dataSelecionada,
+    age_Time: horarioSelecionado,
+    age_Cancelado: false,
+    age_Feito: false,
   };
   
-  
-//PROBLEMA TÁ AQUI
+  console.log(data);
+
+
   fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
     method: 'POST',
     headers: {
@@ -182,7 +180,7 @@ const criarAgendamento = (username, cell, date, time) => {
   
 
     // Verificar se tá no Banco
-    return fetch('https://cortapramim.azurewebsites.net/api/Agendamentos/getagendamentos', {
+    return fetch('https://cortapramim.azurewebsites.net/api/Usuario/getusuarios', {
       method: 'GET',
     });
   })
@@ -198,6 +196,9 @@ const criarAgendamento = (username, cell, date, time) => {
 
 const Agendamento = ({route}) => {
 
+
+  
+
   const {username, cell} = route.params;
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
@@ -208,6 +209,7 @@ const Agendamento = ({route}) => {
       // Você pode adicionar qualquer lógica que desejar aqui. 
       // Se você retornar true, o comportamento padrão do botão voltar será desativado.
       return true;
+
     }
 
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
@@ -217,7 +219,7 @@ const Agendamento = ({route}) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     };
 
-  }, []);
+  });
 
   const fecharModal = () => {
     setVisibleModal(false)
@@ -267,7 +269,7 @@ const Agendamento = ({route}) => {
     </View>
 
       <View  style={styles.modal}>
-        <CustomCalendar onDaySelect={(day) => console.log(`Date selected: ${day.dateString}`)}/>
+        <CustomCalendar onDaySelect={(day) => console.log(`Data selecionada: ${day.dateString}`)} />
       </View>
 
       <View style={styles.viewLogin}>
@@ -343,7 +345,7 @@ const Agendamento = ({route}) => {
               onPress={() => {
                 // Aqui você pode adicionar o código para confirmar o agendamento
                 setConfirmModalVisible(false);
-                // Mandar para API 
+                // Mandar para API
                 criarAgendamento();
               }}>
               <Text style={styles.textButton}>Confirmar Agendamento</Text>
