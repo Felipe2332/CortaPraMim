@@ -5,6 +5,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
+import * as Notifications from 'expo-notifications';
 
 export default function Login() {
   
