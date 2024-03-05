@@ -98,6 +98,7 @@ const Agendamento = ({route}) => {
 
  //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
   const [horariosDisponiveis, setHorariosDisponiveis] = useState(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']);
+  //PERGAR OS HORARIOS DA API
 
   // CRIA CADA HORARIO COMO UM BOTAO
   const renderHorario = ({item}) => (
@@ -179,7 +180,7 @@ const Agendamento = ({route}) => {
 
             <TouchableOpacity
               style={styles.button}
-              onPress={confirmarAgendamento}
+              //onPress={confirmarAgendamento}
               disabled={!horarioSelecionado}>
               <Text style={styles.textButton}>Confirmar Agendamento</Text>
               </TouchableOpacity>
@@ -216,6 +217,8 @@ const Agendamento = ({route}) => {
 
                 // Mandar para API
                 criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00");
+
+                confirmarAgendamento();
 
 
 
