@@ -3,7 +3,6 @@ import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput,
 import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text'; 
 import styles from './style';
-import { enviarDadosParaApi} from '../services/api'
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 
@@ -33,7 +32,7 @@ export default function Login() {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() =>  {navigation.navigate('Agendamento', {username, cell});  // Navegue para a próxima tela
+      }).start(() =>  {navigation.navigate('AbaNavegacao', {username, cell});  // Navegue para a próxima tela
       });
         }
   }, [eVisivel]);
