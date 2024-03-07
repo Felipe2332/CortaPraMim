@@ -4,8 +4,8 @@ import { View, Text, StyleSheet } from 'react-native';
 const TelaExemplo = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to the screen!</Text>
-      <Text style={styles.description}>This is a simple example of a React Native screen.</Text>
+      <Text style={styles.title}>Tela de horarios</Text>
+      <Text style={styles.description}>Aqui ele vai poder ver seus horarios agendados</Text>
     </View>
   );
 };

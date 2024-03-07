@@ -42,7 +42,6 @@ export default function Login() {
     return null;
   }
 
-
   const verificaCampo = () =>{
     const regex = /\d/; // expressão para verificar se há números
     if(cell.trim() === "" || username.trim() === "" || regex.test(username))
@@ -54,8 +53,6 @@ export default function Login() {
       setEVisivel(false);
     }
   }
-
-  
 
   return (
     <>
@@ -98,6 +95,8 @@ export default function Login() {
       >
         <Text style={styles.textButton}>ENTRAR</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('politicaDePrivacidade')}><Text style={styles.textPrivacidade}>Privacidade</Text></TouchableOpacity>
       
     </View>
     {/* Fim do form */}

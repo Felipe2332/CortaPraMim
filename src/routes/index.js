@@ -5,6 +5,7 @@ import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback
 
 import Login from "../components/login";
 import TelaExemplo from '../components/horariosAgendados/listaDeHorarios';
+import Politica from "../components/politicaDePrivacidade/politicaDePrivacidade";
 import Termos from '../components/termos/termos';
 import Agendamento from "../components/agendamento";
 
@@ -30,6 +31,7 @@ export default function Routes(){
   return(
     <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}> 
       <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name= "Politica" component={Politica} />
       <Stack.Screen name="AbaNavegacao" component={AbaNavegacao}/> 
     </Stack.Navigator>  
   )

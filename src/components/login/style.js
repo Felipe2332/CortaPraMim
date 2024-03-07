@@ -53,6 +53,17 @@ const styles = StyleSheet.create({
     color:'white',
     fontFamily:'Poppins_300Light',
     fontSize: 20
+  },
+  textPrivacidade:{
+    flex:1,
+    position:"absolute",
+    marginTop: 250,
+    margin:15,
+    color:"white",
+    justifyContent:"center",
+    alignSelf:"center",
+    fontSize:20,
+    fontFamily:"Poppins_300Light"
   }
 
 });
