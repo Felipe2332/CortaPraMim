@@ -58,7 +58,7 @@ export default function Login() {
       setEVisivel(false);
     }
   }
-
+// AQUI SÓ VAI SALVAR  OS DADOS DO USUÁRIO EM VARIVAEIS E MANDAR O EMAIL. NA PROXIMA TELA VAI PEDIR UM CAMPO PARA INSERIR O CODIGO. "SE RETORNAR TRUE, MANDA O ANIMALESCO PARA O CALENDÁRIO" OLHA,VITRO
   return (
     <>
     <StatusBar backgroundColor={"black"}/>
