@@ -7,8 +7,6 @@ import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 
 
-
-
 export default function Login() {
   
   const navigation = useNavigation();
@@ -38,7 +36,7 @@ export default function Login() {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() =>  {navigation.navigate('telaDeCodigo', {username, cell,email});  // Navegue para a próxima tela
+      }).start(() =>  {navigation.navigate('telaDeCodigo', {username, cell,email}); 
       });
         }
   }, [eVisivel]);

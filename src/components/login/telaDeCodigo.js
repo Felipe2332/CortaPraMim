@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity } from 'react-native';
+import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity,BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text'; 
 import styles from './style';
@@ -12,7 +12,25 @@ export default function TelaDeCodigo({route}) {
   
     const navigation = useNavigation();
     const {username, cell,email} = route.params;
+
     
+    
+    useEffect(() => {
+      const handleBackButton = () => {
+        // Adicionar qualquer lógica que desejar aqui. 
+        // Se você retornar true, o comportamento padrão do botão voltar será desativado.
+        return true;
+  
+      }
+  
+      BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+  
+      // Voltar a ativar o botão back
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+      };
+  
+    });
   
     return (
       <>
@@ -37,6 +55,7 @@ export default function TelaDeCodigo({route}) {
 
         <TouchableOpacity style={styles.button} ><Text style={styles.textButton}>Validar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} ><Text style={styles.textButton}>Reenviar Código</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => {navigation.navigate('AbaNavegacao', {username, cell,email})}} style={styles.button} ><Text style={styles.textButton}>Proxima</Text></TouchableOpacity>
         
       </View>
       {/* Fim do form */}

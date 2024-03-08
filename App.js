@@ -8,7 +8,6 @@ export default () => {
   return (
     <NavigationContainer >
       <Routes/>
-      
     </NavigationContainer>
   );
 }
