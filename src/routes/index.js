@@ -8,6 +8,7 @@ import TelaExemplo from '../components/horariosAgendados/listaDeHorarios';
 import Politica from "../components/politicaDePrivacidade/politicaDePrivacidade";
 import Termos from '../components/termos/termos';
 import Agendamento from "../components/agendamento";
+import TelaDeCodigo from "../components/login/telaDeCodigo";
 
 const Stack = createNativeStackNavigator();
 const Aba = createBottomTabNavigator();
@@ -32,6 +33,7 @@ export default function Routes(){
     <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}> 
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name= "politicaDePrivacidade" component={Politica} />
+      <Stack.Screen name="telaDeCodigo" component={TelaDeCodigo}/>
       <Stack.Screen name="AbaNavegacao" component={AbaNavegacao}/> 
     </Stack.Navigator>  
   )

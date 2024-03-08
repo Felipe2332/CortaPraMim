@@ -38,7 +38,7 @@ export default function Login() {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() =>  {navigation.navigate('AbaNavegacao', {username, cell});  // Navegue para a próxima tela
+      }).start(() =>  {navigation.navigate('telaDeCodigo', {username, cell,email});  // Navegue para a próxima tela
       });
         }
   }, [eVisivel]);
@@ -76,7 +76,7 @@ export default function Login() {
       </TextInput>
 
       <Text style={styles.textLogin}>E-mail</Text>
-      <TextInput inputMode="email" style={styles.input} placeholder='email@gmail.com' maxLength={50} value={email}>
+      <TextInput inputMode="email" style={styles.input} placeholder='email@gmail.com' maxLength={50} onChangeText={text => setEmail(text)} value={email}>
       </TextInput>
 
 
