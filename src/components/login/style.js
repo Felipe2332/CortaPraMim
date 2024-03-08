@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   textPrivacidade:{
     flex:1,
     position:"absolute",
-    marginTop: 250,
+    marginTop: 220,
     margin:15,
     color:"white",
     justifyContent:"center",

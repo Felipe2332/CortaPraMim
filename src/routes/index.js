@@ -31,7 +31,7 @@ export default function Routes(){
   return(
     <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}> 
       <Stack.Screen name="Login" component={Login}/>
-      <Stack.Screen name= "Politica" component={Politica} />
+      <Stack.Screen name= "politicaDePrivacidade" component={Politica} />
       <Stack.Screen name="AbaNavegacao" component={AbaNavegacao}/> 
     </Stack.Navigator>  
   )

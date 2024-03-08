@@ -5,13 +5,18 @@ import { TextInputMask } from 'react-native-masked-text';
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
-import * as Notifications from 'expo-notifications';
+
+
+
 
 export default function Login() {
   
   const navigation = useNavigation();
+
   const [username, setUserName] = useState("");
   const [cell, setCell] = useState("");
+  const [email, setEmail] = useState("");
+
   const [fontsLoaded] = useFonts({
     Poppins_300Light
   });
@@ -66,11 +71,13 @@ export default function Login() {
     <View style={styles.viewLogin}>
       
       <Text style={styles.textLogin}>Nome</Text>
-      <TextInput style={styles.input}placeholder='Lucas Denadai'
-      onChangeText={text => setUserName(text)}
-      maxLength={30}  
-      value={username}
-      ></TextInput>
+      <TextInput style={styles.input}placeholder='Lucas Denadai' onChangeText={text => setUserName(text)} maxLength={30}  
+      value={username}>
+      </TextInput>
+
+      <Text style={styles.textLogin}>E-mail</Text>
+      <TextInput inputMode="email" style={styles.input} placeholder='email@gmail.com' maxLength={50} value={email}>
+      </TextInput>
 
 
       <Text style={styles.textLogin}>Telefone</Text>
