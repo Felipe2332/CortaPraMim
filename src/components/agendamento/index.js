@@ -4,53 +4,11 @@ import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import {CustomCalendar} from './calendario';
 import { useRoute } from '@react-navigation/native';
+import { getCodigoSms, criarAgendamento } from '../services/api';
 
 
 // Para interagir com API
 // Tá funcionando e não tá. 70% pronto
-const criarAgendamento = (dataSelecionada,horarioSelecionado) => {
-
-  
-  const data = {
-    
-    cli_Id: 1,
-    usu_Id: 1,
-    age_Data: dataSelecionada,
-    age_Time: horarioSelecionado,
-    age_Cancelado: false,
-    age_Feito: false,
-  };
-  
-  console.log(data);
-
-
-  fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-  .then((response) => response.text())  // Altere isso
-  .then((text) => {
-    console.log('Resposta:', text);
-  
-
-    // Verificar se tá no Banco
-    return fetch('https://cortapramim.azurewebsites.net/api/Usuario/getusuarios', {
-      method: 'GET',
-    });
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Agendamentos:', data);
-  })
-  .catch((error) => {
-    console.error('Erro:', error);
-  });
-};
-
-
 
 const Agendamento = ({route}) => {
   
