@@ -5,6 +5,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
+import MandarEmail from '../services/mandarEmail';
 
 
 export default function Login() {
@@ -24,7 +25,9 @@ export default function Login() {
 
   useEffect(() => {
     if (eVisivel) {
-      // Vai mudar o valor da opacidade para 1 em 2 segundo
+      
+      
+
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 1000,
@@ -32,6 +35,7 @@ export default function Login() {
       }).start();
     } else {
       // Vai mudar o valor da opacidade para 0 em 1 segundo
+      MandarEmail(email,username);
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 1000,

@@ -7,11 +7,15 @@ import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 import { useRoute } from '@react-navigation/native';
 
+import AutenticarCodigo from '../services/autenticarCodigo';
+
 
 export default function TelaDeCodigo({route}) {
   
     const navigation = useNavigation();
     const {username, cell,email} = route.params;
+
+    const [code, setCode] = useState("");
 
     
     
@@ -49,11 +53,11 @@ export default function TelaDeCodigo({route}) {
 
 
         <Text style={styles.textLogin}>Código</Text>
-        <TextInputMask style={styles.input} type={"only-numbers"}>
+        <TextInputMask style={styles.input} type={"only-numbers"} onChangeText={text => setCode(text)}>
 
         </TextInputMask>
 
-        <TouchableOpacity style={styles.button} ><Text style={styles.textButton}>Validar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={AutenticarCodigo(code,email,cell,username)}><Text style={styles.textButton}>Validar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} ><Text style={styles.textButton}>Reenviar Código</Text></TouchableOpacity>
         <TouchableOpacity onPress={() => {navigation.navigate('AbaNavegacao', {username, cell,email})}} style={styles.button} ><Text style={styles.textButton}>Proxima</Text></TouchableOpacity>
         
