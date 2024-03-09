@@ -2,8 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const AutenticarCodigo = (code,email,cell,username,navigation) => {
 
-    
-    
     var requestOptions = {
         method: 'POST',
         redirect: 'follow'

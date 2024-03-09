@@ -38,7 +38,7 @@ LocaleConfig.locales['br'] = {
   //Fim da config calend
   
   
-  
+  //Ideias: Lista de espera
   
 
 export function CustomCalendar (props) {
