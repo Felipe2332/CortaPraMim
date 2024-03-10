@@ -22,47 +22,51 @@ const enviarDadosParaApi = async (username, cell) => {
 
 export {api, enviarDadosParaApi};
 */
+async function getPhone(cellPhone) {
+  let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`);
+  let json = await cliente.json();
+  let { cli_Id } = json;
+  console.log('resposta do get', cli_Id);
+  return cli_Id;
+}
 
-const criarAgendamento = (dataSelecionada,horarioSelecionado) => {
+const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) => {
+  try {
+    let cliId = await getPhone(cellPhone);
+    console.log('resp do json', cliId);
 
-  
-  const data = {
+    const data = {
+      cli_Id: cliId,
+      usu_Id: 1,
+      age_Data: dataSelecionada,
+      age_Time: horarioSelecionado,
+      age_Cancelado: false,
+      age_Feito: false,
+    };
+
+    console.log(data);
     
-    cli_Id: 1,
-    usu_Id: 1,
-    age_Data: dataSelecionada,
-    age_Time: horarioSelecionado,
-    age_Cancelado: false,
-    age_Feito: false,
-  };
-  
-  console.log(data);
 
+    let response = await fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-  fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-  .then((response) => response.text())  // Altere isso
-  .then((text) => {
+    let text = await response.text();
     console.log('Resposta:', text);
-  
 
-    // Verificar se tá no Banco
-    return fetch('https://cortapramim.azurewebsites.net/api/Usuario/getusuarios', {
+    let agendamentosResponse = await fetch('https://cortapramim.azurewebsites.net/api/Usuario/getusuarios', {
       method: 'GET',
     });
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Agendamentos:', data);
-  })
-  .catch((error) => {
+
+    let agendamentosData = await agendamentosResponse.json();
+    console.log('Agendamentos:', agendamentosData);
+  } catch (error) {
     console.error('Erro:', error);
-  });
+  }
 };
 
 

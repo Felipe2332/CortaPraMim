@@ -174,7 +174,7 @@ const Agendamento = ({route}) => {
 
 
                 // Mandar para API
-                criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00");
+                criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00", cell);
 
                 confirmarAgendamento();
 

@@ -1,11 +1,8 @@
 import { useRoute } from '@react-navigation/native';
 
 const MandarEmail = (email,username) => {
-
     
-    
-  
-    var requestOptions = {
+  var requestOptions = {
         method: 'POST',
         redirect: 'follow'
       };
@@ -18,4 +15,4 @@ const MandarEmail = (email,username) => {
     
 }
   
-export default MandarEmail
+export default MandarEmail;

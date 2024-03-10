@@ -14,7 +14,7 @@ export default function TelaDeCodigo({route}) {
   
     const navigation = useNavigation();
     const {username, cell,email} = route.params;
-
+    
     const [code, setCode] = useState("");
 
     
