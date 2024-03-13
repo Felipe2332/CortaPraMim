@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width:'100%',
-    
   },
   imagemFundo:{
     flex:1,
