@@ -22,30 +22,6 @@ export default function Login() {
   });
   const [fadeAnim] = useState(new Animated.Value(0));  // Valor inicial da opacidade
 
-  const [eVisivel, setEVisivel] = useState(true);
-
-  useEffect(() => {
-    if (eVisivel) {
-      
-      
-
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true
-      }).start();
-    } else {
-      // Vai mudar o valor da opacidade para 0 em 1 segundo
-      CriarCliente(email,cell,username,senha);
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 1000,
-        useNativeDriver: true
-      }).start(() =>  {navigation.navigate('telaDeCodigo', {username, cell,email,senha}); 
-      });
-        }
-  }, [eVisivel]);
-
   if (!fontsLoaded) {
     return null;
   }
@@ -58,10 +34,10 @@ export default function Login() {
     }
     else
     {
-      setEVisivel(false);
+      CriarCliente(email,cell,username,senha);
+      
     }
   }
-// AQUI SÓ VAI SALVAR  OS DADOS DO USUÁRIO EM VARIVAEIS E MANDAR O EMAIL. NA PROXIMA TELA VAI PEDIR UM CAMPO PARA INSERIR O CODIGO. "SE RETORNAR TRUE, MANDA O ANIMALESCO PARA O CALENDÁRIO" OLHA,VITRO
   return (
     <>
     <StatusBar backgroundColor={"black"}/>
@@ -107,7 +83,7 @@ export default function Login() {
       style={styles.button}
       onPress={() =>verificaCampo()}
       >
-        <Text style={styles.textButton}>ENTRAR</Text>
+        <Text style={styles.textButton}>CRIAR</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('politicaDePrivacidade')}><Text style={styles.textPrivacidade}>Privacidade</Text></TouchableOpacity>

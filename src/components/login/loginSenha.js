@@ -44,7 +44,7 @@ export default function LoginSenha() {
         
       <View>
       <View style={styles.viewLogin}>
-        {/* Tirar isso depois */}
+        
       
 
 
@@ -53,7 +53,7 @@ export default function LoginSenha() {
 
         <Text style={styles.textLogin}>Senha</Text>
         <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input}></TextInput>
-        
+        {/* Falta colocar  uma função para ele entrar se tiver tudo certo*/}
         <TouchableOpacity style={styles.button}><Text style={styles.textButton}>Entrar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>
         
