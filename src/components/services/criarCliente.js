@@ -20,6 +20,7 @@ async function CriarCliente(email,cell,name,senha){
   let text = await response.text();
     console.log('Resposta:', text);
 
+    // ERRO TÁ AQUI, SE JÁ EXISTIR UM EMAIL IGUAL, NÃO DEIXAR CADASTRAR NOVAMENTE
     MandarEmail(email,name);
 }
 

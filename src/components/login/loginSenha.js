@@ -52,7 +52,7 @@ export default function LoginSenha() {
         <TextInput placeholder='Email' style={styles.input}></TextInput>     
 
         <Text style={styles.textLogin}>Senha</Text>
-        <TextInput placeholder='Senha' style={styles.input}></TextInput>
+        <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input}></TextInput>
         
         <TouchableOpacity style={styles.button}><Text style={styles.textButton}>Entrar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>

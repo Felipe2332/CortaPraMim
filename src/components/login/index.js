@@ -83,7 +83,7 @@ export default function Login() {
       </TextInput>
 
       <Text style={styles.textLogin}>Senha</Text>
-      <TextInput inputMode="text" style={styles.input} placeholder='Senha' maxLength={50} onChangeText={text => setSenha(text)} value={senha}>
+      <TextInput inputMode="text" style={styles.input} secureTextEntry={true} placeholder='Senha' maxLength={30} onChangeText={text => setSenha(text)} value={senha}>
       </TextInput>
 
 
