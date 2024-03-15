@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity,BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TextInputMask } from 'react-native-masked-text'; 
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 import { useRoute } from '@react-navigation/native';
 
-import AutenticarCodigo from '../services/autenticarCodigo';
 
 
 export default function LoginSenha() {
@@ -51,11 +49,13 @@ export default function LoginSenha() {
 
 
         <Text style={styles.textLogin}>E-mail</Text>
-        <TextInputMask style={styles.input} onChangeText={text => setCode(text)}></TextInputMask>
+        <TextInput placeholder='Email' style={styles.input}></TextInput>     
 
         <Text style={styles.textLogin}>Senha</Text>
-        <TextInputMask style={styles.input}></TextInputMask>
-
+        <TextInput placeholder='Senha' style={styles.input}></TextInput>
+        
+        <TouchableOpacity style={styles.button}><Text style={styles.textButton}>Entrar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>
         
         
       </View>

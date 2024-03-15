@@ -5,7 +5,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
-import MandarEmail from '../services/mandarEmail';
+import CriarCliente from '../services/criarCliente';
 
 
 export default function Login() {
@@ -15,6 +15,7 @@ export default function Login() {
   const [username, setUserName] = useState("");
   const [cell, setCell] = useState("");
   const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const [fontsLoaded] = useFonts({
     Poppins_300Light
@@ -35,12 +36,12 @@ export default function Login() {
       }).start();
     } else {
       // Vai mudar o valor da opacidade para 0 em 1 segundo
-      MandarEmail(email,username);
+      CriarCliente(email,cell,username,senha);
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 1000,
         useNativeDriver: true
-      }).start(() =>  {navigation.navigate('telaDeCodigo', {username, cell,email}); 
+      }).start(() =>  {navigation.navigate('telaDeCodigo', {username, cell,email,senha}); 
       });
         }
   }, [eVisivel]);
@@ -79,6 +80,10 @@ export default function Login() {
 
       <Text style={styles.textLogin}>E-mail</Text>
       <TextInput inputMode="email" style={styles.input} placeholder='email@gmail.com' maxLength={50} onChangeText={text => setEmail(text)} value={email}>
+      </TextInput>
+
+      <Text style={styles.textLogin}>Senha</Text>
+      <TextInput inputMode="text" style={styles.input} placeholder='Senha' maxLength={50} onChangeText={text => setSenha(text)} value={senha}>
       </TextInput>
 
 

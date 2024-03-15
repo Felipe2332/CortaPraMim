@@ -26,15 +26,13 @@ async function getPhone(cellPhone) {
   let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`);
   let json = await cliente.json();
   let { cli_Id } = json;
-  console.log('resposta do get', cli_Id);
   return cli_Id;
 }
 
 const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) => {
   try {
     let cliId = await getPhone(cellPhone);
-    console.log('resp do json', cliId);
-
+  
     const data = {
       cli_Id: cliId,
       usu_Id: 1,
@@ -43,8 +41,6 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
       age_Cancelado: false,
       age_Feito: false,
     };
-
-    console.log(data);
     
 
     let response = await fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
@@ -58,12 +54,6 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
     let text = await response.text();
     console.log('Resposta:', text);
 
-    let agendamentosResponse = await fetch('https://cortapramim.azurewebsites.net/api/Usuario/getusuarios', {
-      method: 'GET',
-    });
-
-    let agendamentosData = await agendamentosResponse.json();
-    console.log('Agendamentos:', agendamentosData);
   } catch (error) {
     console.error('Erro:', error);
   }

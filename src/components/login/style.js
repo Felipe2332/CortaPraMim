@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
-const styles = StyleSheet.create({
 
+const styles = StyleSheet.create({
+  
   container: {
     flex: 1,
     backgroundColor: '#181818',
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     fontSize:22,
     marginRight:220,
     color:'white',
-    fontFamily:'Poppins_300Light'
+    //fontFamily:'Poppins_300Light',
   },
   button:{
     marginTop: 50,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textButton:{
     color:'white',
-    fontFamily:'Poppins_300Light',
+    //fontFamily:'Poppins_300Light',
     fontSize: 20
   },
   textPrivacidade:{
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignSelf:"center",
     fontSize:20,
-    fontFamily:"Poppins_300Light"
+    //fontFamily:"Poppins_300Light"
   }
 
 });
