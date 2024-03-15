@@ -17,9 +17,24 @@ import { useNavigation } from '@react-navigation/native';
         })
         .catch(error => console.log(`deu erro ${username}`, error));
 }*/
+
+
+async function getId(email) {
+  let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${email}`);
+  let json = await cliente.json();
+  let { cli_Id } = json;
+  console.log('resposta do get', cli_Id);
+  return cli_Id;
+}
+
+
   
 async function AutenticarCodigo(code,email,cell,username,navigation){
-    
+  
+  const cli_Id = await getId(email);
+
+
+
     let data = {
         code,
         email,
@@ -27,7 +42,7 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
         username
     }
     try{
-    let response = await fetch(`https://cortapramim.azurewebsites.net/api/Codigo_Autenticacao/authenticate/${code}/${email}/${cell}/${username}`, {
+    let response = await fetch(`https://cortapramim.azurewebsites.net/api/AuthCode/authenticate/${cli_Id}/${code}`, {
         method: 'POST',
         headers: {
           'Origin': 'https://cortapramim.azurewebsites.net',
@@ -37,6 +52,7 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
       });
       if(response.ok){
         console.log(`${code}/${email}/${cell}/${username}`);
+        console.log(response.json());
         navigation.navigate('AbaNavegacao', {username, cell,email});
       }
       
