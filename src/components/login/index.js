@@ -15,12 +15,12 @@ export default function Login() {
   const [username, setUserName] = useState("");
   const [cell, setCell] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [senha, setSenha] = useState(""); 
 
   const [fontsLoaded] = useFonts({
     Poppins_300Light
   });
-  const [fadeAnim] = useState(new Animated.Value(0));  // Valor inicial da opacidade
+  const [fadeAnim] = useState(new Animated.Value(0.9));  // Valor inicial da opacidade
 
   if (!fontsLoaded) {
     return null;
@@ -34,7 +34,17 @@ export default function Login() {
     }
     else
     {
-      CriarCliente(email,cell,username,senha);
+      CriarCliente(email, cell, username, senha)
+      .then(resp => {
+        // Aqui você pode acessar a resposta da função
+        if(resp == false){
+        Alert.alert('este email ja exite, faça o login');
+        navigation.navigate('LoginSenha');
+        }else if(resp == true){
+          navigation.navigate('telaDeCodigo')
+        }
+      })
+     
       
     }
   }

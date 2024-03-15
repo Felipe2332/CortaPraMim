@@ -1,7 +1,11 @@
 import MandarEmail from "./mandarEmail";
 
-async function CriarCliente(email,cell,name,senha){
 
+
+
+
+async function CriarCliente(email,cell,name,senha){
+  
   const data = {
   email: email,
   phone: cell,
@@ -9,7 +13,7 @@ async function CriarCliente(email,cell,name,senha){
   passWord: senha
    
   };
-
+try{
   let response = await fetch('https://cortapramim.azurewebsites.net/api/Cliente/create', {
     method: 'POST',
       headers: {
@@ -17,11 +21,27 @@ async function CriarCliente(email,cell,name,senha){
       },
       body: JSON.stringify(data),
   });
-  let text = await response.text();
-    console.log('Resposta:', text);
+  let text = await response.json();
+  let teste = response.status;
+  console.log(teste);
+  if(!response.ok){
+    console.log('Resposta: ', text);
+    return false
+  }else{
+    console.log('esse email é novo em');
+    return true
+    
+  }
+  
+}catch (erro){
 
+  console.log('Resposta:', erro);
+
+}
+    
+  
     // ERRO TÁ AQUI, SE JÁ EXISTIR UM EMAIL IGUAL, NÃO DEIXAR CADASTRAR NOVAMENTE
-    MandarEmail(email,name);
+    //MandarEmail(email,name);
 }
 
 
