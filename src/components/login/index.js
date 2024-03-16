@@ -41,7 +41,7 @@ export default function Login() {
         Alert.alert('este email ja exite, faça o login');
         navigation.navigate('LoginSenha');
         }else if(resp == true){
-          navigation.navigate('telaDeCodigo')
+          navigation.navigate('telaDeCodigo', {username, cell,email})
         }
       })
      

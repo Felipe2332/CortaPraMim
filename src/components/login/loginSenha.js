@@ -5,6 +5,7 @@ import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 import { useRoute } from '@react-navigation/native';
+import LoginApi from '../services/login';
 
 
 
@@ -14,8 +15,18 @@ export default function LoginSenha() {
     
     
     const [code, setCode] = useState("");
-
+    const [login, setLogin] = useState('');
+    const [senha, setSenha] = useState('');
     
+    function validarLogin(login, senha){
+        LoginApi(login,senha).then((response) => {
+          if(response){
+            console.log('login deu certo');
+          }else {
+            console.log('precisa reenviar o codigo');
+          }
+        })
+    }
     
     useEffect(() => {
       const handleBackButton = () => {
@@ -49,12 +60,12 @@ export default function LoginSenha() {
 
 
         <Text style={styles.textLogin}>E-mail</Text>
-        <TextInput placeholder='Email' style={styles.input}></TextInput>     
+        <TextInput placeholder='Email' style={styles.input} onChangeText={value => setLogin(value)} value={login}></TextInput>     
 
         <Text style={styles.textLogin}>Senha</Text>
-        <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input}></TextInput>
+        <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input} onChangeText={value => setSenha(value)} value={senha}></TextInput>
         {/* Falta colocar  uma função para ele entrar se tiver tudo certo*/}
-        <TouchableOpacity style={styles.button}><Text style={styles.textButton}>Entrar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button}><Text style={styles.textButton} onPress={()=> validarLogin(login,senha)}>Entrar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>
         
         

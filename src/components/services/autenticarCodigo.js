@@ -33,8 +33,6 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
   
   const cli_Id = await getId(email);
 
-
-
     let data = {
         code,
         email,
