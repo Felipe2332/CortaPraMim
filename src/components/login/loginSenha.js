@@ -6,6 +6,9 @@ import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 import { useRoute } from '@react-navigation/native';
 import LoginApi from '../services/login';
+import TelaDeCodigo from './telaDeCodigo';
+import MandarEmail from '../services/mandarEmail';
+
 
 
 
@@ -20,13 +23,27 @@ export default function LoginSenha() {
     
     function validarLogin(login, senha){
         LoginApi(login,senha).then((response) => {
-          if(response){
-            console.log('login deu certo');
-          }else {
-            console.log('precisa reenviar o codigo');
+          if(response == true){
+            console.log('login deu certo', response);
+            
+            //navigation.navigate('AbaNavegacao')
+
+          }else if(response == false){
+            console.log('login ou senha incorreto');
+
+          } else {
+            alert('envia o codigo');
+            let {cli_Email: email, cli_Phone: cell, cli_Nome: username} = response;
+            MandarEmail(email,username);
+           
+            
+            console.log(email, cell, username);
+            navigation.navigate('telaDeCodigo', {username, cell,email});
           }
         })
     }
+
+  
     
     useEffect(() => {
       const handleBackButton = () => {

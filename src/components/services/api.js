@@ -31,15 +31,13 @@ async function getPhone(cellPhone) {
 
 const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) => {
   try {
-    let cliId = await getPhone(cellPhone);
+   let cliId = await getPhone(cellPhone);
   
     const data = {
       cli_Id: cliId,
       usu_Id: 1,
       age_Data: dataSelecionada,
-      age_Time: horarioSelecionado,
-      age_Cancelado: false,
-      age_Feito: false,
+      age_Time: horarioSelecionado
     };
     
 

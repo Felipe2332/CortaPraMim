@@ -35,12 +35,12 @@ try{
   
 }catch (erro){
 
-  console.log('Resposta:', erro);
+  console.log('Resposta catch:', erro);
 
 }
     
   
-    // ERRO TÁ AQUI, SE JÁ EXISTIR UM EMAIL IGUAL, NÃO DEIXAR CADASTRAR NOVAMENTE
+
     //MandarEmail(email,name);
 }
 

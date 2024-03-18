@@ -37,6 +37,7 @@ export default function Login() {
       CriarCliente(email, cell, username, senha)
       .then(resp => {
         // Aqui você pode acessar a resposta da função
+        //se o email ja tem conta ele volta pra tela de login
         if(resp == false){
         Alert.alert('este email ja exite, faça o login');
         navigation.navigate('LoginSenha');

@@ -1,4 +1,4 @@
-import { useRoute } from '@react-navigation/native';
+//import { useRoute } from '@react-navigation/native';
 
 const MandarEmail = (email,username) => {
     
