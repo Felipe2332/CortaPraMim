@@ -25,6 +25,7 @@ try{
   let teste = response.status;
   console.log(teste);
   if(!response.ok){
+    
     console.log('Resposta: ', text);
     return false
   }else{
