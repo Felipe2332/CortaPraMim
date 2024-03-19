@@ -106,9 +106,9 @@ export function CustomCalendar (props) {
          calendarBackground:'#e2e2e2', // mudar a cor de fundo do calendario
          todayTextColor:'black',
          arrowColor:'#3d251e',
-         textDayFontFamily:'Poppins_300Light',
-         textMonthFontFamily:'Poppins_300Light',
-         textDayHeaderFontFamily:'Poppins_300Light',
+        //  textDayFontFamily:'Arial',
+        //  textMonthFontFamily:'Arial',
+        //  textDayHeaderFontFamily:'Arial',
          textMonthFontWeight:'bold',
          textMonthFontSize:20,
          textDayFontSize:20,

@@ -47,8 +47,7 @@ const styles = StyleSheet.create({
   },
   textButton:{
     color:'white',
-    fontFamily:'Poppins_300Light',
-    fontSize: 20
+    // fontFamily:'Arial',
   },
   modal:{
     width: '85%',

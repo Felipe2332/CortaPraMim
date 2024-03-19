@@ -17,14 +17,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState(""); 
 
-  const [fontsLoaded] = useFonts({
-    Poppins_300Light
-  });
+  
   const [fadeAnim] = useState(new Animated.Value(0.9));  // Valor inicial da opacidade
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  
 
   const verificaCampo = () =>{
     const regex = /\d/; // expressão para verificar se há números
