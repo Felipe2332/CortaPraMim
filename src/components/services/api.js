@@ -61,9 +61,6 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
 
 
 
-async function getCodigoSms() {
-  let response = await fetch('https://cortapramim.azurewebsites.net/api/Usuario/getusuarios');
 
-}
 
-export default {getCodigoSms, criarAgendamento}
+export default criarAgendamento;

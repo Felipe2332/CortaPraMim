@@ -4,7 +4,7 @@ import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import {CustomCalendar} from './calendario';
 import { useRoute } from '@react-navigation/native';
-import { getCodigoSms, criarAgendamento } from '../services/api';
+import criarAgendamento from '../services/api';
 
 
 // Para interagir com API
