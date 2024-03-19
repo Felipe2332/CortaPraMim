@@ -13,8 +13,7 @@ async function LoginApi(login,senha){
     body: JSON.stringify(data)
   });
   let json = await response.json();
-  console.log('resp jason', json.passWordOk);
-  console.log('resp status', response.status);
+  
   
   if(response.status == 401){
     let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`)

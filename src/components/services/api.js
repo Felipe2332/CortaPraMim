@@ -34,12 +34,12 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
    let cliId = await getPhone(cellPhone);
   
     const data = {
+      date: dataSelecionada,
+      time: horarioSelecionado,
       cli_Id: cliId,
-      usu_Id: 1,
-      age_Data: dataSelecionada,
-      age_Time: horarioSelecionado
+      usu_Id: 3
+      
     };
-    
 
     let response = await fetch('https://cortapramim.azurewebsites.net/api/Agendamento/create', {
       method: 'POST',
@@ -50,6 +50,8 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
     });
 
     let text = await response.text();
+    
+
     console.log('Resposta:', text);
 
   } catch (error) {

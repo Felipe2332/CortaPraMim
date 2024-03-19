@@ -25,10 +25,15 @@ export default function LoginSenha() {
         LoginApi(login,senha).then((response) => {
           if(response == true){
             console.log('login deu certo', response);
-            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`).then((resp)=> resp.json()).then((json)=> console.log(json))
-            let {cli_Nome: username, cli_Phone: cell} = dataUser;
-            console.log(username,cell);
-            navigation.navigate('AbaNavegacao', {username, cell});
+            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`)
+             .then((resp)=> resp.json()).then((json)=> {
+              let {cli_Nome: username, cli_Phone: cell} = json;
+              navigation.navigate('AbaNavegacao', {username, cell});
+             })
+              
+            
+            
+            
 
           }else if(response == false){
             console.log('login ou senha incorreto');

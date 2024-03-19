@@ -172,7 +172,6 @@ const Agendamento = ({route}) => {
                 // Aqui você pode adicionar o código para confirmar o agendamento
                 setConfirmModalVisible(false);
 
-
                 // Mandar para API
                 criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00", cell);
 
