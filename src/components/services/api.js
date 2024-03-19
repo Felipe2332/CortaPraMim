@@ -66,4 +66,4 @@ async function getCodigoSms() {
 
 }
 
-export {getCodigoSms, criarAgendamento}
+export default {getCodigoSms, criarAgendamento}

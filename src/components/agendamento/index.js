@@ -12,7 +12,7 @@ import { getCodigoSms, criarAgendamento } from '../services/api';
 
 const Agendamento = ({route}) => {
   
-  const [dataSelecionada, setDataSelecionada] = useState(null);
+  
   
   const handleDateChange = (data) => {
     setDataSelecionada(data);
@@ -22,7 +22,9 @@ const Agendamento = ({route}) => {
   // Aí aqui em Agendamento a gente recupera as informações passadas da AbaNavegação
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
+  const [dataSelecionada, setDataSelecionada] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  
 
   useEffect(() => {
     const handleBackButton = () => {

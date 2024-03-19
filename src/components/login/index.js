@@ -86,12 +86,7 @@ export default function Login() {
         placeholder='(99) 99999-9999'>
         </TextInputMask>
 
-      <TouchableOpacity 
-      style={styles.button}
-      onPress={() =>verificaCampo()}
-      >
-        <Text style={styles.textButton}>CRIAR</Text>
-      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() =>verificaCampo()}> <Text style={styles.textButton}>CRIAR</Text></TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('politicaDePrivacidade')}><Text style={styles.textPrivacidade}>Privacidade</Text></TouchableOpacity>
       
