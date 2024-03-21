@@ -8,6 +8,7 @@ import { useRoute } from '@react-navigation/native';
 import LoginApi from '../services/login';
 import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
+import { validarCampos } from '../services/validarCampos';
 
 
 
@@ -22,6 +23,10 @@ export default function LoginSenha() {
     const [senha, setSenha] = useState('');
     
     function validarLogin(login, senha){
+      if (!validarCampos(login, senha, limparSenha)) {
+        return;
+    }
+      
         LoginApi(login,senha).then((response) => {
           if(response == true){
             console.log('login deu certo', response);
@@ -30,27 +35,33 @@ export default function LoginSenha() {
               let {cli_Nome: username, cli_Phone: cell} = json;
               navigation.navigate('AbaNavegacao', {username, cell});
              })
-              
-            
-            
-            
+
 
           }else if(response == false){
-            console.log('login ou senha incorreto');
-
-          } else {
+            Alert.alert(
+              "",
+              "E-mail ou senha incorretos",
+              [
+                { text: "OK", onPress:limparSenha }
+              ],
+              { cancelable: true, onDismiss:limparSenha}
+            );
+          }else{
             alert('envia o codigo');
             let {cli_Email: email, cli_Phone: cell, cli_Nome: username} = response;
             MandarEmail(email,username);
            
-            
             console.log(email, cell, username);
             navigation.navigate('telaDeCodigo', {username, cell,email});
           }
+
         })
+        Keyboard.dismiss();
     }
 
-  
+    const limparSenha = () =>{
+      setSenha("");
+    }
     
     useEffect(() => {
       const handleBackButton = () => {

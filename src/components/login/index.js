@@ -44,6 +44,7 @@ export default function Login() {
      
       
     }
+    Keyboard.dismiss();
   }
   return (
     <>
