@@ -5,6 +5,7 @@ import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import {CustomCalendar} from './calendario';
 import { useRoute } from '@react-navigation/native';
 import criarAgendamento from '../services/api';
+import getMes from '../services/getMes';
 
 
 // Para interagir com API
@@ -22,7 +23,7 @@ const Agendamento = ({route}) => {
   // Aí aqui em Agendamento a gente recupera as informações passadas da AbaNavegação
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
-  const [dataSelecionada, setDataSelecionada] = useState(null);
+  const [dataSelecionada, setDataSelecionada] = useState(0);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
   
 
@@ -59,6 +60,11 @@ const Agendamento = ({route}) => {
  //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
   const [horariosDisponiveis, setHorariosDisponiveis] = useState(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']);
   //PERGAR OS HORARIOS DA API
+  
+  useEffect(() => {
+    getMes(dataSelecionada.month)
+  },[dataSelecionada]);
+  
 
   // CRIA CADA HORARIO COMO UM BOTAO
   const renderHorario = ({item}) => (
