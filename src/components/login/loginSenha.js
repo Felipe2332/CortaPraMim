@@ -47,8 +47,8 @@ export default function LoginSenha() {
               { cancelable: true, onDismiss:limparSenha}
             );
           }else{
-            alert('envia o codigo');
             let {cli_Email: email, cli_Phone: cell, cli_Nome: username} = response;
+            Alert.alert("",`Enviamos o código para seu e-mail ${email}`,"",{cancelable:true} );
             MandarEmail(email,username);
            
             console.log(email, cell, username);

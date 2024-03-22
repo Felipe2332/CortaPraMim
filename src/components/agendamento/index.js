@@ -13,10 +13,12 @@ import getMes from '../services/getMes';
 
 const Agendamento = ({route}) => {
   
-  
+  const {selected} = route.params;
   
   const handleDateChange = (data) => {
     setDataSelecionada(data);
+    setDiaSelecionado(data);
+    abrirModal();
   };
 
   const {username, cell} = route.params;
@@ -25,6 +27,9 @@ const Agendamento = ({route}) => {
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
   const [dataSelecionada, setDataSelecionada] = useState(0);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+
+  // Só para mostrar ao usuario(não usar para agendar)
+  const [diaSelecionado, setDiaSelecionado] = useState(null);
   
 
   useEffect(() => {
@@ -55,6 +60,7 @@ const Agendamento = ({route}) => {
   const selecionarHorario = (horario) => {
     setHorarioSelecionado(horario);
     setConfirmModalVisible(true); // Abre o modal de confirmação quando um horário é selecionado
+    
   }
 
  //horarios que vão aparecer, FALTA LOGICA DE EXCLUIR UM HORARIO SELECIONADO
@@ -83,7 +89,7 @@ const Agendamento = ({route}) => {
       console.log(`Agendamento confirmado para ${horarioSelecionado}`);
       fecharModal();
     }else {
-      console.log('Selecione um horário antes de confirmar o agendamento');
+      Alert.alert("Selecione um horário antes de confirmar agendamento")
 
     }
   [horarioSelecionado]}
@@ -94,13 +100,13 @@ const Agendamento = ({route}) => {
     <StatusBar backgroundColor={"black"}/>
     <View style={styles.container}>
       <View style={styles.cabecaView}>
-      <Text style={styles.textmsg}>Bem Vindo</Text>
-      <Text style={styles.textmsg}>{username}</Text>
+      <Text style={styles.textmsg}>Bem Vindo, {username}</Text>
+      
     </View>
     
 
       <View  style={styles.modal}>
-        <CustomCalendar onDaySelect={handleDateChange}/>
+        <CustomCalendar onDaySelect={handleDateChange} onPress={abrirModal}/>
       </View>
 
       <View style={styles.viewLogin}>
@@ -148,7 +154,7 @@ const Agendamento = ({route}) => {
               style={styles.button}
               //onPress={confirmarAgendamento}
               disabled={!horarioSelecionado}>
-              <Text style={styles.textButton}>Confirmar Agendamento</Text>
+              <Text style={styles.textButton}>CONFIRMAR AGENDAMENTO</Text>
               </TouchableOpacity>
 
         </View>
@@ -170,9 +176,10 @@ const Agendamento = ({route}) => {
           </TouchableWithoutFeedback>
 
           <View style={styles.viewModal}>
-            <Text>Nome: {username}</Text>
-            <Text>Celular: {cell}</Text>
-            <Text>Horário: {horarioSelecionado}</Text>
+            <Text>Confira suas informações</Text>
+            {/* Quero mostrar a data que ele selecionou aqui */}
+            <Text>Dia: </Text>
+            <Text style={styles.textButton}>Horário: {horarioSelecionado}</Text>
 
             <TouchableOpacity
               style={styles.button}

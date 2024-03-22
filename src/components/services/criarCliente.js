@@ -42,7 +42,7 @@ try{
     
   
 
-    //MandarEmail(email,name);
+    MandarEmail(email,name);
 }
 
 

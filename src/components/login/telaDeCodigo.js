@@ -8,6 +8,7 @@ import { func } from 'prop-types';
 import { useRoute } from '@react-navigation/native';
 
 import AutenticarCodigo from '../services/autenticarCodigo';
+import MandarEmail from '../services/mandarEmail';
 
 
 export default function TelaDeCodigo({route}) {
@@ -35,6 +36,7 @@ export default function TelaDeCodigo({route}) {
       };
   
     });
+    console.log(`Nome ${username}  Celular:${cell}  Email:${email}`);
   
     return (
       <>
@@ -46,20 +48,15 @@ export default function TelaDeCodigo({route}) {
         
       <View>
       <View style={styles.viewLogin}>
-        {/* Tirar isso depois */}
-      <Text style={{fontSize:26,color:"white"}}>Fala {username}</Text>
-      <Text style={{fontSize:26,color:"white"}}>Seu telefone {cell}</Text>
-      <Text style={{fontSize:26,color:"white"}}>Seu email {email}</Text>
 
 
         <Text style={styles.textLogin}>Código</Text>
         <TextInputMask style={styles.input} type={"only-numbers"} onChangeText={text => setCode(text)}>
 
         </TextInputMask>
-
+{/* Verificar esses três botões */}
         <TouchableOpacity style={styles.button} onPress={() => AutenticarCodigo(code,email,cell,username,navigation)}><Text style={styles.textButton}>Validar</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} ><Text style={styles.textButton}>Reenviar Código</Text></TouchableOpacity>
-        <TouchableOpacity onPress={() => {navigation.navigate('AbaNavegacao', {username, cell,email})}} style={styles.button} ><Text style={styles.textButton}>Proxima</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => MandarEmail(email,username)}><Text style={styles.textButton}>Reenviar Código</Text></TouchableOpacity>
         
       </View>
       {/* Fim do form */}

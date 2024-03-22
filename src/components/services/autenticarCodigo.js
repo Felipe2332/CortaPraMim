@@ -61,6 +61,3 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
 }
 export default AutenticarCodigo;
 
-
-
-// PORÉM O CÓDIGO TÁ CHEGANDO NO EMAIL

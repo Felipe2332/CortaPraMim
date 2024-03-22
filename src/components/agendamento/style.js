@@ -7,22 +7,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#181818',
     alignItems: 'center',
     
+    
   },
   textmsg:{
-    fontSize: 22,
+    fontSize: 26,
     color: 'red',
     fontWeight:'bold',
     margin: 1
   },
   textoDeData:{
-    fontSize: 22,
+    fontSize: 26,
     color: 'red',
     fontWeight:'bold',
     marginTop:35,
     textAlign:'center'
   },
   cabecaView:{
-    backgroundColor: 'black',
+    
     padding: 20,
     width: '100%',
     marginTop: 50,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   button:{
-    marginTop: 50,
+    marginTop: 5,
     backgroundColor:'black',
     height: 50,
     width:'90%',
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
   },
   textButton:{
     color:'white',
+    fontSize:20,
     // fontFamily:'Arial',
   },
   modal:{
@@ -59,14 +61,13 @@ const styles = StyleSheet.create({
     borderRadius:7.5,
   },
   viewModal:{
-    
     backgroundColor: '#8c8377',
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    paddingTop: 12
+    paddingTop: 12,
 
   },
   overlay: {
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
 
   },
   itemText: {
-    fontSize: 16,
+    fontSize: 20,
     
   },
   horarioSelecionadoView:{

@@ -18,7 +18,7 @@ export default function Login() {
   const [senha, setSenha] = useState(""); 
 
   
-  const [fadeAnim] = useState(new Animated.Value(0.9));  // Valor inicial da opacidade
+  const [fadeAnim] = useState(new Animated.Value(1));  // Valor inicial da opacidade
 
   
 
@@ -35,7 +35,7 @@ export default function Login() {
         // Aqui você pode acessar a resposta da função
         //se o email ja tem conta ele volta pra tela de login
         if(resp == false){
-        Alert.alert('este email ja exite, faça o login');
+        Alert.alert('Essa conta já existe');
         navigation.navigate('LoginSenha');
         }else if(resp == true){
           navigation.navigate('telaDeCodigo', {username, cell,email})
@@ -58,7 +58,7 @@ export default function Login() {
     <View style={styles.viewLogin}>
       
       <Text style={styles.textLogin}>Nome</Text>
-      <TextInput style={styles.input}placeholder='Lucas Denadai' onChangeText={text => setUserName(text)} maxLength={30}  
+      <TextInput style={styles.input} placeholder='Lucas Denadai' onChangeText={text => setUserName(text)} maxLength={30}  
       value={username}>
       </TextInput>
 
@@ -87,7 +87,7 @@ export default function Login() {
         placeholder='(99) 99999-9999'>
         </TextInputMask>
 
-      <TouchableOpacity style={styles.button} onPress={() =>verificaCampo()}> <Text style={styles.textButton}>CRIAR</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() =>verificaCampo()}><Text style={styles.textButton}>CRIAR</Text></TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('politicaDePrivacidade')}><Text style={styles.textPrivacidade}>Privacidade</Text></TouchableOpacity>
       
