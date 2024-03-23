@@ -18,8 +18,7 @@ export default function TelaDeCodigo({route}) {
     
     const [code, setCode] = useState("");
 
-    
-    
+
     useEffect(() => {
       const handleBackButton = () => {
         // Adicionar qualquer lógica que desejar aqui. 

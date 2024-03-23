@@ -34,8 +34,22 @@ export default function LoginSenha() {
              .then((resp)=> resp.json()).then((json)=> {
               let {cli_Nome: username, cli_Phone: cell} = json;
               navigation.navigate('AbaNavegacao', {username, cell});
-             })
 
+
+
+              // Tem algo muito errado aqui. Não tamo conseguindo entrar
+
+
+
+
+
+
+
+
+
+
+
+             })
 
           }else if(response == false){
             Alert.alert(
@@ -54,7 +68,7 @@ export default function LoginSenha() {
             console.log(email, cell, username);
             navigation.navigate('telaDeCodigo', {username, cell,email});
           }
-
+          
         })
         Keyboard.dismiss();
     }
@@ -91,9 +105,6 @@ export default function LoginSenha() {
       <View>
       <View style={styles.viewLogin}>
         
-      
-
-
         <Text style={styles.textLogin}>E-mail</Text>
         <TextInput placeholder='Email' style={styles.input} onChangeText={value => setLogin(value)} value={login}></TextInput>     
 

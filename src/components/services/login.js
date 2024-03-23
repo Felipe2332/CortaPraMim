@@ -25,7 +25,8 @@ async function LoginApi(login,senha){
     //se for true o email e senha e autenticado estao corretos
     return true;
     
-  } else return false;
+  } else
+   return false;
 }
 
 export default LoginApi;

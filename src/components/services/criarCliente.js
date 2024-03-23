@@ -1,9 +1,6 @@
 import MandarEmail from "./mandarEmail";
 
 
-
-
-
 async function CriarCliente(email,cell,name,senha){
   
   const data = {
@@ -30,6 +27,7 @@ try{
     return false
   }else{
     console.log('esse email é novo em');
+    MandarEmail(email,name);
     return true
     
   }
@@ -39,10 +37,8 @@ try{
   console.log('Resposta catch:', erro);
 
 }
-    
-  
 
-    MandarEmail(email,name);
+    
 }
 
 
