@@ -67,15 +67,33 @@ const Agendamento = ({route}) => {
   const [horariosDisponiveis, setHorariosDisponiveis] = useState(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']);
   //PERGAR OS HORARIOS DA API
   
-  useEffect(async () => {
+  useEffect(() => {
+    
+    async function getdatas(){
     if (dataSelecionada) {
         try {
             let datasAgendadas = await getMes(dataSelecionada.month);
-            console.log(datasAgendadas);
+            let arrayDatas = datasAgendadas.map(data => data.age_Date.slice(0, 10));
+            let arrayHorarios = datasAgendadas.map(data => data.age_Time.slice(0, 5));
+            let horas = arrayDatas.find(iten => iten == dataSelecionada.dateString );
+            if(horas){
+              console.log(arrayHorarios);
+             
+            }else{
+              console.log('nao entro no if');
+            }
+            
+              
+            
+            console.log(arrayDatas, dataSelecionada.dateString);
+            
+            
         } catch (error) {
             console.error('Erro ao obter as datas agendadas:', error);
         }
     }
+  }
+  getdatas();
 }, [dataSelecionada]);
   
 
@@ -92,7 +110,7 @@ const Agendamento = ({route}) => {
 
   const confirmarAgendamento = () => {
     if(horarioSelecionado){
-      setHorariosDisponiveis((prevHorarios) => prevHorarios.filter((h) => h !== horarioSelecionado));
+      //setHorariosDisponiveis((prevHorarios) => prevHorarios.filter((h) => h !== horarioSelecionado));
       console.log(`Agendamento confirmado para ${horarioSelecionado}`);
       fecharModal();
     }else {

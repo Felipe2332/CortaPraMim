@@ -22,8 +22,14 @@ const enviarDadosParaApi = async (username, cell) => {
 
 export {api, enviarDadosParaApi};
 */
+import token from "./geradorToken";
 async function getPhone(cellPhone) {
-  let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`);
+  let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`,{
+    method: "GET",
+      headers: {
+  "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+}
+});
   let json = await cliente.json();
   let { cli_Id } = json;
   return cli_Id;
@@ -45,6 +51,7 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(data),
     });
