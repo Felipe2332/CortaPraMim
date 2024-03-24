@@ -9,6 +9,8 @@ import LoginApi from '../services/login';
 import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
 import { validarCampos } from '../services/validarCampos';
+import token from '../services/geradorToken';
+
 
 
 
@@ -30,25 +32,15 @@ export default function LoginSenha() {
         LoginApi(login,senha).then((response) => {
           if(response == true){
             console.log('login deu certo', response);
-            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`)
+            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
+              method: "GET",
+                headers: {
+            "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+        }
+    })
              .then((resp)=> resp.json()).then((json)=> {
               let {cli_Nome: username, cli_Phone: cell} = json;
               navigation.navigate('AbaNavegacao', {username, cell});
-
-
-
-              // Tem algo muito errado aqui. Não tamo conseguindo entrar
-
-
-
-
-
-
-
-
-
-
-
              })
 
           }else if(response == false){
