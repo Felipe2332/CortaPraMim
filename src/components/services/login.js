@@ -1,8 +1,5 @@
 
 
-
-
-
 async function LoginApi(login,senha){
   
   let data = {
@@ -17,21 +14,26 @@ async function LoginApi(login,senha){
     },
     body: JSON.stringify(data)
   });
-  let json = await response.json();
-  
+
   if(response.status == 401){
+    // Precisa de token
     let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`)
     let obj = await dataUser.json();
     
     return obj;
   }
+
+  let json = await response.json();
   if(json.passWordOk == true){
+    // let dataLogin = await response.json();
+    // console.log(dataLogin);
     //se for true o email e senha e autenticado estao corretos
     
     return true;
     
   } else
    return false;
+   
 }
 
 export default LoginApi;

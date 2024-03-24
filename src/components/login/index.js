@@ -39,6 +39,12 @@ export default function Login() {
         navigation.navigate('LoginSenha');
         }else if(resp == true){
           navigation.navigate('telaDeCodigo', {username, cell,email})
+          Alert.alert(
+            "",
+            `E-mail enviado para ${email}`,
+            { cancelable: true}
+            
+          );
         }
       })
      

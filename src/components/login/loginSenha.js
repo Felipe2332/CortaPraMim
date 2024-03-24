@@ -9,10 +9,7 @@ import LoginApi from '../services/login';
 import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
 import { validarCampos } from '../services/validarCampos';
-import token from '../services/geradorToken';
-
-
-
+import token from '../services/macadoAranhaGeradorDeToken';
 
 
 export default function LoginSenha() {
@@ -27,22 +24,20 @@ export default function LoginSenha() {
     function validarLogin(login, senha){
       if (!validarCampos(login, senha, limparSenha)) {
         return;
-    }
-      
+      }
         LoginApi(login,senha).then((response) => {
           if(response == true){
             console.log('login deu certo', response);
+
             let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
-              method: "GET",
-                headers: {
-            "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
-        }
-    })
+            method:"GET",
+            headers:{"Authorization": `Bearer ${token}`}
+          
+          })
              .then((resp)=> resp.json()).then((json)=> {
               let {cli_Nome: username, cli_Phone: cell} = json;
               navigation.navigate('AbaNavegacao', {username, cell});
              })
-
           }else if(response == false){
             Alert.alert(
               "",
@@ -51,15 +46,16 @@ export default function LoginSenha() {
                 { text: "OK", onPress:limparSenha }
               ],
               { cancelable: true, onDismiss:limparSenha}
+              
             );
           }else{
-            let {cli_Email: email, cli_Phone: cell, cli_Nome: username} = response;
+            let {cli_Email: email, cli_Phone: telefone, cli_Nome: username} = json;
             Alert.alert("",`Enviamos o código para seu e-mail ${email}`,"",{cancelable:true} );
             MandarEmail(email,username);
            
-            console.log(email, cell, username);
-            navigation.navigate('telaDeCodigo', {username, cell,email});
-          }
+            console.log(email, telefone, username);
+            navigation.navigate('telaDeCodigo', {username, telefone,email});
+          };
           
         })
         Keyboard.dismiss();

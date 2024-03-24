@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import token from '../services/macadoAranhaGeradorDeToken';
 
 /*const AutenticarCodigo = (code,email,cell,username,navigation) => {
 
@@ -20,7 +21,12 @@ import { useNavigation } from '@react-navigation/native';
 
 
 async function getId(email) {
-  let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${email}`);
+  let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${email}`,{
+    method: "GET",
+    headers: {
+        "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+    }
+      });
   let json = await cliente.json();
   let { cli_Id } = json;
   console.log('resposta do get', cli_Id);

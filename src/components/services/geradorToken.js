@@ -1,3 +1,0 @@
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjgwIiwibmJmIjoxNzExMzE4NjEwLCJleHAiOjE3MTEzMTk4MTAsImlhdCI6MTcxMTMxODYxMCwiaXNzIjoiQXBpQ2FiZWxlaXJlaXJvVjIiLCJhdWQiOiJNaW5oYUFwaSJ9.t9UMHZCMaL1P1k4m9ltXXBSvOF634HzMR-oKfYLrI6Q";
-
-export default token;
