@@ -67,47 +67,39 @@ const Agendamento = ({route}) => {
  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
  
  //PERGAR OS HORARIOS DA API
- let arrayDatas = [];
-   let arrayHorarios = [];
-   let arrayNovasHoras = [];
+ 
+   useEffect(() => {
+    setHorariosDisponiveis(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']); 
+  }, []);
 
- useEffect(() => {
+  useEffect(() => {
+    async function getDatas() {
+      if (dataSelecionada) {
+        try {
+          let datasAgendadas = await getMes(dataSelecionada.month);
+          let novosHorarios = [...horariosDisponiveis];
+          console.log('log 1', novosHorarios);
   
-  setHorariosDisponiveis(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']);
-   async function getdatas(){
-    
-   if (dataSelecionada) {
-    
-let datasAgendadas = await getMes(dataSelecionada.month);
-for(let i in datasAgendadas){
-  arrayDatas[i] = datasAgendadas[i].age_Date.slice(0,10);
-  if(dataSelecionada.dateString == arrayDatas[i] ){
-    arrayHorarios.push(datasAgendadas[i].age_Time.slice(0,5));
-  }
+          datasAgendadas.forEach(dataAgendada => {
+            let data = dataAgendada.age_Date.slice(0, 10);
+            let horario = dataAgendada.age_Time.slice(0, 5);
+            
+            if (dataSelecionada.dateString === data) {
+              
+              novosHorarios = novosHorarios.filter(item => item !== horario);
+              console.log('log 2', novosHorarios);
+            }
+          });
   
-  
-}
-for(let i in arrayHorarios){
-  console.log('log do segundo for', arrayHorarios[i]);
-}
-for(let i in arrayHorarios){
-  
-  for(let h in horariosDisponiveis){
-    console.log('estou aqui');
-    if(arrayHorarios[i] !== horariosDisponiveis[h]){
-      arrayNovasHoras.push(horariosDisponiveis[h]);
-      
+          setHorariosDisponiveis(novosHorarios);
+        } catch (error) {
+          console.error('Erro ao obter as datas:', error);
+        }
+      }
     }
-  }
-}
-   for(let i in arrayNovasHoras){
-    console.log('novas hrs', arrayNovasHoras[i]);
-   }        
-   }
-   setHorariosDisponiveis(arrayNovasHoras);
-  }
-   getdatas();
-}, [dataSelecionada]);
+  
+    getDatas();
+  }, [dataSelecionada]);
   
 
   // CRIA CADA HORARIO COMO UM BOTAO
