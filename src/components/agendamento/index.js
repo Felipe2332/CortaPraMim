@@ -70,12 +70,14 @@ const Agendamento = ({route}) => {
  
    useEffect(() => {
     setHorariosDisponiveis(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']); 
-  }, []);
+    console.log('primeiro useffect', horariosDisponiveis);
+  }, [visibleModal]);
 
   useEffect(() => {
     async function getDatas() {
       if (dataSelecionada) {
         try {
+           
           let datasAgendadas = await getMes(dataSelecionada.month);
           let novosHorarios = [...horariosDisponiveis];
           console.log('log 1', novosHorarios);
