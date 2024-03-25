@@ -11,7 +11,7 @@ import token from "./macadoAranhaGeradorDeToken";
     });
    let json = await response.json();
    //tentar usar o includes
-  console.log('mes', mes);
+  
   return json;
   }catch(error){
    console.log('erro na api get mes', error);
