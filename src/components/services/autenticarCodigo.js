@@ -59,6 +59,14 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
         console.log(response.json());
         navigation.navigate('AbaNavegacao', {username, cell,email});
       }
+      else if(response!==200){
+        Alert.alert(
+          // "",Aqui tá ERRADO, TEM QUE VALIDAR SE ELE ENTRAR COM O CÓDIGO INVALIDO
+          "Código incorreto",
+          { cancelable: true}
+          
+        );
+      }
       
     } catch (erro) {
         console.error('Erro ao enviar dados para a API:', erro.message);

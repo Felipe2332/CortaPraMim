@@ -1,4 +1,4 @@
-
+import token from "./macadoAranhaGeradorDeToken";
 
 async function LoginApi(login,senha){
   
@@ -17,11 +17,18 @@ async function LoginApi(login,senha){
 
   if(response.status == 401){
     // Precisa de token
-    let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`)
+    let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+      }
+    });
     let obj = await dataUser.json();
     
     return obj;
   }
+
+  
 
   let json = await response.json();
   if(json.passWordOk == true){

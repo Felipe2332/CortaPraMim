@@ -1,3 +1,5 @@
+import token from "./macadoAranhaGeradorDeToken";
+
 /*import axios from 'axios';
 
 const api = axios.create(
@@ -22,7 +24,7 @@ const enviarDadosParaApi = async (username, cell) => {
 
 export {api, enviarDadosParaApi};
 */
-import token from "./macadoAranhaGeradorDeToken";
+
 async function getPhone(cellPhone) {
   let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`,{
     method: "GET",
