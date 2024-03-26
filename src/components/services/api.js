@@ -62,6 +62,7 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
     
 
     console.log('Resposta:', text);
+    console.log("Dados enviados: ", data);
 
   } catch (error) {
     console.error('Erro:', error);

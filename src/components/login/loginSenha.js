@@ -49,7 +49,7 @@ export default function LoginSenha() {
               
             );
           }else{
-            let {cli_Email: email, cli_Phone: telefone, cli_Nome: username} = json;
+            let {cli_Email: email, cli_Phone: telefone, cli_Nome: username} = response;
             Alert.alert("",`Enviamos o código para seu e-mail ${email}`,"",{cancelable:true} );
             MandarEmail(email,username);
            

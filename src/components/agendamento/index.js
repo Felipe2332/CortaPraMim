@@ -86,7 +86,7 @@ const Agendamento = ({route}) => {
             let data = dataAgendada.age_Date.slice(0, 10);
             let horario = dataAgendada.age_Time.slice(0, 5);
             
-            if (dataSelecionada.dateString === data) {
+            if (dataSelecionada.toString === data) {
               
               novosHorarios = novosHorarios.filter(item => item !== horario);
               console.log('log 2', novosHorarios);
@@ -118,7 +118,7 @@ const Agendamento = ({route}) => {
   const confirmarAgendamento = () => {
     if(horarioSelecionado){
       //setHorariosDisponiveis((prevHorarios) => prevHorarios.filter((h) => h !== horarioSelecionado));
-      console.log(`Agendamento confirmado para ${horarioSelecionado}`);
+      console.log(`Horário selecionado ${horarioSelecionado}`);
       fecharModal();
     }else {
       Alert.alert("Selecione um horário antes de confirmar agendamento")
