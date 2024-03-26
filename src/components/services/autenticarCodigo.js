@@ -43,7 +43,8 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
         code,
         email,
         cell,
-        username
+        username,
+        cli_Id
     }
     try{
     let response = await fetch(`https://cortapramim.azurewebsites.net/api/AuthCode/authenticate/${cli_Id}/${code}`, {
@@ -59,10 +60,9 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
         console.log(response.json());
         navigation.navigate('AbaNavegacao', {username, cell,email});
       }
-      else if(response!==200){
+      else if(response.status == 401){
         Alert.alert(
-          // "",Aqui tá ERRADO, TEM QUE VALIDAR SE ELE ENTRAR COM O CÓDIGO INVALIDO
-          "Código incorreto",
+          "Código de autenticação inváldo! ou expirou. Solicite outro",
           { cancelable: true}
           
         );

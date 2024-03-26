@@ -29,34 +29,27 @@ export default function LoginSenha() {
           if(response == true){
             console.log('login deu certo', response);
 
-            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
-            method:"GET",
-            headers:{"Authorization": `Bearer ${token}`}
-          
-          })
-             .then((resp)=> resp.json()).then((json)=> {
-              let {cli_Nome: username, cli_Phone: cell} = json;
-              navigation.navigate('AbaNavegacao', {username, cell});
-             })
-          }else if(response == false){
-            Alert.alert(
-              "",
-              "E-mail ou senha incorretos",
-              [
-                { text: "OK", onPress:limparSenha }
-              ],
-              { cancelable: true, onDismiss:limparSenha}
-              
-            );
-          }else{
+            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{method:"GET",headers:{"Authorization": `Bearer ${token}`}})
+            .then((resp)=> resp.json()).then((json)=> {
+            let {cli_Nome: username, cli_Phone: cell} = json;
+            navigation.navigate('AbaNavegacao', {username, cell})})}
+
+              else if(response == false){
+                Alert.alert(
+                "",
+                "E-mail ou senha incorretos",
+                [
+                  { text: "OK", onPress:limparSenha }
+                ],
+                { cancelable: true, onDismiss:limparSenha}
+                )}
+            else{
             let {cli_Email: email, cli_Phone: telefone, cli_Nome: username} = response;
             Alert.alert("",`Enviamos o código para seu e-mail ${email}`,"",{cancelable:true} );
             MandarEmail(email,username);
            
             console.log(email, telefone, username);
-            navigation.navigate('telaDeCodigo', {username, telefone,email});
-          };
-          
+            navigation.navigate('telaDeCodigo', {username, telefone,email})};
         })
         Keyboard.dismiss();
     }
