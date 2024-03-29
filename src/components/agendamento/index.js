@@ -86,13 +86,12 @@ const Agendamento = ({route}) => {
             let data = dataAgendada.age_Date.slice(0, 10);
             let horario = dataAgendada.age_Time.slice(0, 5);
             
-            if (dataSelecionada.toString === data) {
+            if (dataSelecionada.dateString === data) {
               
               novosHorarios = novosHorarios.filter(item => item !== horario);
               console.log('log 2', novosHorarios);
             }
           });
-  
           setHorariosDisponiveis(novosHorarios);
         } catch (error) {
           console.error('Erro ao obter as datas:', error);
