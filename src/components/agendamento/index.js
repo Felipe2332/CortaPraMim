@@ -8,7 +8,7 @@ import criarAgendamento from '../services/api';
 import getMes from '../services/getMes';
 
 
-// Para interagir com API
+
 // Tá funcionando e não tá. 70% pronto
 
 const Agendamento = ({route}) => {
