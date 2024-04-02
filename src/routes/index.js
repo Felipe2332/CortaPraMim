@@ -17,7 +17,6 @@ const AbaNavegacao = ({route}) => {
   const { username, cell } = route.params;
   return (
     
-    
       <Aba.Navigator screenOptions={{
       tabBarActiveTintColor: '#673319', // Cor do ícone quando a aba está ativa
         tabBarInactiveTintColor: 'black', // Cor do ícone quando a aba está inativa
