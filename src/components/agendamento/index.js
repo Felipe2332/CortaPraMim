@@ -8,7 +8,7 @@ import criarAgendamento from '../services/api';
 import getMes from '../services/getMes';
 
 
-// Para interagir com API
+
 // Tá funcionando e não tá. 70% pronto
 
 const Agendamento = ({route}) => {
@@ -92,7 +92,6 @@ const Agendamento = ({route}) => {
              // console.log('log 2', novosHorarios);
             }
           });
-  
           setHorariosDisponiveis(novosHorarios);
         } catch (error) {
           console.error('Erro ao obter as datas:', error);
