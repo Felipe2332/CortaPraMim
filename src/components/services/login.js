@@ -1,5 +1,5 @@
 import token from "./macadoAranhaGeradorDeToken";
-
+let token2 = '';
 async function LoginApi(login,senha){
   
   let data = {
@@ -14,13 +14,14 @@ async function LoginApi(login,senha){
     },
     body: JSON.stringify(data)
   });
-
+  let json = await response.json();
+  token2 = json.jwtToken;
   if(response.status == 401){
     // Precisa de token
     let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+        "Authorization": `Bearer ${token2}` // Corrigindo o formato do token aqui
       }
     });
     let obj = await dataUser.json();
@@ -30,7 +31,8 @@ async function LoginApi(login,senha){
 
   
 
-  let json = await response.json();
+ 
+  
   if(json.passWordOk == true){
     // let dataLogin = await response.json();
     // console.log(dataLogin);
@@ -43,4 +45,4 @@ async function LoginApi(login,senha){
    
 }
 
-export default LoginApi;
+export {token2 ,LoginApi};

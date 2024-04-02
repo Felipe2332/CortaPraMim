@@ -1,12 +1,12 @@
-import token from "./macadoAranhaGeradorDeToken";
-
+//import token from "./macadoAranhaGeradorDeToken";
+import { token2 } from "./login";
 
  async function getMes(mes){
   try{
    const response = await fetch(`https://cortapramim.azurewebsites.net/api/Agendamento/getbymonth/${mes}`, {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+            "Authorization": `Bearer ${token2}` // Corrigindo o formato do token aqui
         }
     });
    //tentar usar o includes

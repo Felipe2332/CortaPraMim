@@ -67,10 +67,10 @@ const Agendamento = ({route}) => {
  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
  
  //PERGAR OS HORARIOS DA API
- 
+
    useEffect(() => {
     setHorariosDisponiveis(['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00']); 
-    console.log('primeiro useffect', horariosDisponiveis);
+    //console.log('primeiro useffect', horariosDisponiveis);
   }, [visibleModal]);
 
   useEffect(() => {
@@ -80,16 +80,16 @@ const Agendamento = ({route}) => {
            
           let datasAgendadas = await getMes(dataSelecionada.month);
           let novosHorarios = [...horariosDisponiveis];
-          console.log('log 1', novosHorarios);
+          //console.log('log 1', novosHorarios);
   
           datasAgendadas.forEach(dataAgendada => {
             let data = dataAgendada.age_Date.slice(0, 10);
             let horario = dataAgendada.age_Time.slice(0, 5);
             
-            if (dataSelecionada.toString === data) {
+            if (dataSelecionada.dateString === data) {
               
               novosHorarios = novosHorarios.filter(item => item !== horario);
-              console.log('log 2', novosHorarios);
+             // console.log('log 2', novosHorarios);
             }
           });
   

@@ -5,19 +5,17 @@ import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 import { useRoute } from '@react-navigation/native';
-import LoginApi from '../services/login';
+import {token2, LoginApi} from '../services/login';
 import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
 import { validarCampos } from '../services/validarCampos';
-import token from '../services/macadoAranhaGeradorDeToken';
+//import token from '../services/macadoAranhaGeradorDeToken';
 
 
 export default function LoginSenha() {
   
     const navigation = useNavigation();
     
-    
-    const [code, setCode] = useState("");
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
     
@@ -29,7 +27,7 @@ export default function LoginSenha() {
           if(response == true){
             console.log('login deu certo', response);
 
-            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{method:"GET",headers:{"Authorization": `Bearer ${token}`}})
+            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{method:"GET",headers:{"Authorization": `Bearer ${token2}`}})
             .then((resp)=> resp.json()).then((json)=> {
             let {cli_Nome: username, cli_Phone: cell} = json;
             navigation.navigate('AbaNavegacao', {username, cell})})}

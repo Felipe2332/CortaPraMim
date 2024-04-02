@@ -1,5 +1,5 @@
-import token from "./macadoAranhaGeradorDeToken";
-
+//import token from "./macadoAranhaGeradorDeToken";
+import { token2 } from "./login";
 /*import axios from 'axios';
 
 const api = axios.create(
@@ -29,7 +29,7 @@ async function getPhone(cellPhone) {
   let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`,{
     method: "GET",
       headers: {
-  "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
+  "Authorization": `Bearer ${token2}` // Corrigindo o formato do token aqui
 }
 });
   let json = await cliente.json();
@@ -53,7 +53,7 @@ const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "Authorization": `Bearer ${token}`
+        "Authorization": `Bearer ${token2}`
       },
       body: JSON.stringify(data),
     });
