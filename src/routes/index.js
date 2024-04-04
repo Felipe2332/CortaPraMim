@@ -66,12 +66,12 @@ export default function Routes(){
   }
 
   return(
-    <Stack.Navigator initialRouteName={isTokenValid ? "AbaNavegacao" : "LoginSenha"} screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName={isTokenValid ? "Agendamento" : "LoginSenha"} screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginSenha" component={LoginSenha} />
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name= "politicaDePrivacidade" component={Politica} />
       <Stack.Screen name="telaDeCodigo" component={TelaDeCodigo}/>
-      <Stack.Screen name="AbaNavegacao" component={AbaNavegacao}/> 
+      <Stack.Screen name="AbaNavegacao" component={AbaNavegacao} /> 
     </Stack.Navigator>  
   )
 }

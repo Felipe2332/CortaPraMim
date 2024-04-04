@@ -1,4 +1,3 @@
-import {salvarToken,lerToken,removerToken} from './operacoesToken';
 let token2 = '';
 async function LoginApi(login,senha){
   
@@ -14,15 +13,9 @@ async function LoginApi(login,senha){
     },
     body: JSON.stringify(data)
   });
-  // Recee o token 
+
   let json = await response.json();
   token2 = json.jwtToken;
-
-  // Armazenar o token
-  salvarToken(token2,username); 
-  // Lê o token
-  lerToken(token2);
-
 
   if(response.status == 401){
     // Precisa de token
@@ -33,21 +26,17 @@ async function LoginApi(login,senha){
       }
     });
     let obj = await dataUser.json();
-    
+    let username = obj.cli_Nome; // Pegue o username do json retornado
+
+    // Armazene o token e o username
+    salvarToken(token2, username);
+
     return obj;
   }
 
-  
-
- 
-  
   if(json.passWordOk == true){
-    // let dataLogin = await response.json();
-    // console.log(dataLogin);
     //se for true o email e senha e autenticado estao corretos
-    
     return true;
-    
   } else
    return false;
    
