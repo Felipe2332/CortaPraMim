@@ -1,4 +1,4 @@
-import token from "./macadoAranhaGeradorDeToken";
+import {salvarToken,lerToken,removerToken} from './operacoesToken';
 let token2 = '';
 async function LoginApi(login,senha){
   
@@ -14,14 +14,22 @@ async function LoginApi(login,senha){
     },
     body: JSON.stringify(data)
   });
+  // Recee o token 
   let json = await response.json();
   token2 = json.jwtToken;
+
+  // Armazenar o token
+  salvarToken(token2,username); 
+  // Lê o token
+  lerToken(token2);
+
+
   if(response.status == 401){
     // Precisa de token
     let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token2}` // Corrigindo o formato do token aqui
+        "Authorization": `Bearer ${token2}` 
       }
     });
     let obj = await dataUser.json();

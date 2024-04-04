@@ -9,7 +9,7 @@ import {token2, LoginApi} from '../services/login';
 import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
 import { validarCampos } from '../services/validarCampos';
-//import token from '../services/macadoAranhaGeradorDeToken';
+
 
 
 export default function LoginSenha() {
