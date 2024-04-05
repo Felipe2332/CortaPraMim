@@ -1,3 +1,7 @@
+import token from "./macadoAranhaGeradorDeToken";
+import {salvarToken} from "./gravarToken";
+
+
 let token2 = '';
 async function LoginApi(login,senha){
   
@@ -16,7 +20,8 @@ async function LoginApi(login,senha){
 
   let json = await response.json();
   token2 = json.jwtToken;
-
+  salvarToken(token2);
+  
   if(response.status == 401){
     // Precisa de token
     let dataUser = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
@@ -41,5 +46,7 @@ async function LoginApi(login,senha){
    return false;
    
 }
+
+
 
 export {token2 ,LoginApi};

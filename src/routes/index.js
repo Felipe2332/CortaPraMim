@@ -10,13 +10,17 @@ import Agendamento from "../components/agendamento";
 import TelaDeCodigo from "../components/login/telaDeCodigo";
 import LoginSenha from "../components/login/loginSenha";
 import { FontAwesome5 } from '@expo/vector-icons';
-import LoadingScreen from '../components/services/telaCarregamento'
+import { useEffect } from "react";
+import { recuperarToken } from "../components/services/gravarToken";
+
 
 const Stack = createNativeStackNavigator();
 const Aba = createBottomTabNavigator();
 
 const AbaNavegacao = ({route}) => {
   const { username, cell } = route.params;
+  
+
   return (
     
       <Aba.Navigator screenOptions={{
@@ -42,29 +46,19 @@ const AbaNavegacao = ({route}) => {
 // Basicamento TelaLogin -> AbaNavegação -> Agendamento
 
 export default function Routes(){
+  
+  //recupera o token formatado
+  useEffect(()=>{
+    const recupera = async ()=>{
+      const dataToken = await recuperarToken();
+      console.log('dados do token nas rotas', dataToken);
+    }
+    
+   recupera();
+  }, [])
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [userToken, setUserToken] = useState(null);
-  const [isTokenValid, setIsTokenValid] = useState(false);
-  const [username, setUsername] = useState(null);
-
-  useEffect(() => {
-    const checkToken = async () => {
-      const data = await lerToken();
-      if (data && await tokenEValido(data.token)) {
-        setIsTokenValid(true);
-        setUsername(data.username);
-      }
-      setIsLoading(false);
-    };
-    checkToken();
-  }, []);
-
-  //Se o token não for resgatado ainda. Manda pra uma tela de carregamento
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
+  
+  
   return(
     <Stack.Navigator initialRouteName={isTokenValid ? "Agendamento" : "LoginSenha"} screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginSenha" component={LoginSenha} />
