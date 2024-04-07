@@ -57,8 +57,6 @@ export default function Routes(){
    recupera();
   }, [])
 
-  
-  
   return(
     <Stack.Navigator initialRouteName={isTokenValid ? "Agendamento" : "LoginSenha"} screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginSenha" component={LoginSenha} />
