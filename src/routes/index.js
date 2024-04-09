@@ -4,14 +4,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback, FlatList, BackHandler } from 'react-native';
 import Login from "../components/login";
 import Politica from "../components/politicaDePrivacidade/politicaDePrivacidade";
-import { salvarToken, lerToken, removerToken, tokenEValido } from '../components/services/operacoesToken';
+import {lerToken, removerToken, tokenEValido } from '../components/services/operacoesToken';
 import Termos from '../components/termos/termos';
 import Agendamento from "../components/agendamento";
 import TelaDeCodigo from "../components/login/telaDeCodigo";
 import LoginSenha from "../components/login/loginSenha";
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useEffect } from "react";
-import { recuperarToken } from "../components/services/gravarToken";
+import { recuperarToken,salvarToken } from "../components/services/gravarToken";
 
 
 const Stack = createNativeStackNavigator();
@@ -46,6 +45,12 @@ const AbaNavegacao = ({route}) => {
 // Basicamento TelaLogin -> AbaNavegação -> Agendamento
 
 export default function Routes(){
+
+  
+  const [isLoading, setIsLoading] = useState(true);
+  const [userToken, setUserToken] = useState(null);
+  const [isTokenValid, setIsTokenValid] = useState(false);
+  const [username, setUsername] = useState(null);
   
   //recupera o token formatado
   useEffect(()=>{
