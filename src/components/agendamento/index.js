@@ -13,7 +13,7 @@ import getMes from '../services/getMes';
 
 const Agendamento = ({route}) => {
   
-  const {selected} = route.params;
+  
   
   const handleDateChange = (data) => {
     setDataSelecionada(data);
@@ -21,7 +21,10 @@ const Agendamento = ({route}) => {
     abrirModal();
   };
 
-  const {username, cell} = route.params;
+  const {username, id} = route.params;
+
+  console.log('log id', id, username);
+  
   // Aí aqui em Agendamento a gente recupera as informações passadas da AbaNavegação
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
@@ -219,7 +222,7 @@ const Agendamento = ({route}) => {
                 setConfirmModalVisible(false);
 
                 // Mandar para API
-                criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00", cell);
+                criarAgendamento(dataSelecionada.dateString,horarioSelecionado +":00", id);
 
                 confirmarAgendamento();
 

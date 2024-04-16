@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { parseJSON } from 'date-fns';
 import base64 from 'react-native-base64';
+import { Buffer } from "buffer";
 
 const salvarToken = async (token) => {
   try {
@@ -17,11 +19,11 @@ const recuperarToken = async () => {
     if (tokenRecuperado !== null) {
       // O token existe e foi recuperado
 
-      console.log('Token recuperado:', tokenRecuperado);
-
-      const decoded = base64.decode(tokenRecuperado.split('.')[1]);
-
-      console.log('token formatado' ,decoded);
+      const decoded = JSON.parse(Buffer.from(tokenRecuperado.split('.')[1], 'base64').toString());
+      
+      console.log(decoded);
+      
+     
       return decoded;
 
     }
@@ -32,6 +34,15 @@ const recuperarToken = async () => {
   
 };
 
+const getToken = async () => {
+  
+    const tokenRecuperadoBuffer = await AsyncStorage.getItem('TokenDoUsuario');
+
+    const tokenRecuperado = tokenRecuperadoBuffer.toString();
+    
+    console.log('token no get token',  typeof tokenRecuperado);
+    return tokenRecuperado;
+}
 
 
-export {recuperarToken, salvarToken};
+export {recuperarToken, salvarToken, getToken};

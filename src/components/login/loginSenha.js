@@ -9,7 +9,7 @@ import {token2, LoginApi} from '../services/login';
 import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
 import { validarCampos } from '../services/validarCampos';
-import { salvarToken } from '../services/operacoesToken';
+import { salvarToken } from '../services/gravarToken';
 
 
 
@@ -30,9 +30,10 @@ export default function LoginSenha() {
 
             let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{method:"GET",headers:{"Authorization": `Bearer ${token2}`}})
             .then((resp)=> resp.json()).then((json)=> {
-            let {cli_Nome: username, cli_Phone: cell} = json;
-            salvarToken(token2,username);
-            navigation.navigate('AbaNavegacao', {username, cell})})}
+              
+            let {cli_Nome: username, cli_Id: id} = json;
+            salvarToken(token2);
+            navigation.navigate('AbaNavegacao', {username, id})})}
 
               else if(response == false){
                 Alert.alert(

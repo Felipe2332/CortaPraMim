@@ -1,4 +1,4 @@
-import token from "./macadoAranhaGeradorDeToken";
+
 import {salvarToken} from "./gravarToken";
 
 

@@ -1,24 +1,25 @@
-import React,{useEffect,useState} from "react";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback, FlatList, BackHandler } from 'react-native';
 import Login from "../components/login";
 import Politica from "../components/politicaDePrivacidade/politicaDePrivacidade";
-import { salvarToken, lerToken, removerToken, tokenEValido } from '../components/services/operacoesToken';
 import Termos from '../components/termos/termos';
 import Agendamento from "../components/agendamento";
 import TelaDeCodigo from "../components/login/telaDeCodigo";
 import LoginSenha from "../components/login/loginSenha";
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useEffect } from "react";
 import { recuperarToken } from "../components/services/gravarToken";
+import { useEffect } from "react";
+import getCliente from "../components/services/getCliente";
+import { useNavigation } from "@react-navigation/native";
 
 
 const Stack = createNativeStackNavigator();
 const Aba = createBottomTabNavigator();
 
 const AbaNavegacao = ({route}) => {
-  const { username, cell } = route.params;
+  const { username, id } = route.params;
   
 
   return (
@@ -31,7 +32,7 @@ const AbaNavegacao = ({route}) => {
           top:5
         },
     }}>
-      <Aba.Screen name="Agendar" component={Agendamento} initialParams={{ username: username, cell: cell }} options={{ headerShown: false,tabBarIcon: ({color,size}) =>( <FontAwesome5 name="calendar" size={30} color={color} />),
+      <Aba.Screen name="Agendar" component={Agendamento} initialParams={{ username: username, id: id }} options={{ headerShown: false,tabBarIcon: ({color,size}) =>( <FontAwesome5 name="calendar" size={30} color={color} />),
       tabBarLabel:'', }}/>
       {/* Só entende os parâmetros se passado assim. Isso permite que a tela Agendamento tenha acesso a essas variáveis */}
       
@@ -46,21 +47,38 @@ const AbaNavegacao = ({route}) => {
 // Basicamento TelaLogin -> AbaNavegação -> Agendamento
 
 export default function Routes(){
-  
+  const navigation = useNavigation();
   //recupera o token formatado
   useEffect(()=>{
-    const recupera = async ()=>{
-      const dataToken = await recuperarToken();
-      console.log('dados do token nas rotas', dataToken);
-    }
-    
-   recupera();
+    recuperarToken().then((resp)=> {
+      const {exp, unique_name} = resp;
+      const expDate = new Date(exp * 1000);
+      const dataAtual = new Date();
+      console.log(expDate, dataAtual);
+
+      if(expDate < dataAtual){
+        console.log('venceu mane');
+      } else {
+        
+        getCliente(unique_name).then((dataUser) => {
+          let {cli_Nome: username, unique_name: id} = dataUser;
+        
+          
+          navigation.navigate('AbaNavegacao', {username, id})
+          
+
+        });
+        
+        
+      }
+    });
+  
   }, [])
 
   
-  
+                                                                                                                                                      
   return(
-    <Stack.Navigator initialRouteName={isTokenValid ? "Agendamento" : "LoginSenha"} screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName={"LoginSenha"} screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginSenha" component={LoginSenha} />
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name= "politicaDePrivacidade" component={Politica} />

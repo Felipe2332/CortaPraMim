@@ -1,11 +1,15 @@
-
 import { token2 } from "./login";
+import { getToken } from "./gravarToken";
+
+
+const token = getToken().then(resp => resp);
 
 async function getPhone(cellPhone) {
+  console.log('log na api', token);
   let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyphone/${cellPhone}`,{
     method: "GET",
       headers: {
-  "Authorization": `Bearer ${token2}` // Corrigindo o formato do token aqui
+  "Authorization": `Bearer ${token}` // Corrigindo o formato do token aqui
 }
 });
   let json = await cliente.json();
@@ -13,14 +17,15 @@ async function getPhone(cellPhone) {
   return cli_Id;
 }
 
-const criarAgendamento = async (dataSelecionada, horarioSelecionado, cellPhone) => {
+const criarAgendamento = async (dataSelecionada, horarioSelecionado, id) => {
+  console.log('log agendamemnto', token);
   try {
-   let cliId = await getPhone(cellPhone);
+   
   
     const data = {
       date: dataSelecionada,
       time: horarioSelecionado,
-      cli_Id: cliId,
+      cli_Id: id,
       usu_Id: 3
       
     };
