@@ -24,7 +24,7 @@ async function getId(email) {
   let cliente = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${email}`,{
     method: "GET",
     headers: {
-        "Authorization": `Bearer ${token2}` // Corrigindo o formato do token aqui
+        "Authorization": `Bearer ${token2}` 
     }
       });
   let json = await cliente.json();
