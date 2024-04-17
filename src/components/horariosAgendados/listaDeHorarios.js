@@ -1,32 +1,77 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState, useCallback, useRef } from 'react';
+import { FlatList, Text, Button, View, RefreshControl, Animated } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import getCliente from '../services/getCliente';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import getAgendamentos from '../services/getAgendamentosById';
+import cancelarAgendamento from '../services/cancelarAgendamento';
 
-const TelaExemplo = () => {
+const ListaDeHorariosAgendados = () => {
+  const [data, setData] = useState([]);
+  const [atualizando, setAtualizando] = useState(false);
+  const rowRefs = {};
+  const position = useRef(new Animated.Value(-100)).current; // Inicia a 100 pixels acima
+
+  const resgatarAgendamentos = async () => {
+    const id = await AsyncStorage.getItem('idCliente');
+    const agendamentos = await getAgendamentos(id);
+    setData(agendamentos);
+  };
+
+  const onRefresh = useCallback(() => {
+    setAtualizando(true);
+    resgatarAgendamentos().then(() => setAtualizando(false));
+  }, []);
+
+  //Sempre que a tela entrar em foco, resgata os agendamentos
+  useFocusEffect(
+    useCallback(() => {
+      // Sempre que entrar na tela, fazer animação
+      position.setValue(-100);
+      resgatarAgendamentos();
+      Animated.timing(position, {
+        toValue: 0, // Move para a posição original
+        duration: 1000,
+        useNativeDriver: true,
+      }).start();
+    }, [])
+  );
+
+  // Config de animação 
+  const deleteRow = (id) => {
+    Animated.timing(rowRefs[id], {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start(() => {
+      cancelarAgendamento(id);
+      setData(data.filter((item) => item.age_Id !== id));
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tela de horarios</Text>
-      <Text style={styles.description}>Aqui ele vai poder ver seus horarios agendados</Text>
-    </View>
+    <Animated.View style={{ transform: [{ translateY: position }] }}>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.age_Id.toString()}
+        renderItem={({ item }) => {
+          if (!rowRefs[item.age_Id]) {
+            rowRefs[item.age_Id] = new Animated.Value(1);
+          }
+
+          return (
+            <Animated.View style={{ opacity: rowRefs[item.age_Id] }}>
+              <Text>{`Data: ${item.age_Date}, Horário: ${item.age_Time}`}</Text>
+              <Button title="Cancelar" onPress={() => deleteRow(item.age_Id)} />
+            </Animated.View>
+          );
+        }}
+        refreshControl={
+          <RefreshControl refreshing={atualizando} onRefresh={onRefresh} />
+        }
+      />
+    </Animated.View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5fcff',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    marginTop: 10,
-    textAlign: 'center',
-  },
-});
-
-export default TelaExemplo;
+export default ListaDeHorariosAgendados;

@@ -8,13 +8,8 @@ import criarAgendamento from '../services/api';
 import getMes from '../services/getMes';
 
 
-
-// Tá funcionando e não tá. 70% pronto
-
 const Agendamento = ({route}) => {
-  
-  
-  
+
   const handleDateChange = (data) => {
     setDataSelecionada(data);
     setDiaSelecionado(data);
@@ -23,7 +18,7 @@ const Agendamento = ({route}) => {
 
   const {username, id} = route.params;
 
-  console.log('log id', id, username);
+  
   
   // Aí aqui em Agendamento a gente recupera as informações passadas da AbaNavegação
   const [visibleModal,setVisibleModal] = useState(false);

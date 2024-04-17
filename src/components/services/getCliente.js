@@ -9,7 +9,7 @@ async function getCliente(id){
   let url = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyid/${id}`, {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${tokenRecuperado}` // Corrigindo o formato do token aqui
+      "Authorization": `Bearer ${tokenRecuperado}` 
   }
 
   });

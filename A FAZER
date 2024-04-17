@@ -12,3 +12,6 @@
 //O TOKEN É GERADO QUANDO O LOGIN DÁ CERTO. A RESPOSTA DO LOGIN É UM TOKEN, A PARTIR DALI SALVA
 
 //VERIFICAR SE TÁ FUNCIONANDO SE ENTRAR COM CÓDIGO DE AUTENTICAÇÃO ERRADO
+
+
+// O horário das 17:00 some se em algum dia o usuário marcar corte às 17:00. Exemplo: dia 24, corte às 17:00. Dia 28 não vai ter o horario das 17:00

@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View, TouchableOpacity,StatusBar, Modal, TouchableWithoutFeedback, FlatList, BackHandler } from 'react-native';
 import Login from "../components/login";
 import Politica from "../components/politicaDePrivacidade/politicaDePrivacidade";
-import Termos from '../components/termos/termos';
+import ListaDeHorariosAgendados from '../components/horariosAgendados/listaDeHorarios'
 import Agendamento from "../components/agendamento";
 import TelaDeCodigo from "../components/login/telaDeCodigo";
 import LoginSenha from "../components/login/loginSenha";
@@ -13,6 +13,7 @@ import { recuperarToken } from "../components/services/gravarToken";
 import { useEffect } from "react";
 import getCliente from "../components/services/getCliente";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Stack = createNativeStackNavigator();
@@ -36,7 +37,7 @@ const AbaNavegacao = ({route}) => {
       tabBarLabel:'', }}/>
       {/* Só entende os parâmetros se passado assim. Isso permite que a tela Agendamento tenha acesso a essas variáveis */}
       
-      <Aba.Screen name="Termos Lucão" component={Termos} options={{ headerShown: false, 
+      <Aba.Screen name="Lista" component={ListaDeHorariosAgendados} options={{ headerShown: false, 
       tabBarIcon: ({color,size}) =>( <FontAwesome5 name="list" size={30} color={color} />),
       tabBarLabel:'',}}/>
     </Aba.Navigator>
@@ -57,16 +58,12 @@ export default function Routes(){
       console.log(expDate, dataAtual);
 
       if(expDate < dataAtual){
-        console.log('venceu mane');
+        console.log('Token vencido');
       } else {
-        
         getCliente(unique_name).then((dataUser) => {
           let {cli_Nome: username, unique_name: id} = dataUser;
-        
-          
+          AsyncStorage.setItem('idCliente', unique_name);
           navigation.navigate('AbaNavegacao', {username, id})
-          
-
         });
         
         
