@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useRef } from 'react';
-import { FlatList, Text, Button, View, RefreshControl, Animated } from 'react-native';
+import React, { useState, useCallback, useRef,  } from 'react';
+import { FlatList, Text, Button, View, RefreshControl, Animated, TouchableOpacity } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import getCliente from '../services/getCliente';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import getAgendamentos from '../services/getAgendamentosById';
 import cancelarAgendamento from '../services/cancelarAgendamento';
+import styles  from './style';
 
 const ListaDeHorariosAgendados = () => {
   const [data, setData] = useState([]);
@@ -50,7 +51,7 @@ const ListaDeHorariosAgendados = () => {
   };
 
   return (
-    <Animated.View style={{ transform: [{ translateY: position }] }}>
+    <Animated.View style={{ flex: 1, backgroundColor: '#181818',width:'100%',transform: [{ translateY: position }] }}>
       <FlatList
         data={data}
         keyExtractor={(item) => item.age_Id.toString()}
@@ -60,9 +61,9 @@ const ListaDeHorariosAgendados = () => {
           }
 
           return (
-            <Animated.View style={{ opacity: rowRefs[item.age_Id] }}>
-              <Text>{`Data: ${item.age_Date}, Horário: ${item.age_Time}`}</Text>
-              <Button title="Cancelar" onPress={() => deleteRow(item.age_Id)} />
+            <Animated.View styles={{ opacity: rowRefs[item.age_Id] }}>
+              <Text style={styles.text}>{`Data: ${item.age_Date}, Horário: ${item.age_Time}`}</Text>
+              <TouchableOpacity style={styles.button} title="Cancelar" onPress={() => deleteRow(item.age_Id)} />
             </Animated.View>
           );
         }}

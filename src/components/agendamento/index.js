@@ -130,10 +130,8 @@ const Agendamento = ({route}) => {
     <View style={styles.container}>
       <View style={styles.cabecaView}>
       <Text style={styles.textmsg}>Bem Vindo, {username}</Text>
-      
     </View>
     
-
       <View  style={styles.modal}>
         <CustomCalendar onDaySelect={handleDateChange} onPress={abrirModal}/>
       </View>
@@ -169,9 +167,7 @@ const Agendamento = ({route}) => {
                 style={[styles.item, horarioSelecionado === item && styles.itemSelecionado]}
                 onPress={() => {
                   selecionarHorario(item) 
-                  
-                }}
-                disabled={horarioSelecionado === item}>
+                }}>
 
                 <Text style={styles.itemText}>{item}</Text>
 

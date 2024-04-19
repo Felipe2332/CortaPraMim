@@ -15,3 +15,9 @@
 
 
 // O horário das 17:00 some se em algum dia o usuário marcar corte às 17:00. Exemplo: dia 24, corte às 17:00. Dia 28 não vai ter o horario das 17:00
+
+// Colocar/excluir horário de horários já passaram 
+
+// Verificar o salvamento de token se a conta não tinha sido autenticada ainda
+
+// Não permitir usuário entrar se ele não existir (e)
