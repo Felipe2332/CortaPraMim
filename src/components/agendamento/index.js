@@ -13,6 +13,7 @@ const Agendamento = ({route}) => {
   const handleDateChange = (data) => {
     setDataSelecionada(data);
     setDiaSelecionado(data);
+    limparFundo(data);
     abrirModal();
   };
 
@@ -123,6 +124,13 @@ const Agendamento = ({route}) => {
     }
   [horarioSelecionado]}
 
+  function limparFundo(novoDia) {
+    // Limpa o horário selecionado
+    setHorarioSelecionado(null);
+  
+  }
+
+
   return (
   <>
 
@@ -131,7 +139,6 @@ const Agendamento = ({route}) => {
       <View style={styles.cabecaView}>
       <Text style={styles.textmsg}>Bem Vindo, {username}</Text>
     </View>
-    
       <View  style={styles.modal}>
         <CustomCalendar onDaySelect={handleDateChange} onPress={abrirModal}/>
       </View>
