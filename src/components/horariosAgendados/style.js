@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   text:{
     color:"white",
     fontSize:20,
-    padding:12,
+    padding:10,
     textAlign:"justify",
     textShadowColor: "#000",
     lineHeight:30,

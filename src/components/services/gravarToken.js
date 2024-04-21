@@ -40,7 +40,7 @@ const getToken = async () => {
 
     const tokenRecuperado = tokenRecuperadoBuffer.toString();
     
-    console.log('token no get token',  typeof tokenRecuperado);
+    
     return tokenRecuperado;
 }
 

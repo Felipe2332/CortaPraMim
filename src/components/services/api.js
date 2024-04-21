@@ -6,6 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const criarAgendamento = async (dataSelecionada, horarioSelecionado) => {
   const token = await getToken();
   const id = await AsyncStorage.getItem('idCliente'); // Recuperando o id do cliente
+  console.log('log id da api', id);
   console.log('log agendamemnto', token);
   try {
     const data = {
