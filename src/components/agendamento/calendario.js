@@ -75,7 +75,7 @@ export function CustomCalendar (props) {
     const [marked, setMarked] = useState({
       [dataInicialString]: {
         selected: true,
-        selectedColor: '#91672c',
+        selectedColor: '#e3a857',
         selectedTextColor: 'white',
       }
     });
@@ -124,8 +124,8 @@ export function CustomCalendar (props) {
           setMarked({
             [day.dateString]: {
               selected: true,
-              selectedColor: '#673319',
-              selectedTextColor: '#cd883b',
+              selectedColor: '#e3a857',
+              selectedTextColor: 'white',
             }
           });
           //Aqui printa a data formatada abaixo do calendário

@@ -6,18 +6,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#181818',
     alignItems: 'center',
-    
-    
   },
   textmsg:{
     fontSize: 26,
-    color: 'red',
+    color: '#e3a857',
     fontWeight:'bold',
     margin: 1
   },
   textoDeData:{
     fontSize: 26,
-    color: 'red',
+    color: '#e3a857',
     fontWeight:'bold',
     marginTop:35,
     textAlign:'center'
