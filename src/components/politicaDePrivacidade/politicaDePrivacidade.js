@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { View, Text, StyleSheet, Image,ScrollView,Animated } from 'react-native';
+import { View, Text, StyleSheet, Image,ScrollView,Animated, BackHandler } from 'react-native';
 import styles from './style';
 import {  useFonts, Poppins_300Light,Poppins_700Bold } from '@expo-google-fonts/poppins';
 
@@ -13,6 +13,14 @@ const Politica = () => {
       duration:1500,
       useNativeDriver:true
     }).start();
+
+    const onBackPress = () =>{
+      return true;
+    }
+
+    BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+    
   },[])
 
   return (

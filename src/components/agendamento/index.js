@@ -168,6 +168,7 @@ const Agendamento = ({route}) => {
           <Text style={styles.textButton}>SELECIONE UM HORÁRIO</Text>
             <FlatList
             showsVerticalScrollIndicator={false}
+            
             data={horariosDisponiveis}
             renderItem={({ item }) => (
               <TouchableOpacity

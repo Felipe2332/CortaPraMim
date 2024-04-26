@@ -21,3 +21,6 @@
 // Verificar o salvamento de token se a conta não tinha sido autenticada ainda
 
 // Não permitir usuário entrar se ele não existir (e)
+
+Criar função de sair do App
+Matar o token no processo

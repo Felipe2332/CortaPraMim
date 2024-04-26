@@ -2,14 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { parseJSON } from 'date-fns';
 import base64 from 'react-native-base64';
 import { Buffer } from "buffer";
+import {Alert}  from 'react-native'
 
 const salvarToken = async (token) => {
   try {
     await AsyncStorage.setItem('TokenDoUsuario', token);
     
   } catch (error) {
-    // Tratar o erro de salvamento, se necessário
-    console.error('Erro ao salvar o token:', error);
+    
   }
 };
 

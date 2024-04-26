@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import getCliente from "../components/services/getCliente";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Opcoes from '../components/opcoes/opcoes'
+import { Ionicons } from '@expo/vector-icons';
 
 
 const Stack = createNativeStackNavigator();
@@ -39,6 +41,10 @@ const AbaNavegacao = ({route}) => {
       
       <Aba.Screen name="Lista" component={ListaDeHorariosAgendados} options={{ headerShown: false, 
       tabBarIcon: ({color,size}) =>( <FontAwesome5 name="list" size={30} color={color} />),
+      tabBarLabel:'',}}/>
+
+    <Aba.Screen name="Opcoes" component={Opcoes} options={{ headerShown: false, 
+      tabBarIcon: ({color,size}) =>( <FontAwesome5 name="tools" size={30} color={color} />),
       tabBarLabel:'',}}/>
     </Aba.Navigator>
     
@@ -80,7 +86,8 @@ export default function Routes(){
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name= "politicaDePrivacidade" component={Politica} />
       <Stack.Screen name="telaDeCodigo" component={TelaDeCodigo}/>
-      <Stack.Screen name="AbaNavegacao" component={AbaNavegacao} /> 
+      <Stack.Screen name="AbaNavegacao" component={AbaNavegacao} />
+      <Stack.Screen name="Opcoes" component={Opcoes} />
     </Stack.Navigator>  
   )
 }

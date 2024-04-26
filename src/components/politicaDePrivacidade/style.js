@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     
   },
   text:{
-    fontFamily:"Poppins_300Light",
+    //fontFamily:"Poppins_300Light",
     color:"white",
     fontSize:20,
     padding:12,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     
   },
   textTitle:{
-    fontFamily:"Poppins_300Light",
+    //fontFamily:"Poppins_300Light",
     fontWeight:"bold",
     marginBottom:8,
     color:"white",
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textShadowColor: "#000",
   },
   textP:{
-    fontFamily:"Poppins_300Light",
+    //fontFamily:"Poppins_300Light",
     textTransform:"uppercase",
     color:"white",
     fontSize:20,
