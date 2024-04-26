@@ -44,5 +44,14 @@ const getToken = async () => {
     return tokenRecuperado;
 }
 
+const removeToken = async () => {
+  try {
+    await AsyncStorage.removeItem('TokenDoUsuario'); // Substitua 'authToken' pelo nome da chave em que seu token está armazenado
+    console.log('Token removido com sucesso!');
+  } catch (error) {
+    console.error('Erro ao remover token:', error);
+  }
+}
 
-export {recuperarToken, salvarToken, getToken};
+
+export {recuperarToken, salvarToken, getToken, removeToken};

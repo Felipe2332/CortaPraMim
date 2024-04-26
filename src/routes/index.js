@@ -57,23 +57,29 @@ export default function Routes(){
   const navigation = useNavigation();
   //recupera o token formatado
   useEffect(()=>{
-    recuperarToken().then((resp)=> {
-      const {exp, unique_name} = resp;
-      const expDate = new Date(exp * 1000);
-      const dataAtual = new Date();
-      console.log(expDate, dataAtual);
 
-      if(expDate < dataAtual){
-        console.log('Token vencido');
+    recuperarToken().then((resp)=> {
+      
+      if(resp != null){
+        const {exp, unique_name} = resp;
+        const expDate = new Date(exp * 1000);
+        const dataAtual = new Date();
+        console.log(expDate, dataAtual);
+
+        if(expDate < dataAtual){
+          console.log('Token vencido');
+        } else {
+          getCliente(unique_name).then((dataUser) => {
+            let {cli_Nome: username, unique_name: id} = dataUser;
+            AsyncStorage.setItem('idCliente', unique_name);
+            navigation.navigate('AbaNavegacao', {username, id})
+          });  
+        }
       } else {
-        getCliente(unique_name).then((dataUser) => {
-          let {cli_Nome: username, unique_name: id} = dataUser;
-          AsyncStorage.setItem('idCliente', unique_name);
-          navigation.navigate('AbaNavegacao', {username, id})
-        });
-        
-        
+        console.log('token vazio amigo');
       }
+
+      
     });
   
   }, [])

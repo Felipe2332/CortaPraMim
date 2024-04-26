@@ -62,7 +62,7 @@ const ListaDeHorariosAgendados = () => {
 
           return (
             <Animated.View styles={{ opacity: rowRefs[item.age_Id] }}>
-              <Text style={styles.text}>{`Data: ${item.age_Date.slice(0 ,10)} - Horário: ${item.age_Time}`}</Text>
+              <Text style={styles.text}>{`Data: ${item.age_Date.slice(0 ,10)} - Horário: ${item.age_Time.slice(0,5)}`}</Text>
               <TouchableOpacity style={styles.button} title="Cancelar" onPress={() => deleteRow(item.age_Id)}>
                 <Text style={styles.text}>Cancelar Agendamento</Text>
               </TouchableOpacity>
