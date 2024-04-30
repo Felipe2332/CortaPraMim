@@ -10,7 +10,10 @@ const Opcoes = () => {
 
   const handleBotaoSair = () =>{
     removeToken();
-    navigation.navigate('LoginSenha');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'LoginSenha' }],
+    });
   }
   return (
     <View style = {style.container}>

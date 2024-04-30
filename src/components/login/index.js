@@ -42,11 +42,13 @@ export default function Login() {
         }else if(resp == true){
           navigation.navigate('telaDeCodigo', {username, cell,email})
           Alert.alert(
-            "",
-            `E-mail enviado para ${email}`,
-            { cancelable: true}
-            
-          );
+            "title here",
+            "", // empty string
+            [
+            { text: "E-mail enviado para `${email}`", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: true }
+            );
         }
       })
      
@@ -97,7 +99,6 @@ export default function Login() {
 
       <TouchableOpacity style={styles.button} onPress={() =>verificaCampo()}><Text style={styles.textButton}>CRIAR</Text></TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('politicaDePrivacidade')}><Text style={styles.textPrivacidade}>Privacidade</Text></TouchableOpacity>
       
     </View>
     {/* Fim do form */}

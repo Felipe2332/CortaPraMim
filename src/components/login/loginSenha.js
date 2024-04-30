@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity,BackHandler } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
@@ -64,18 +64,31 @@ export default function LoginSenha() {
         // Adicionar qualquer lógica que desejar aqui. 
         // Se você retornar true, o comportamento padrão do botão voltar será desativado.
         return true;
-  
       }
+      
   
       BackHandler.addEventListener('hardwareBackPress', handleBackButton);
   
       // Voltar a ativar o botão back
       return () => {
         BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+        
       };
+      
   
     });
-  
+
+
+    useFocusEffect(
+      React.useCallback(() => {
+        // Limpa os campos sempre que a tela ganha o foco
+        // Não tava limpando os campos quando usuário saía do App
+        setLogin("");
+        setSenha("");
+      }, [])
+    );
+
+
     return (
       <>
       <StatusBar backgroundColor={"black"}/>

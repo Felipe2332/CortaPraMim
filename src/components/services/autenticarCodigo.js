@@ -60,7 +60,7 @@ async function AutenticarCodigo(code,email,cell,username,navigation){
         console.log(response.json());
         navigation.navigate('AbaNavegacao', {username, cell,email});
       }
-      else if(response.status == 401){
+      else if(response.status == 401 || response.status == 30){
         Alert.alert(
           "Código de autenticação inváldo! ou expirou. Solicite outro",
           { cancelable: true}

@@ -44,11 +44,35 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginTop: '100%'
   },
+  textButtonTitulo:{
+    color:'white',
+    fontSize:24,
+    fontWeight:'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
+  },
   textButton:{
     color:'white',
-    fontSize:20,
-    // fontFamily:'Arial',
+    fontSize:24,
+    letterSpacing: 2,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
+
   },
+  buttonModal:{
+    top:35,
+    margin:15,
+    backgroundColor:'black',
+    height: 50,
+    width:'90%',
+    borderRadius: 50,
+    alignItems:'center',
+    justifyContent:'center',
+    
+  },
+
   modal:{
     width: '85%',
     height: 50,

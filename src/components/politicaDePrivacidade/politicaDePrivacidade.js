@@ -2,10 +2,15 @@ import React, { useEffect,useState } from 'react';
 import { View, Text, StyleSheet, Image,ScrollView,Animated, BackHandler } from 'react-native';
 import styles from './style';
 import {  useFonts, Poppins_300Light,Poppins_700Bold } from '@expo-google-fonts/poppins';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const Politica = () => {
 
   const [animacao] = useState(new Animated.Value(0));
+  const navigation = useNavigation();
+
 
   useEffect(()=>{
     Animated.timing(animacao,{
@@ -14,11 +19,6 @@ const Politica = () => {
       useNativeDriver:true
     }).start();
 
-    const onBackPress = () =>{
-      return true;
-    }
-
-    BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
     
   },[])
@@ -27,6 +27,7 @@ const Politica = () => {
     <Animated.View style={styles.container} >
     
     <ScrollView style={styles.scrollView}>
+    <TouchableOpacity onPress={navigation.goBack()}><AntDesign name="back" size={24} color="black" /></TouchableOpacity>
         
     <Text style={styles.text}>A política de privacidade, criada pela equipe Corta pra mim referente a empresa FiveTec, foi criada em novembro de 2023. Afim de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural, a equipe elaborou a presente política de privacidade, observando a disposição da LGPD (Lei Geral de Proteção de Dados) – Lei nº13.709/2018. 
     </Text>
