@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import getAgendamentos from '../services/getAgendamentosById';
 import cancelarAgendamento from '../services/cancelarAgendamento';
 import styles  from './style';
+import { recuperarToken } from '../services/gravarToken';
 
 const ListaDeHorariosAgendados = () => {
   const [data, setData] = useState([]);
@@ -14,6 +15,7 @@ const ListaDeHorariosAgendados = () => {
   const position = useRef(new Animated.Value(-100)).current; // Inicia a 100 pixels acima
 
   const resgatarAgendamentos = async () => {
+    await recuperarToken();
     const id = await AsyncStorage.getItem('idCliente');
     const agendamentos = await getAgendamentos(id);
     setData(agendamentos);

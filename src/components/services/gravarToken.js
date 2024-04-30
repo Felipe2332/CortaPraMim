@@ -8,6 +8,7 @@ const salvarToken = async (token) => {
   try {
     await AsyncStorage.setItem('TokenDoUsuario', token);
     
+    
   } catch (error) {
     
   }
@@ -20,8 +21,9 @@ const recuperarToken = async () => {
       // O token existe e foi recuperado
 
       const decoded = JSON.parse(Buffer.from(tokenRecuperado.split('.')[1], 'base64').toString());
+      const id = decoded.unique_name.toString();
+      await AsyncStorage.setItem('idCliente', id);
       
-      console.log(decoded);
       
      
       return decoded;
@@ -46,7 +48,8 @@ const getToken = async () => {
 
 const removeToken = async () => {
   try {
-    await AsyncStorage.removeItem('TokenDoUsuario'); // Substitua 'authToken' pelo nome da chave em que seu token está armazenado
+    await AsyncStorage.removeItem('TokenDoUsuario');
+    await AsyncStorage.removeItem('idCliente');
     console.log('Token removido com sucesso!');
   } catch (error) {
     console.error('Erro ao remover token:', error);
