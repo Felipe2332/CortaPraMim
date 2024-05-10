@@ -5,34 +5,53 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#181818',
-    width:'100%',
+    backgroundColor: '#131418', 
+
   },
-  button:{
-    alignItems:"center",
-    justifyContent:"space-around"
+  headerContainer: {
+    marginTop: '5%',
+    marginBottom: 30,
+    alignItems: 'flex-start',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  option: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+    borderBottomWidth:2,
+    borderRadius: 5,
     
   },
-
-  buttonLogout:{
-    height:56,
+  optionText: {
+    fontSize: 18,
+    color: '#fff',
+    marginLeft: 10,
+  },
+  buttonLogout: {
+    position:"absolute",
+    bottom:25,
     width:"80%",
-    bottom:5,
-    position: 'absolute',
-    alignSelf: 'center',
-    justifyContent:"center",
-    borderRadius:12,
-    backgroundColor:"#e3a857",
+    alignSelf:'center',
+    backgroundColor: '#c02828',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
     
   },
-  textButtonLogout:{
-    color:"white",
-    alignSelf:"center",
-    paddingTop:6,
-    fontSize:24,
 
+  footer: { 
+    width: '100%',
+    alignItems: 'center',
   },
-
+  textButtonLogout: {
+    color: '#fff',
+    fontSize: 24,
+  },
 });
 
 export default styles

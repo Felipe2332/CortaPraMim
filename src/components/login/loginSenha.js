@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity,BackHandler } from 'react-native';
+import { Alert, StatusBar,ImageBackground, Animated, Pressable, Text, TextInput, View, Keyboard, TouchableOpacity,BackHandler,ActivityIndicator } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
@@ -19,11 +19,13 @@ export default function LoginSenha() {
     
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
+    const [isLoading,setLoading]  = useState(false);
     
     function validarLogin(login, senha){
       if (!validarCampos(login, senha, limparSenha)) {
         return;
       }
+      setLoading(true);
         LoginApi(login,senha).then((response) => {
           if(response == true){
             console.log('login deu certo', response);
@@ -109,6 +111,7 @@ export default function LoginSenha() {
         <TouchableOpacity style={styles.button} onPress={()=> validarLogin(login,senha)}><Text style={styles.textButton} >Entrar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>
         
+        {isLoading && <View style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}><ActivityIndicator size="large" color="white" /></View>} 
         
       </View>
       {/* Fim do form */}
