@@ -10,6 +10,8 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 
+
+
 const Agendamento = ({route}) => {
 
   const handleDateChange = (data) => {
@@ -20,6 +22,7 @@ const Agendamento = ({route}) => {
   };
 
   const {username, id} = route.params;
+  
 
   
   
@@ -42,8 +45,7 @@ const Agendamento = ({route}) => {
 
   useEffect(() => {
     const handleBackButton = () => {
-      // Você pode adicionar qualquer lógica que desejar aqui. 
-      // Se você retornar true, o comportamento padrão do botão voltar será desativado.
+      
       return true;
 
     }

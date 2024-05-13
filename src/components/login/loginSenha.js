@@ -63,8 +63,8 @@ export default function LoginSenha() {
     
     useEffect(() => {
       const handleBackButton = () => {
-        // Adicionar qualquer lógica que desejar aqui. 
-        // Se você retornar true, o comportamento padrão do botão voltar será desativado.
+        
+
         return true;
       }
       

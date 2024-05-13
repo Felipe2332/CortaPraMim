@@ -5,8 +5,19 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#201100',
+    backgroundColor: '#131418',
     width:'100%',
+    
+  },
+  textTop:{
+    //fontFamily:"Poppins_300Light",
+    color:"white",
+    fontSize:20,
+    marginTop:40,
+    padding:12,
+    textAlign:"justify",
+    textShadowColor: "#000",
+    lineHeight:30,
     
   },
   text:{
@@ -19,6 +30,7 @@ const styles = StyleSheet.create({
     lineHeight:30,
     
   },
+  
   textTitle:{
     //fontFamily:"Poppins_300Light",
     fontWeight:"bold",
@@ -38,8 +50,8 @@ const styles = StyleSheet.create({
   },
   
   scrollView:{
-    marginHorizontal:12,
-    padding:10,
+    marginHorizontal:6,
+    padding:5,
   }
 
 });

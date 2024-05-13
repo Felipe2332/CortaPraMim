@@ -1,10 +1,11 @@
 import React, { useEffect,useState } from 'react';
-import { View, Text, StyleSheet, Image,ScrollView,Animated, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, Image,ScrollView,Animated, BackHandler,TouchableOpacity } from 'react-native';
 import styles from './style';
 import {  useFonts, Poppins_300Light,Poppins_700Bold } from '@expo-google-fonts/poppins';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+
+
 
 const Politica = () => {
 
@@ -23,13 +24,18 @@ const Politica = () => {
     
   },[])
 
+  
+
+
   return (
     <Animated.View style={styles.container} >
     
     <ScrollView style={styles.scrollView}>
-    <TouchableOpacity onPress={navigation.goBack()}><AntDesign name="back" size={24} color="black" /></TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <AntDesign name="back" size={35} color="black" style={{backgroundColor:"#e3a857", position:"absolute", left:4, top:10,borderRadius:5}}/>
+    </TouchableOpacity>
         
-    <Text style={styles.text}>A política de privacidade, criada pela equipe Corta pra mim referente a empresa FiveTec, foi criada em novembro de 2023. Afim de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural, a equipe elaborou a presente política de privacidade, observando a disposição da LGPD (Lei Geral de Proteção de Dados) – Lei nº13.709/2018. 
+    <Text style={styles.textTop}>A política de privacidade, criada pela equipe Corta pra mim referente a empresa FiveTec, foi criada em novembro de 2023. Afim de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural, a equipe elaborou a presente política de privacidade, observando a disposição da LGPD (Lei Geral de Proteção de Dados) – Lei nº13.709/2018. 
     </Text>
 
     <Text style={styles.textTitle}>

@@ -7,7 +7,7 @@
 // Id do cliente não tá sendo capturado caso ele entre pela primeira vez através da autenticação do código
 // TENTEI ARRUMAR ISSO, PRECISA TESTAR
 
-// MAIS IMPORTANTE ----->>>> AGENDAMENTO: se seleciono 11:30 em um dia, não consigo selecionar 11:30 no outro dia diferente
+
 
 //O TOKEN É GERADO QUANDO O LOGIN DÁ CERTO. A RESPOSTA DO LOGIN É UM TOKEN, A PARTIR DALI SALVA
 
@@ -22,5 +22,4 @@
 
 // Não permitir usuário entrar se ele não existir (e)
 
-Criar função de sair do App
-Matar o token no processo
+Fazer uma transição mais suave da tela de login para o calendário se o usuario entrar direto logado. Atualmente manda para a tela de login e depois para calendário. Colocar um loading sei lá.
