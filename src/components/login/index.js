@@ -6,6 +6,7 @@ import styles from './style';
 import {  useFonts, Poppins_300Light } from '@expo-google-fonts/poppins';
 import { func } from 'prop-types';
 import CriarCliente from '../services/criarCliente';
+import { AntDesign } from '@expo/vector-icons';
 
 
 
@@ -42,10 +43,10 @@ export default function Login() {
         }else if(resp == true){
           navigation.navigate('telaDeCodigo', {username, cell,email})
           Alert.alert(
-            "title here",
-            "", // empty string
+            "Aviso",
+            `E-mail enviado para ${email}`, // empty string
             [
-            { text: "E-mail enviado para `${email}`", onPress: () => console.log("OK Pressed") }
+            { text: "Corfirmar", onPress: () => console.log("OK Pressed") }
             ],
             { cancelable: true }
             );
@@ -66,7 +67,9 @@ export default function Login() {
       
     <Animated.View style={{opacity: fadeAnim}}>
     <View style={styles.viewLogin}>
-      
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <AntDesign name="back" size={40} color="black" style={{backgroundColor:"#e3a857", position:"absolute", right:150, bottom:70 ,borderRadius:5, }}/>
+    </TouchableOpacity>
       <Text style={styles.textLogin}>Nome</Text>
       <TextInput style={styles.input} placeholder='Lucas Denadai' onChangeText={text => setUserName(text)} maxLength={30}  
       value={username}>

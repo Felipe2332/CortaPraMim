@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from 'react';
-import { View, Text, StyleSheet, Image,ScrollView,Animated, BackHandler,TouchableOpacity } from 'react-native';
+import { Text, ScrollView, Animated, TouchableOpacity } from 'react-native';
 import styles from './style';
-import {  useFonts, Poppins_300Light,Poppins_700Bold } from '@expo-google-fonts/poppins';
+//import {  useFonts, Poppins_300Light,Poppins_700Bold } from '@expo-google-fonts/poppins';
+import { useNavigation } from '@react-navigation/native';
 
 import { AntDesign } from '@expo/vector-icons';
 

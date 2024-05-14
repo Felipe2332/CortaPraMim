@@ -1,6 +1,6 @@
 
 import MandarEmail from "./mandarEmail";
-
+import { salvarToken } from "./gravarToken";
 
 async function CriarCliente(email,cell,name,senha){
   
@@ -21,7 +21,7 @@ try{
   });
   let text = await response.json();
   let teste = response.status;
-  console.log(teste);
+  console.log(" log da api criarcliente" ,teste);
   if(!response.ok){
     
     console.log('Resposta: ', text);

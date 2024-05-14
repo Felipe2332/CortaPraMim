@@ -47,12 +47,12 @@ export default function LoginSenha() {
                 { cancelable: true, onDismiss:limparSenha}
                 )}
             else{
-            let {cli_Email: email, cli_Phone: telefone, cli_Nome: username} = response;
+            let {cli_Email: email, cli_Phone: cell, cli_Nome: username} = response;
             Alert.alert("",`Enviamos o código para seu e-mail ${email}`,"",{cancelable:true} );
             MandarEmail(email,username);
            
-            console.log(email, telefone, username);
-            navigation.navigate('telaDeCodigo', {username, telefone,email})};
+            console.log("log do loginsenha", email, cell, username);
+            navigation.navigate('telaDeCodigo', {username, cell, email})};
         })
         Keyboard.dismiss();
     }
