@@ -45,7 +45,9 @@ export default function LoginSenha() {
                   { text: "OK", onPress:limparSenha }
                 ],
                 { cancelable: true, onDismiss:limparSenha}
-                )}
+                )
+              setLoading(false);
+            }
             else{
             let {cli_Email: email, cli_Phone: cell, cli_Nome: username} = response;
             Alert.alert("",`Enviamos o código para seu e-mail ${email}`,"",{cancelable:true} );
@@ -107,6 +109,7 @@ export default function LoginSenha() {
 
         <Text style={styles.textLogin}>Senha</Text>
         <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input} onChangeText={value => setSenha(value)} value={senha}></TextInput>
+        <TouchableOpacity><Text style={styles.txtforgot}>Esqueci a senha</Text></TouchableOpacity>
        
         <TouchableOpacity style={styles.button} onPress={()=> validarLogin(login,senha)}><Text style={styles.textButton} >Entrar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>

@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     fontSize:20,
     //fontFamily:"Poppins_300Light"
+  },
+  txtforgot:{
+    color:"white",
+    fontSize:17,
+    
   }
 
 });

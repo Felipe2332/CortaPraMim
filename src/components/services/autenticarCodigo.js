@@ -36,6 +36,8 @@ async function getId(email) {
 
   
 async function AutenticarCodigo(code,email,cell,username){
+
+  const navigation = useNavigation();
   
   const cli_Id = await getId(email);
 
@@ -58,7 +60,7 @@ async function AutenticarCodigo(code,email,cell,username){
       if(response.ok){
         console.log(`${code}/${email}/${cell}/${username}`);
         console.log(response.json());
-        //navigation.navigate('AbaNavegacao', {username, cell,email});
+        navigation.navigate('LoginSenha', {username, cell,email});
       }
       else if(response.status == 401 || response.status == 30){
         Alert.alert(

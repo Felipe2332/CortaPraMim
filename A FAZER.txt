@@ -23,3 +23,11 @@
 // Não permitir usuário entrar se ele não existir (e)
 
 Fazer uma transição mais suave da tela de login para o calendário se o usuario entrar direto logado. Atualmente manda para a tela de login e depois para calendário. Colocar um loading sei lá.
+
+Tirar o botao rodando quando tentar entrar com conta que nao existe
+
+Dar token pro cara quando ele criar conta E NÃO SÓ QUANDO ELE ENTRAR NORMAL
+
+Mudar fonte
+
+Não tá tendo verificação de código de autenticação correto, se digitar qualquer um tá passando e mandando para a tela de login

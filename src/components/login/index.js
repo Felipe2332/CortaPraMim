@@ -44,7 +44,7 @@ export default function Login() {
           navigation.navigate('telaDeCodigo', {username, cell,email})
           Alert.alert(
             "Aviso",
-            `E-mail enviado para ${email}`, // empty string
+            `E-mail enviado para ${email}`, 
             [
             { text: "Corfirmar", onPress: () => console.log("OK Pressed") }
             ],

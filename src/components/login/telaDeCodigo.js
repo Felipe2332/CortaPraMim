@@ -54,7 +54,7 @@ export default function TelaDeCodigo({route}) {
 
         </TextInputMask>
 {/* Verificar esses três botões */}
-        <TouchableOpacity style={styles.button} onPress={() => { AutenticarCodigo(code,email,cell,username), navigation.navigate('LoginSenha') }}><Text style={styles.textButton}>Validar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => { AutenticarCodigo(code,email,cell,username)}}><Text style={styles.textButton}>Validar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => MandarEmail(email,username)}><Text style={styles.textButton}>Reenviar Código</Text></TouchableOpacity>
         
       </View>
