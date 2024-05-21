@@ -8,6 +8,7 @@ import ListaDeHorariosAgendados from '../components/horariosAgendados/listaDeHor
 import Agendamento from "../components/agendamento";
 import TelaDeCodigo from "../components/login/telaDeCodigo";
 import LoginSenha from "../components/login/loginSenha";
+import EsqueciSenha from "../components/login/esqueciSenha"
 import { FontAwesome5 } from '@expo/vector-icons';
 import { recuperarToken } from "../components/services/gravarToken";
 import { useEffect } from "react";
@@ -89,6 +90,7 @@ export default function Routes(){
   return(
     <Stack.Navigator initialRouteName={"LoginSenha"} screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoginSenha" component={LoginSenha} />
+      <Stack.Screen name="EsqueciSenha" component={EsqueciSenha}/>
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name= "politicaDePrivacidade" component={Politica} />
       <Stack.Screen name="telaDeCodigo" component={TelaDeCodigo}/>

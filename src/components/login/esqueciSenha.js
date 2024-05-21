@@ -13,11 +13,11 @@ import { salvarToken } from '../services/gravarToken';
 
 
 
-export default function LoginSenha() {
+export default function EsqueciSenha() {
   
     const navigation = useNavigation();
     
-    
+    const [login, setLogin] = useState('');
 
 
     return (
@@ -30,6 +30,10 @@ export default function LoginSenha() {
         
       <View>
       <View style={styles.viewLogin}>
+
+      <Text style={styles.textLogin}>Insira seu E-mail</Text>
+      <TextInput placeholder='Digite aqui' style={styles.input} value={login}></TextInput>
+      <TouchableOpacity style={styles.button}><Text style={styles.textButton}>Enviar</Text></TouchableOpacity>
         
        
         

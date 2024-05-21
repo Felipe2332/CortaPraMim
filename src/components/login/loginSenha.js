@@ -109,7 +109,7 @@ export default function LoginSenha() {
 
         <Text style={styles.textLogin}>Senha</Text>
         <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input} onChangeText={value => setSenha(value)} value={senha}></TextInput>
-        <TouchableOpacity><Text style={styles.txtforgot}>Esqueci a senha</Text></TouchableOpacity>
+        {/* <TouchableOpacity onPress={()=>navigation.navigate("EsqueciSenha")}><Text style={styles.txtforgot}>Esqueci a senha</Text></TouchableOpacity> */}
        
         <TouchableOpacity style={styles.button} onPress={()=> validarLogin(login,senha)}><Text style={styles.textButton} >Entrar</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Login')}><Text style={styles.textButton}>Cadastrar</Text></TouchableOpacity>
