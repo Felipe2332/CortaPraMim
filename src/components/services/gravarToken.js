@@ -49,7 +49,7 @@ const getToken = async () => {
 const removeToken = async () => {
   try {
     await AsyncStorage.removeItem('TokenDoUsuario');
-    await AsyncStorage.removeItem('idCliente');
+    
     console.log('Token removido com sucesso!');
   } catch (error) {
     console.error('Erro ao remover token:', error);

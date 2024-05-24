@@ -23,13 +23,14 @@ const Agendamento = ({route}) => {
 
   const {username, id} = route.params;
   
+  
 
   
   
   // Aí aqui em Agendamento a gente recupera as informações passadas da AbaNavegação
   const [visibleModal,setVisibleModal] = useState(false);
   const [horarioSelecionado, setHorarioSelecionado] = useState(null);
-  const [dataSelecionada, setDataSelecionada] = useState(0);
+  const [dataSelecionada, setDataSelecionada] = useState(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   // Só para mostrar ao usuario(não usar para agendar)

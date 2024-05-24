@@ -10,6 +10,7 @@ import TelaDeCodigo from './telaDeCodigo';
 import MandarEmail from '../services/mandarEmail';
 import { validarCampos } from '../services/validarCampos';
 import { salvarToken } from '../services/gravarToken';
+import { getId } from '../services/autenticarCodigo';
 
 
 
@@ -26,16 +27,24 @@ export default function LoginSenha() {
         return;
       }
       setLoading(true);
-        LoginApi(login,senha).then((response) => {
+        LoginApi(login,senha).then(async(response) => {
           if(response == true){
             console.log('login deu certo', response);
 
-            let dataUser = fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{method:"GET",headers:{"Authorization": `Bearer ${token2}`}})
-            .then((resp)=> resp.json()).then((json)=> {
-              
-            let {cli_Nome: username, cli_Id: id} = json;
-            salvarToken(token2);
-            navigation.navigate('AbaNavegacao', {username, id})})}
+            
+          
+
+            fetch(`https://cortapramim.azurewebsites.net/api/Cliente/getbyemail/${login}`,{
+                  method:"GET",
+                  headers:{"Authorization": `Bearer ${token2}`}
+                })
+                .then((resp)=> resp.json())
+                .then((json)=> {
+                  let {cli_Nome: username, cli_Id: id} = json;
+                  salvarToken(token2);
+                  navigation.navigate('AbaNavegacao', {username, id}); 
+                });
+              }
 
               else if(response == false){
                 Alert.alert(
@@ -55,6 +64,12 @@ export default function LoginSenha() {
            
             console.log("log do loginsenha", email, cell, username);
             navigation.navigate('telaDeCodigo', {username, cell, email})};
+        })
+        .catch((erro)=>{
+          console.error('Erro ao enviar dados para a API:', erro.message);
+        })
+        .finally(()=> {
+          setLoading(false);
         })
         Keyboard.dismiss();
     }
@@ -105,7 +120,7 @@ export default function LoginSenha() {
       <View style={styles.viewLogin}>
         
         <Text style={styles.textLogin}>E-mail</Text>
-        <TextInput placeholder='Email' style={styles.input} onChangeText={value => setLogin(value)} value={login}></TextInput>     
+        <TextInput placeholder='emailexemplo@gmail.com' style={styles.input} onChangeText={value => setLogin(value)} value={login}></TextInput>     
 
         <Text style={styles.textLogin}>Senha</Text>
         <TextInput placeholder='Senha' secureTextEntry={true} style={styles.input} onChangeText={value => setSenha(value)} value={senha}></TextInput>

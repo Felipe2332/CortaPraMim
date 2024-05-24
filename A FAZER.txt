@@ -30,4 +30,10 @@ Dar token pro cara quando ele criar conta E NÃO SÓ QUANDO ELE ENTRAR NORMAL
 
 Mudar fonte
 
-Não tá tendo verificação de código de autenticação correto, se digitar qualquer um tá passando e mandando para a tela de login
+Hora de mostrar os agendamentos, mostrar os horários no formato dd/mm/aaaa
+
+Criar função de mudar senha no menu opções
+
+Colocar os tipos de cortes e preços no menu opçoes
+
+Colocar/forçar o usuário colocar uma senha mais forte
