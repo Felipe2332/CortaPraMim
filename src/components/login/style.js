@@ -70,7 +70,15 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:17,
     
-  }
+  },
+  strengthTextContainer: {
+    borderRadius:5,
+    padding:2,
+    
+  },
+  strengthText: {
+    fontSize:16,
+  },
 
 });
 

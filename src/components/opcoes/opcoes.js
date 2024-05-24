@@ -4,7 +4,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Politica from '../politicaDePrivacidade/politicaDePrivacidade';
 import styles from './style'
 import { removeToken } from '../services/gravarToken'; 
-import { Entypo,AntDesign } from '@expo/vector-icons';
+import { Entypo,AntDesign,MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 
@@ -50,6 +50,10 @@ const Opcoes = () => {
       <TouchableOpacity style={styles.option} >
       <Entypo name="help" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
         <Text style={styles.optionText}>Ajuda</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option} onPress={()=>navigation.navigate('AlterarSenhaTela')}>
+      <MaterialCommunityIcons name="key-change" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
+        <Text style={styles.optionText}>Alterar senha</Text>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.buttonLogout} onPress={handleBotaoSair}>

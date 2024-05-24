@@ -16,6 +16,7 @@ import getCliente from "../components/services/getCliente";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Opcoes from '../components/opcoes/opcoes'
+import {AlterarSenhaTela} from '../components/opcoes/alterarSenhaTela'
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -96,6 +97,7 @@ export default function Routes(){
       <Stack.Screen name="telaDeCodigo" component={TelaDeCodigo}/>
       <Stack.Screen name="AbaNavegacao" component={AbaNavegacao} />
       <Stack.Screen name="Opcoes" component={Opcoes} />
+      <Stack.Screen name="AlterarSenhaTela" component={AlterarSenhaTela} />
     </Stack.Navigator>  
   )
 }

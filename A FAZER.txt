@@ -36,4 +36,6 @@ Criar função de mudar senha no menu opções
 
 Colocar os tipos de cortes e preços no menu opçoes
 
+Quando usuario clicar em sobre em opções, mandar ele para o site
+
 Colocar/forçar o usuário colocar uma senha mais forte

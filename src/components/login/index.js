@@ -18,7 +18,10 @@ export default function Login() {
   const [username, setUserName] = useState("");
   const [cell, setCell] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState(""); 
+  const [senha, setSenha] = useState("");
+  const [suggestions, setSuggestions] = useState([]); 
+  const [strength, setStrength] = useState('');  
+  const [strengthColor,setStrengthColor] = useState('');
 
   
   const [fadeAnim] = useState(new Animated.Value(1));  // Valor inicial da opacidade
@@ -56,7 +59,58 @@ export default function Login() {
       
     }
     Keyboard.dismiss();
+  
+
   }
+
+   // Reforçador de senha
+  const validatePassword = (input) => { 
+  let newSuggestions = []; 
+  let color = 'red'; 
+  if (input.length < 8) { 
+    newSuggestions.push('Password should be at least 8 characters long') 
+  } 
+  if (!/\d/.test(input)) { 
+    newSuggestions.push('Add at least one number') 
+  } 
+
+  if (!/[A-Z]/.test(input) || !/[a-z]/.test(input)) { 
+    newSuggestions.push('Include both upper and lower case letters') 
+  } 
+
+  if (!/[^A-Za-z0-9]/.test(input)) { 
+    newSuggestions.push('Include at least one special character') 
+  } 
+
+  setSuggestions(newSuggestions);
+
+  if (newSuggestions.length === 0) { 
+    setStrength('Muito forte'); 
+    color = 'green'; // Cor para senha muito forte
+  } 
+  else if (newSuggestions.length <= 1) { 
+    setStrength('Forte');
+    color = 'lime'; // Cor para senha forte
+  } 
+  else if (newSuggestions.length <= 2) { 
+    setStrength('Moderada');
+    color = 'yellow'; // Cor para senha moderada
+  } 
+  else if (newSuggestions.length <= 3) { 
+    setStrength('Fraca');
+    color = 'orange'; // Cor para senha fraca
+  } 
+  else { 
+    setStrength('Muito fraca');
+  }
+  return color; 
+  } 
+
+  const handlePasswordChange = (text) => {
+    setSenha(text);
+    const color = validatePassword(text);
+    setStrengthColor(color);
+  };
   return (
     <>
     <StatusBar backgroundColor={"black"}/>
@@ -80,8 +134,15 @@ export default function Login() {
       </TextInput>
 
       <Text style={styles.textLogin}>Senha</Text>
-      <TextInput inputMode="text" style={styles.input} secureTextEntry={true} placeholder='Senha' maxLength={30} onChangeText={text => setSenha(text)} value={senha}>
+      <TextInput inputMode="text" style={styles.input} secureTextEntry={true} placeholder='Senha' maxLength={30} onChangeText={handlePasswordChange} value={senha}>
       </TextInput>
+
+      <View style={{...styles.strengthTextContainer, backgroundColor: strengthColor}}>
+        <Text style={styles.strengthText}>
+           {strength}
+        </Text>
+      </View>
+
 
 
       <Text style={styles.textLogin}>Telefone</Text>
