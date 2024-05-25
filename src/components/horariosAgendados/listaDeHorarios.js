@@ -52,6 +52,15 @@ const ListaDeHorariosAgendados = () => {
     });
   };
 
+  const formatarData = (dataString) => {
+    const data = new Date(dataString);
+    const dia = data.getDate().toString().padStart(2, '0');
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0'); // Adiciona 1 porque os meses começam do 0
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  };
+  
+
   return (
     <Animated.View style={{ flex: 1, backgroundColor: '#181818',width:'100%',transform: [{ translateY: position }] }}>
       <FlatList
@@ -64,7 +73,7 @@ const ListaDeHorariosAgendados = () => {
 
           return (
             <Animated.View styles={{ opacity: rowRefs[item.age_Id] }}>
-              <Text style={styles.text}>{`Data: ${item.age_Date.slice(0 ,10)} - Horário: ${item.age_Time.slice(0,5)}`}</Text>
+              <Text style={styles.text}>{`Data: ${formatarData(item.age_Date.slice(0 ,10))} - Horário: ${item.age_Time.slice(0,5)}`}</Text>
               <TouchableOpacity style={styles.button} title="Cancelar" onPress={() => deleteRow(item.age_Id)}>
                 <Text style={styles.text}>Cancelar Agendamento</Text>
               </TouchableOpacity>

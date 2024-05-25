@@ -88,21 +88,30 @@ const Agendamento = ({route}) => {
     async function getDatas() {
       if (dataSelecionada) {
         try {
-           
           let datasAgendadas = await getMes(dataSelecionada.month);
           let novosHorarios = [...horariosDisponiveis];
-          //console.log('log 1', novosHorarios);
   
           datasAgendadas.forEach(dataAgendada => {
             let data = dataAgendada.age_Date.slice(0, 10);
             let horario = dataAgendada.age_Time.slice(0, 5);
             
             if (dataSelecionada.dateString === data) {
-              
               novosHorarios = novosHorarios.filter(item => item !== horario);
-             
             }
           });
+  
+          // Se o dia selecionado for o dia atual, remover os horários que já passaram
+          const hoje = new Date();
+          const diaAtual = hoje.toISOString().slice(0, 10);
+          if (dataSelecionada.dateString === diaAtual) {
+            const horaAtual = hoje.getHours();
+            const minutoAtual = hoje.getMinutes();
+            novosHorarios = novosHorarios.filter(horario => {
+              const [hora, minuto] = horario.split(':').map(Number);
+              return hora > horaAtual || (hora === horaAtual && minuto > minutoAtual);
+            });
+          }
+  
           setHorariosDisponiveis(novosHorarios);
         } catch (error) {
           console.error('Erro ao obter as datas:', error);
@@ -112,6 +121,7 @@ const Agendamento = ({route}) => {
   
     getDatas();
   }, [dataSelecionada]);
+  
   
 
   

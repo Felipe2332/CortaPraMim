@@ -7,22 +7,15 @@ export async function alterarSenha(senhaAntiga, senhaNova) {
     const cli_Id = await AsyncStorage.getItem('idCliente'); 
     const token = await getToken();
 
-    let data = {
-      cli_Id: cli_Id,
-      cli_OldPassword: senhaAntiga,
-      cli_NewPassword: senhaNova
-    };
-
     let requestOptions = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${token}`
       },
-      body: JSON.stringify(data)
     };
 
-    let response = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/update/${cli_Id}`, requestOptions);
+    let response = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/changepassword/${cli_Id}/${senhaAntiga}/${senhaNova}`, requestOptions);
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     } else {

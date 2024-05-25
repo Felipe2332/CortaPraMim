@@ -30,12 +30,15 @@ Dar token pro cara quando ele criar conta E NÃO SÓ QUANDO ELE ENTRAR NORMAL
 
 Mudar fonte
 
-Hora de mostrar os agendamentos, mostrar os horários no formato dd/mm/aaaa
+Hora de mostrar os agendamentos, mostrar os horários no formato dd/mm/aaaa - FEITO
+Coloquei uma verificação nos horarios disponiveis. Por exemplo. Se é 17:00, não mostrar os horários anteriores 
 
-Criar função de mudar senha no menu opções
 
 Colocar os tipos de cortes e preços no menu opçoes
 
+Implementar splash screen animada. Ler documentação LottieSplashScreen
+
 Quando usuario clicar em sobre em opções, mandar ele para o site
 
-Colocar/forçar o usuário colocar uma senha mais forte
+FAZER A ANIMAÇÃO OCORRER QUANDO O USUÁRIO TROCA A SENHA E VOLTAR A TELA. POR ALGUM MOTIVO A ANIMAÇÃO NÃO RODA
+

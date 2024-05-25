@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     
   },
   strengthTextContainer: {
-    borderRadius:5,
+    borderRadius:8,
     padding:2,
     
   },
