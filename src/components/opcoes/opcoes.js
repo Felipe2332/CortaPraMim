@@ -5,7 +5,7 @@ import Politica from '../politicaDePrivacidade/politicaDePrivacidade';
 import styles from './style'
 import { removeToken } from '../services/gravarToken'; 
 import { Entypo,AntDesign,MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { Linking } from 'react-native';
 
 
 
@@ -39,21 +39,25 @@ const Opcoes = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Opções</Text>
       </View>
+
+      <TouchableOpacity style={styles.option} onPress={()=>navigation.navigate('AlterarSenhaTela')}>
+      <MaterialCommunityIcons name="key-change" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
+        <Text style={styles.optionText}>Alterar senha</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity style={styles.option} onPress={()=>navigation.navigate('politicaDePrivacidade')}>
       <AntDesign name="book" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
         <Text style={styles.optionText}>Política de privacidade</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.option} >
+
+      <TouchableOpacity style={styles.option} onPress={() => Linking.openURL('https://corta-pramim.azurewebsites.net/#servicos')}>
       <AntDesign name="team" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
-        <Text style={styles.optionText}>Sobre nós</Text>
+        <Text style={styles.optionText}>Serviços</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.option} >
+
+      <TouchableOpacity style={styles.option} onPress={() => Linking.openURL('https://corta-pramim.azurewebsites.net/contato')}>
       <Entypo name="help" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
-        <Text style={styles.optionText}>Ajuda</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.option} onPress={()=>navigation.navigate('AlterarSenhaTela')}>
-      <MaterialCommunityIcons name="key-change" size={30} color="black" style={{backgroundColor:"#e3a857", borderRadius:5}}/>
-        <Text style={styles.optionText}>Alterar senha</Text>
+        <Text style={styles.optionText}>Contato</Text>
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.buttonLogout} onPress={handleBotaoSair}>

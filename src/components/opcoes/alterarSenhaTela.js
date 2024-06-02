@@ -1,5 +1,5 @@
 import React, { useState,useRef } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, ImageBackground,Pressable,Keyboard } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, ImageBackground,Pressable,Keyboard, Alert } from 'react-native';
 import {alterarSenha} from '../services/alterarSenha'
 import styles from '../login/style'
 import { AntDesign } from '@expo/vector-icons';
@@ -15,8 +15,6 @@ export const AlterarSenhaTela = () => {
   const [suggestions, setSuggestions] = useState([]); 
   const [strength, setStrength] = useState('');  
   const [strengthColor,setStrengthColor] = useState('');
-  const animationRef = useRef(null);
-  const [loading,setLoading] = useState(false); 
   const navigation = useNavigation();
 
   // Reforçador de senha
@@ -68,19 +66,6 @@ export const AlterarSenhaTela = () => {
     setStrengthColor(color);
   };
 
-  const handleSave = async () => {
-    setLoading(true);
-    if (animationRef.current) {
-      animationRef.current.play(); // Inicia a animação
-    }
-    await alterarSenha(senhaAtual, novaSenha);
-    setLoading(false);
-  };
-
-  
-
-  
-
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.container}>
     <ImageBackground source={require('../../../assets/cadeiras.jpg')} imageStyle={{opacity:0.5}}style={styles.imagemFundo}>
@@ -119,15 +104,26 @@ export const AlterarSenhaTela = () => {
         value={confirmarSenha}
         onChangeText={(text) => setConfirmarSenha(text)}
       />
-      <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.textButton}>Alterar Senha</Text>
-      </TouchableOpacity>
-
-      {loading && <LottieView ref={animationRef} source={require('../../../assets/lottie/Animation - 1716669362866.json')} autoPlay loop style={{flex:1, width:200, height:200}} />}
-
-     
-
-
+      <TouchableOpacity style={styles.button} onPress={() => {
+  alterarSenha(senhaAtual, confirmarSenha)
+  .then((response) => {
+    if (response === 'success') {
+      navigation.goBack();
+    } else {
+      Alert.alert(
+        "Aviso",
+        "Verifique senha digitada",
+        [{ text: "OK", }],
+        { cancelable: true }
+      );
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+}}>
+  <Text style={styles.textButton}>Alterar Senha</Text>
+  </TouchableOpacity>
     </View>
     </ImageBackground>
     </Pressable>

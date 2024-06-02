@@ -17,7 +17,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logoBarberSemFundo",
+      "image": "./assets/logoBarberSemFundo.png",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
     },

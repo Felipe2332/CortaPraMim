@@ -24,13 +24,12 @@
 
 Fazer uma transição mais suave da tela de login para o calendário se o usuario entrar direto logado. Atualmente manda para a tela de login e depois para calendário. Colocar um loading sei lá.
 
-Tirar o botao rodando quando tentar entrar com conta que nao existe
 
 Dar token pro cara quando ele criar conta E NÃO SÓ QUANDO ELE ENTRAR NORMAL
 
 Mudar fonte
 
-Hora de mostrar os agendamentos, mostrar os horários no formato dd/mm/aaaa - FEITO
+
 Coloquei uma verificação nos horarios disponiveis. Por exemplo. Se é 17:00, não mostrar os horários anteriores 
 
 
@@ -42,3 +41,4 @@ Quando usuario clicar em sobre em opções, mandar ele para o site
 
 FAZER A ANIMAÇÃO OCORRER QUANDO O USUÁRIO TROCA A SENHA E VOLTAR A TELA. POR ALGUM MOTIVO A ANIMAÇÃO NÃO RODA
 
+Sugestões para o futuro: Esqueci a senha, Implementar SMS, Notificações.

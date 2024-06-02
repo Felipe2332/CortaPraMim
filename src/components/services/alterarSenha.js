@@ -16,13 +16,16 @@ export async function alterarSenha(senhaAntiga, senhaNova) {
     };
 
     let response = await fetch(`https://cortapramim.azurewebsites.net/api/Cliente/changepassword/${cli_Id}/${senhaAntiga}/${senhaNova}`, requestOptions);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+    let result = await response.json(); // parse the response as JSON
+
+    if (result.passwordChanged) {
+      return 'success';
     } else {
-      let result = await response.text();
-      console.log(result);
+      throw new Error(result.message); // throw an error with the message from the API
     }
   } catch (error) {
     console.log('error', error);
+    return error.message; // return the error message
   }
 }
+

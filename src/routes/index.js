@@ -31,7 +31,7 @@ const AbaNavegacao = ({route}) => {
   return (
     
       <Aba.Navigator screenOptions={{
-      tabBarActiveTintColor: '#673319', // Cor do ícone quando a aba está ativa
+      tabBarActiveTintColor: '#e3a857', // Cor do ícone quando a aba está ativa
         tabBarInactiveTintColor: 'black', // Cor do ícone quando a aba está inativa
         tabBarStyle: {
           backgroundColor: 'white', // Cor de fundo da barra
@@ -99,7 +99,6 @@ export default function Routes(){
       <Stack.Screen name="AbaNavegacao" component={AbaNavegacao} />
       <Stack.Screen name="Opcoes" component={Opcoes} />
       <Stack.Screen name="AlterarSenhaTela" component={AlterarSenhaTela} />
-
     </Stack.Navigator>  
   )
 }
